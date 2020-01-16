@@ -41,7 +41,7 @@ public class UserController {
 	//1. 비밀번호 : 해쉬화 db에 저장
 	//2. email : id의 해쉬값에서 키 결정. 암호화 db에 저장
 	@PostMapping("userEntry")
-	public ModelAndView userEntry(@Valid User user, BindingResult bresult) throws Exception {
+	public ModelAndView userEntry(@Valid User user, String[] email, BindingResult bresult) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		if (bresult.hasErrors()) {
 			bresult.reject("error.input.user");
@@ -51,6 +51,8 @@ public class UserController {
 
 		// useraccount 테이블에 내용 등록. login.jsp
 		try {
+			String DBemail = email[0]+email[1];
+			user.setEmail(DBemail);
 			user.setPass(CipherUtil.makehash(user.getPass()));
 			service.insert(user);
 			mav.setViewName("redirect:../broadcast/index.shop");
