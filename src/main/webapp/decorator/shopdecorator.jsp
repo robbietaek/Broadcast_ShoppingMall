@@ -233,9 +233,9 @@
 												<h5>ETC</h5>
 												<ul class="list-unstyled mb-3">
 													<li class="nav-item">
-														<a href="" class="nav-link">최신 VOD</a></li>
+														<a href="../broadcast/vodreplay.shop" class="nav-link">최신 VOD</a></li>
 													<li class="nav-item">
-														<a href="../sellerpage/qna.shop"
+														<a href="../broadcast/vodreplay.shop"
 															class="nav-link">인기 VOD</a></li>
 												</ul>
 											</div>
