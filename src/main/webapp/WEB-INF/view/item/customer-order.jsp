@@ -34,11 +34,11 @@
                 <div class="panel-body">
                   <ul class="nav nav-pills flex-column text-sm">
                     <li class="nav-item">
-                    	<a href="../buyerpage/customer-order.shop" 
+                    	<a href="../item/customer-order.shop" 
                     		class="nav-link active">
                     		<i class="fa fa-list"></i> 주문 내역</a></li>
                     <li class="nav-item">
-                    	<a href="../buyerpage/customer-wishlist.shop" 
+                    	<a href="../item/customer-wishlist.shop" 
                     		class="nav-link">
                     		<i class="fa fa-heart"></i> 찜한 상품</a></li>
                     <li class="nav-item">

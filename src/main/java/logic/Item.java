@@ -10,11 +10,12 @@ import org.springframework.web.multipart.MultipartFile;
 public class Item {
 	private int itemid;
 	private String userid;
+
+	@NotEmpty(message = "상품명을 입력하세요")	
 	private String itemname;
-	@NotEmpty(message = "상품명을 입력하세요")
 
 	@Min(value = 10, message = "10원 이상 가능합니다.")
-	@Max(value = 1000000, message = "10만원 이하만 가능합니다.")
+	@Max(value = 1000000, message = "100만원 이하만 가능합니다.")
 	private int price;
 
 	@NotEmpty(message = "상품 설명을 입력하세요")
@@ -33,8 +34,27 @@ public class Item {
 	private MultipartFile picture5; // 업로드된 파일의 내용을 저장함. 변수이름과 똑같아야함
 
 	private String vod;
+	
+	private String subject;
+	
+	private String tema;
 
 
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public String getTema() {
+		return tema;
+	}
+
+	public void setTema(String tema) {
+		this.tema = tema;
+	}
 
 	public int getItemid() {
 		return itemid;
@@ -170,7 +190,9 @@ public class Item {
 				+ ", description=" + description + ", pictureUrl1=" + pictureUrl1 + ", pictureUrl2=" + pictureUrl2
 				+ ", pictureUrl3=" + pictureUrl3 + ", pictureUrl4=" + pictureUrl4 + ", pictureUrl5=" + pictureUrl5
 				+ ", picture1=" + picture1 + ", picture2=" + picture2 + ", picture3=" + picture3 + ", picture4="
-				+ picture4 + ", picture5=" + picture5 + ", vod=" + vod + "]";
+				+ picture4 + ", picture5=" + picture5 + ", vod=" + vod + ", subject=" + subject + ", tema=" + tema
+				+ "]";
 	}
+
 
 }
