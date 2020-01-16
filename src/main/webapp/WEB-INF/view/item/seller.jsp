@@ -54,27 +54,30 @@
 					</div>
 				</div>
 
-				<form:form modelAttribute="item" action="register.shop"
-					enctype="multipart/form-data">
-					<spring:hasBindErrors name="item">
-						<font color="red"> <c:forEach
-								items="${errors.globalErrors}" var="error">
-								<spring:message code="${error.code}" />
-							</c:forEach>
-						</font>
-					</spring:hasBindErrors>
-					
-					<form:hidden path="userid" value="${sessionScope.loginUser.userid}"/>
-					
-					<div id="blog-post" class="col-md-9">
-						<div id="comment-form">
+
+				<div id="blog-post" class="col-md-9">
+					<div id="comment-form">
+						<form:form modelAttribute="item" action="register.shop"
+							enctype="multipart/form-data">
+							<spring:hasBindErrors name="item">
+								<font color="red"> <c:forEach
+										items="${errors.globalErrors}" var="error">
+										<spring:message code="${error.code}" />
+									</c:forEach>
+								</font>
+							</spring:hasBindErrors>
+
+							<form:hidden path="userid"
+								value="${sessionScope.loginUser.userid}" />
+
 							<h4 class="text-uppercase">상품등록하기</h4>
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="form-group">
 										<label for="name">상품제목 <span
 											class="required text-primary">*</span>
-										</label> <form:input path="subject" class="form-control" />
+										</label>
+										<form:input path="subject" class="form-control" />
 										<font color="red"><form:errors path="subject" /></font>
 									</div>
 								</div>
@@ -85,7 +88,8 @@
 									<div class="form-group">
 										<label for="email">카테고리 <span
 											class="required text-primary">*</span>
-										</label> <form:input path="tema" class="form-control" />
+										</label>
+										<form:input path="tema" class="form-control" />
 										<font color="red"><form:errors path="tema" /></font>
 									</div>
 								</div>
@@ -96,7 +100,8 @@
 									<div class="form-group">
 										<label for="email">아이템 명 <span
 											class="required text-primary">*</span>
-										</label> <form:input path="itemname" class="form-control" />
+										</label>
+										<form:input path="itemname" class="form-control" />
 										<font color="red"><form:errors path="itemname" /></font>
 									</div>
 								</div>
@@ -107,7 +112,8 @@
 									<div class="form-group">
 										<label for="email">가격 <span
 											class="required text-primary">*</span>
-										</label> <form:input path="price" class="form-control" />
+										</label>
+										<form:input path="price" class="form-control" />
 										<font color="red"><form:errors path="price" /></font>
 									</div>
 								</div>
@@ -132,7 +138,8 @@
 									<div class="form-group">
 										<label for="email">VOD <span
 											class="required text-primary">*</span>
-										</label> <form:input path="vod" class="form-control" />
+										</label>
+										<form:input path="vod" class="form-control" />
 										<font color="red"><form:errors path="vod" /></font>
 									</div>
 								</div>
@@ -166,9 +173,10 @@
 									</button>
 								</div>
 							</div>
-						</div>
+						</form:form>
 					</div>
-				</form:form>
+				</div>
+
 			</div>
 		</div>
 	</section>

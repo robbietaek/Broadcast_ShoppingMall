@@ -32,20 +32,27 @@ public class ItemController {
    
    @RequestMapping("create")
    public ModelAndView create() {
-      ModelAndView mav = new ModelAndView("item/add");
+      ModelAndView mav = new ModelAndView("item/seller");
       mav.addObject(new Item());
       return mav;
    }
    
+   @GetMapping("seller")
+   public ModelAndView seller() {
+      ModelAndView mav = new ModelAndView();
+      mav.addObject(new Item());
+      return mav;   
+   }
+   
    @RequestMapping("register")
-   public ModelAndView register(@Valid Item item, BindingResult bresult,HttpServletRequest request) {      //valid를 빼면 공백을해도 됨
-      ModelAndView mav = new ModelAndView("item/add");
+   public ModelAndView register(@Valid Item item, BindingResult bresult,HttpServletRequest request) { //valid를 빼면 공백을 해도됨
+      ModelAndView mav = new ModelAndView("item/seller");
       if(bresult.hasErrors()) {      //에러가 있을 시 
          mav.getModel().putAll(bresult.getModel());
          return mav;
       }
       service.itemCreate(item,request);      //아이템에 있는걸 모두 DB에 넣는다.
-      mav.setViewName("redirect:/item/list.shop");
+      mav.setViewName("redirect:/item/selled.shop");
       return mav;
    }
    
@@ -57,10 +64,9 @@ public class ItemController {
          return mav;
       }
       service.itemUpdate(item,request);
-      mav.setViewName("redirect:/item/list.shop");
+      mav.setViewName("redirect:/item/selled.shop");
       return mav;
    }
-
    
    //@RequestMapping("detail")
    //@RequestMapping("*") //그 외의 모든 요청정보를 해줄 때 사용. 이럴 때는 URL에 아무것도 사용하면 안됨. 클릭한 곳 그대로 설정해줌 GetMapping 과 동일함
@@ -70,11 +76,13 @@ public class ItemController {
       return mav;   
    }
    
+   
+   
    @RequestMapping("delete")
    public ModelAndView delete(String id) {
       ModelAndView mav = new ModelAndView();
       service.itemDelete(id);
-      mav.setViewName("redirect:/item/list.shop");
+      mav.setViewName("redirect:/item/selled.shop");
       return mav;
    }
       
