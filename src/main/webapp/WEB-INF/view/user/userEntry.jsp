@@ -93,7 +93,7 @@
 							<div class="form-group">
 								<label for="email-login">전화번호</label>
 								<form:input path="tel" class="form-control"
-									placeholder="010-1234-5678" />
+									placeholder="ex) 010-1234-5678" />
 								<font color="red"><form:errors path="tel" /></font>
 							</div>
 
@@ -123,7 +123,7 @@
 										<label for="email-login">　</label>
 										<form:select path="email" class="form-control" 
 												style="width: 100%">
-											<option value="@naver.com">@naver.com<option>
+											<option value="@naver.com">@naver.com</option>
 											<option value="@hanmail.net">@hanmail.net</option>
 											<option value="@gmail.com">@gmail.com</option>
 											<option value="@yahoo.co.kr">@yahoo.co.kr</option>
