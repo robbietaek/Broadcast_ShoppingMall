@@ -261,7 +261,7 @@
 												<h5>공지사항</h5>
 												<ul class="list-unstyled mb-3">
 													<li class="nav-item">
-														<a href="../shop/" 
+														<a href="../border/list.shop?tema=1" 
 															class="nav-link">
 															공지사항</a></li>
 												</ul>
@@ -270,13 +270,13 @@
 												<h5>게시판</h5>
 												<ul class="list-unstyled mb-3">
 													<li class="nav-item">
-														<a href="../shop/" 
+														<a href="../border/list.shop?tema=2" 
 															class="nav-link">
 														건의사항</a></li>
 												</ul>
 												<ul class="list-unstyled mb-3">
 													<li class="nav-item">
-														<a href="../shop/" 
+														<a href="../border/list.shop?tema=3" 
 															class="nav-link">
 														자유게시판</a></li>
 												</ul>
