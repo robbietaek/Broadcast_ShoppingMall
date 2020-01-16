@@ -128,26 +128,26 @@
 								</span><span class="badge badge-secondary">여기 방송 전체수</span></a>
 								<ul class="nav nav-pills flex-column">
 									<li class="nav-item"><a
-										href="../item/shop-category-left.shop" class="nav-link">전체</a></li>
+										href="../broadcast/index.shop" class="nav-link">전체</a></li>
 									<li class="nav-item"><a
-										href="../item/shop-category-left.shop" class="nav-link">게임</a></li>
+										href="../broadcast/game.shop" class="nav-link">게임</a></li>
 									<li class="nav-item"><a
-										href="../item/shop-category-left.shop" class="nav-link">스포츠</a></li>
+										href="../broadcast/sports.shop" class="nav-link">스포츠</a></li>
 									<li class="nav-item"><a
-										href="../item/shop-category-left.shop" class="nav-link">보이는라디오</a></li>
+										href="../broadcast/bora.shop" class="nav-link">보이는라디오</a></li>
 									<li class="nav-item"><a
-										href="../item/shop-category-left.shop" class="nav-link">정치
+										href="../broadcast/politics.shop" class="nav-link">정치
 											/ 시사</a></li>
 								</ul></li>
-							<li class="nav-item"><a href="shop-category-left.shop"
+							<li class="nav-item"><a href="../broadcast/vodreplay.shop"
 								class="nav-link active d-flex align-items-center justify-content-between"><span>VOD
 								</span></a>
 								<ul class="nav nav-pills flex-column">
 									<li class="nav-item"><a
-										href="../item/shop-category-left.shop" class="nav-link">인기
+										href="../broadcast/vodreplay.shop" class="nav-link">인기
 											순위</a></li>
 									<li class="nav-item"><a
-										href="../item/shop-category-left.shop" class="nav-link">최신
+										href="../broadcast/vodreplay.shop" class="nav-link">최신
 											VOD</a></li>
 								</ul></li>
 							<li class="nav-item"><a href="shop-category-left.shop"
@@ -155,9 +155,9 @@
 								</span><span class="badge badge-secondary">11</span></a>
 								<ul class="nav nav-pills flex-column">
 									<li class="nav-item"><a
-										href="../item/shop-category-left.shop" class="nav-link">Live</a></li>
+										href="../broadcast/game.shop" class="nav-link">Live</a></li>
 									<li class="nav-item"><a
-										href="../item/shop-category-left.shop" class="nav-link">Wait</a></li>
+										href="../broadcast/game.shop" class="nav-link">Wait</a></li>
 								</ul></li>
 						</ul>
 					</div>
