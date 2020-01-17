@@ -18,11 +18,10 @@ public class Border {
 	@NotEmpty(message = "내용을 입력하세요.")
 	private String content;
 
-	private String file;
-	private MultipartFile fileurl;
+	private MultipartFile file;
+	private String fileurl;
 	private Date date;
 	private int view;
-	
 	public int getNo() {
 		return no;
 	}
@@ -53,16 +52,16 @@ public class Border {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getFile() {
+	public MultipartFile getFile() {
 		return file;
 	}
-	public void setFile(String file) {
+	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
-	public MultipartFile getFileurl() {
+	public String getFileurl() {
 		return fileurl;
 	}
-	public void setFileurl(MultipartFile fileurl) {
+	public void setFileurl(String fileurl) {
 		this.fileurl = fileurl;
 	}
 	public Date getDate() {
@@ -82,5 +81,7 @@ public class Border {
 		return "Border [no=" + no + ", tema=" + tema + ", nickname=" + nickname + ", subject=" + subject + ", content="
 				+ content + ", file=" + file + ", fileurl=" + fileurl + ", date=" + date + ", view=" + view + "]";
 	}
+	
+	
 	
 }

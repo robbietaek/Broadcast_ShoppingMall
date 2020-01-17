@@ -76,6 +76,9 @@
           <td>${border.view}</td>
       </tr>
    </c:forEach>
+   
+   
+   
    <%-- 페이지 처리 부분 --%>
 		<tr><td colspan="5">
 			<div class="w3-container">
@@ -95,6 +98,9 @@
 				<a class="w3-button w3-white w3-border" href="javascript:listcall(${pageNum + 1})">＞</a></c:if>
 			</div>
 		<%----------------%>
+		
+		
+		
 </c:if>
 <c:if test="${listcount == 0}">
    <tr>
