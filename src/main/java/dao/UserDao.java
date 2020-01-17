@@ -41,10 +41,10 @@ public class UserDao {
 		param.put("userid", userid);
 		List<User> list = sqlSession.getMapper(UserMapper.class).select(param);
 		if(list==null || list.isEmpty()) {
-			throw new LoginException("해당 아이디 없음","");
-		}else {
-			return list.get(0);
-		}
+	         return null;
+	      }else {
+	         return list.get(0);
+	      }
 	}
 	
 	public List<User> list(String[] idchks) {

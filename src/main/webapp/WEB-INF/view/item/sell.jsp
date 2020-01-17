@@ -33,21 +33,21 @@
 						</div>
 						<div class="panel-body">
 							<ul class="nav nav-pills flex-column text-sm">
-								<li class="nav-item"><a href="sell.shop"
+								<li class="nav-item"><a href="sell.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">판매 등록</a></li>
-								<li class="nav-item"><a href="selling.shop"
+								<li class="nav-item"><a href="selling.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">판매 등록 물품 관리</a></li>
-								<li class="nav-item"><a href="takeback.shop"
+								<li class="nav-item"><a href="takeback.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">반품 신청 목록 관리</a></li>
-								<li class="nav-item"><a href="delivery.shop"
+								<li class="nav-item"><a href="delivery.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">배송 관리</a></li>
-								<li class="nav-item"><a href=".shop"
+								<li class="nav-item"><a href=".shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">판매 통계</a></li>
-								<li class="nav-item"><a href="qna.shop"
+								<li class="nav-item"><a href="qna.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">Q&A 관리</a></li>
-								<li class="nav-item"><a href=".shop"
+								<li class="nav-item"><a href=".shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">판매된 목록</a></li>
-								<li class="nav-item"><a href=".shop"
+								<li class="nav-item"><a href=".shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">반품/취소된 목록</a></li>
 							</ul>
 						</div>
