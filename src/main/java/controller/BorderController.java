@@ -60,23 +60,23 @@ public class BorderController {
 	      return mav;
 	   }
 	
-	   @PostMapping("write")
-	   public ModelAndView write(@Valid Border border, BindingResult bresult, HttpServletRequest request) {
-	            ModelAndView mav = new ModelAndView();
-	            if(bresult.hasErrors()) {
-	               mav.getModel().putAll(bresult.getModel());
-	               return mav;
-	            }
-	         try {
-	            service.borderWrite(border,request);
-	            mav.setViewName("redirect:list.shop");
-	         }catch (Exception e) {
-	            e.printStackTrace();
-	            throw new BoardException
-	               ("게시물 등록에 실패했습니다.","write.shop");
-	         }
-	            return mav;
-	      }
+//	   @PostMapping("write")
+//	   public ModelAndView write(@Valid Border border, BindingResult bresult, HttpServletRequest request) {
+//	            ModelAndView mav = new ModelAndView();
+//	            if(bresult.hasErrors()) {
+//	               mav.getModel().putAll(bresult.getModel());
+//	               return mav;
+//	            }
+//	         try {
+//	            service.borderWrite(border,request);
+//	            mav.setViewName("redirect:list.shop");
+//	         }catch (Exception e) {
+//	            e.printStackTrace();
+//	            throw new BoardException
+//	               ("게시물 등록에 실패했습니다.","write.shop");
+//	         }
+//	            return mav;
+//	      }
 
 	
 	

@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.Date;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -38,23 +40,8 @@ public class Item {
 	private String subject;
 	
 	private String tema;
-
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-	public String getTema() {
-		return tema;
-	}
-
-	public void setTema(String tema) {
-		this.tema = tema;
-	}
+	
+	private Date date;
 
 	public int getItemid() {
 		return itemid;
@@ -184,6 +171,30 @@ public class Item {
 		this.vod = vod;
 	}
 
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public String getTema() {
+		return tema;
+	}
+
+	public void setTema(String tema) {
+		this.tema = tema;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	@Override
 	public String toString() {
 		return "Item [itemid=" + itemid + ", userid=" + userid + ", itemname=" + itemname + ", price=" + price
@@ -191,8 +202,7 @@ public class Item {
 				+ ", pictureUrl3=" + pictureUrl3 + ", pictureUrl4=" + pictureUrl4 + ", pictureUrl5=" + pictureUrl5
 				+ ", picture1=" + picture1 + ", picture2=" + picture2 + ", picture3=" + picture3 + ", picture4="
 				+ picture4 + ", picture5=" + picture5 + ", vod=" + vod + ", subject=" + subject + ", tema=" + tema
-				+ "]";
+				+ ", date=" + date + "]";
 	}
-
 
 }

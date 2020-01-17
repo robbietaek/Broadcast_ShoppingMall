@@ -139,17 +139,17 @@ public class ShopService {
 		return borderDao.list(pageNum,limit,searchtype,searchcontent, tema);
 	}
 
-	public void borderWrite(Border border, HttpServletRequest request) {
-		//첨부파일이 존재하는 경우
-		if(border.getFile() != null && !border.getFile().isEmpty()) {
-		uploadFileCreate(border.getFile(), request, "border/file/");
-		//업로드 파일의 이름 지정
-		border.setFileurl(border.getFile().getOriginalFilename());
-	}
-		int max = borderDao.maxnum();
-		border.setNo(++max);	
-		borderDao.insert(border);		
-	}
+//	public void borderWrite(Border border, HttpServletRequest request) {
+//		//첨부파일이 존재하는 경우
+//		if(border.getFile() != null && !border.getFile().isEmpty()) {
+//		uploadFileCreate(border.getFile(), request, "border/file/");
+//		//업로드 파일의 이름 지정
+//		border.setFileurl(border.getFile().getOriginalFilename());
+//	}
+//		int max = borderDao.maxnum();
+//		border.setNo(++max);	
+//		borderDao.insert(border);		
+//	}
 //게시판 부분 끝
 	
 }
