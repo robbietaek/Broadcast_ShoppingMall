@@ -32,9 +32,9 @@
 						</div>
 						<div class="panel-body">
 							<ul class="nav nav-pills flex-column text-sm">
-								<li class="nav-item"><a href="seller.shop"
+								<li class="nav-item"><a href="sell.shop"
 									class="nav-link">판매 등록</a></li>
-								<li class="nav-item"><a href="selled.shop"
+								<li class="nav-item"><a href="selling.shop"
 									class="nav-link">판매 등록 물품 관리</a></li>
 								<li class="nav-item"><a href="takeback.shop"
 									class="nav-link">반품 신청 목록 관리</a></li>
@@ -43,7 +43,7 @@
 								<li class="nav-item"><a href=".shop"
 									class="nav-link">판매 통계</a></li>
 								<li class="nav-item"><a href="qna.shop"
-									class="nav-link active">Q&A 관리</a></li>
+									class="nav-link">Q&A 관리</a></li>
 								<li class="nav-item"><a href=".shop"
 									class="nav-link">판매된 목록</a></li>
 								<li class="nav-item"><a href=".shop"

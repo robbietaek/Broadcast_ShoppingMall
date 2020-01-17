@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import logic.Item;
 import logic.ShopService;
+import logic.User;
 
 @Controller      //@Component+Controller 기능
 @RequestMapping("item")      //shop/xxx.shop
@@ -21,7 +23,7 @@ public class ItemController {
    @Autowired
    private ShopService service;
    
-   @RequestMapping("list")      //item/list.shop 요청
+   @RequestMapping("selled")
    public ModelAndView list() {
       //itemList : item테이블의 모든 레코드와 모든 컬럼을 정보를 저장
       List<Item> itemList = service.getItemList();   //내 모든 아이템 정보를 리스트 형 객체로 화면에 뿌려준다.
@@ -37,12 +39,6 @@ public class ItemController {
       return mav;
    }
    
-   @GetMapping("seller")
-   public ModelAndView seller() {
-      ModelAndView mav = new ModelAndView();
-      mav.addObject(new Item());
-      return mav;   
-   }
    
    @RequestMapping("register")
    public ModelAndView register(@Valid Item item, BindingResult bresult,HttpServletRequest request) { //valid를 빼면 공백을 해도됨
@@ -72,7 +68,8 @@ public class ItemController {
    //@RequestMapping("*") //그 외의 모든 요청정보를 해줄 때 사용. 이럴 때는 URL에 아무것도 사용하면 안됨. 클릭한 곳 그대로 설정해줌 GetMapping 과 동일함
    @GetMapping("*")
    public ModelAndView itemSelect() {
-      ModelAndView mav = new ModelAndView();
+	  ModelAndView mav = new ModelAndView();
+	  mav.addObject(new Item());
       return mav;   
    }
    
