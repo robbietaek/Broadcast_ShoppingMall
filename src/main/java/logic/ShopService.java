@@ -151,6 +151,5 @@ public class ShopService {
 		borderDao.insert(border);		
 	}
 //게시판 부분 끝
-
 	
 }
