@@ -129,34 +129,34 @@ public class ShopService {
 	public List<User> userList(String[] idchks) {
 		return userDao.list(idchks);
 	}
-//게시판 부분
-	public int bordercount(String searchtype, String searchcontent, String tema) {
-		return borderDao.count(searchtype, searchcontent, tema);
-	}
+	//게시판 부분
+	   public int bordercount(String searchtype, String searchcontent, String tema) {
+	      return borderDao.count(searchtype, searchcontent, tema);
+	   }
 
-	public List<Border> borderlist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
-		Map<String,Object> map = new HashMap<String,Object>();
-		return borderDao.list(pageNum,limit,searchtype,searchcontent, tema);
-	}
+	   public List<Border> borderlist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
+	      Map<String,Object> map = new HashMap<String,Object>();
+	      return borderDao.list(pageNum,limit,searchtype,searchcontent, tema);
+	   }
 
-	public void borderWrite(Border border, HttpServletRequest request) {
-		//첨부파일이 존재하는 경우
-		if(border.getFile() != null && !border.getFile().isEmpty()) {
-		uploadFileCreate(border.getFile(), request, "border/file/");
-		//업로드 파일의 이름 지정
-		border.setFileUrl(border.getFile().getOriginalFilename());
-	}
-		int max = borderDao.maxnum();
-		border.setNo(++max);	
-		borderDao.insert(border);		
-	}
-//게시판 부분 끝
+	   public void borderWrite(Border border, HttpServletRequest request) {
+	      //첨부파일이 존재하는 경우
+	      if(border.getFile() != null && !border.getFile().isEmpty()) {
+	      uploadFileCreate(border.getFile(), request, "border/file/");
+	      //업로드 파일의 이름 지정
+	      border.setFileUrl(border.getFile().getOriginalFilename());
+	   }
+	      int max = borderDao.maxnum();
+	      border.setNo(++max);   
+	      borderDao.insert(border);      
+	   }
+	//게시판 부분 끝
 
-	public Border getBorder(Integer num, HttpServletRequest request) {
-		if(request.getRequestURI().contains("detail.shop")) {
-	         borderDao.viewadd(num);
-	      }
-	      return borderDao.selectOne(num);
-	}
+	   public Border getBorder(Integer num, HttpServletRequest request) {
+	      if(request.getRequestURI().contains("detail.shop")) {
+	            borderDao.viewadd(num);
+	         }
+	         return borderDao.selectOne(num);
+	   }
 	
 }

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 작성</title>
-<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 <form:form modelAttribute="border" action="write.shop" enctype="multipart/form-data" name="f">
@@ -34,7 +34,7 @@
        <td>
           <form:textarea path="content" rows="15" cols="80"/>
           <script>CKEDITOR.replace("content", {
-        	  filebrowserImageUploadUrl : "imgupload.shop"
+             filebrowserImageUploadUrl : "imgupload.shop"
           });
           </script>
           <font color="red"><form:errors path="content" /></font>
