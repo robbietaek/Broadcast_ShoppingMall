@@ -7,27 +7,33 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 목록</title>
-<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script type="text/javascript">
    function listdo(page) {
-	   document.searchform.pageNum.value=page;
-	   document.searchform.submit();
+      document.searchform.pageNum.value=page;
+      document.searchform.submit();
    }
 </script>
 </head>
 <body>
-<table style="font-weight:bold">
-	<c:if test="${param.tema == 1}">
-		<caption>공지사항</caption>
-	</c:if>
-	<c:if test="${param.tema == 2}">
-		<caption>건의사항</caption>
-	</c:if>
-	<c:if test="${param.tema == 3}">
-		<caption>자유게시판</caption>
+<div class="container">
+         <div class="row">
+            <div class="col-lg-12">
+<table style="font-weight:bold; text-align: center;">
+   <c:if test="${param.tema == 1}">
+      <caption>공지사항</caption>
+   </c:if>
+   <c:if test="${param.tema == 2}">
+      <caption>건의사항</caption>
+   </c:if>
+   <c:if test="${param.tema == 3}">
+      <caption>자유게시판</caption>
     </c:if>
 </table>
+</div>
+</div>
+</div>
 <table>
    <tr>
        <td colspan="5">
@@ -82,27 +88,27 @@
    
    
    <%-- 페이지 처리 부분 --%>
-		<tr><td colspan="5">
-			<div class="w3-container">
-			<c:if test="${pageNum <= 1}"><a class="w3-button w3-white w3-border">＜</a></c:if>
-			<c:if test="${pageNum > 1}">
-				<a class="w3-button w3-white w3-border" href="javascript:listcall(${pageNum - 1})">＜</a>
-			</c:if>
-			
-			<c:forEach var="a" begin="${startpage}" end="${endpage}">
-				<c:if test="${a == pageNum}"><a class="w3-button w3-light-gray w3-border">${a}</a></c:if>
-				<c:if test="${a != pageNum}">
-					<a class="w3-button w3-white w3-border" href="javascript:listcall(${a})">${a}</a></c:if>
-			</c:forEach>
-			
-			<c:if test="${pageNum >= maxpage}"><a class="w3-button w3-white w3-border">＞</a></c:if>
-			<c:if test="${pageNum < maxpage}">
-				<a class="w3-button w3-white w3-border" href="javascript:listcall(${pageNum + 1})">＞</a></c:if>
-			</div>
-		<%----------------%>
-		
-		
-		
+      <tr><td colspan="5">
+         <div class="w3-container">
+         <c:if test="${pageNum <= 1}"><a class="w3-button w3-white w3-border">＜</a></c:if>
+         <c:if test="${pageNum > 1}">
+            <a class="w3-button w3-white w3-border" href="javascript:listcall(${pageNum - 1})">＜</a>
+         </c:if>
+         
+         <c:forEach var="a" begin="${startpage}" end="${endpage}">
+            <c:if test="${a == pageNum}"><a class="w3-button w3-light-gray w3-border">${a}</a></c:if>
+            <c:if test="${a != pageNum}">
+               <a class="w3-button w3-white w3-border" href="javascript:listcall(${a})">${a}</a></c:if>
+         </c:forEach>
+         
+         <c:if test="${pageNum >= maxpage}"><a class="w3-button w3-white w3-border">＞</a></c:if>
+         <c:if test="${pageNum < maxpage}">
+            <a class="w3-button w3-white w3-border" href="javascript:listcall(${pageNum + 1})">＞</a></c:if>
+         </div>
+      <%----------------%>
+      
+      
+      
 </c:if>
 <c:if test="${listcount == 0}">
    <tr>
