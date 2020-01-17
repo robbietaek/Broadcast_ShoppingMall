@@ -24,9 +24,10 @@ public class ItemController {
    private ShopService service;
    
    @RequestMapping("selling")
-   public ModelAndView list() {
+   public ModelAndView list(HttpSession session) {
       //itemList : item테이블의 모든 레코드와 모든 컬럼을 정보를 저장
-      List<Item> itemList = service.getItemList();   //내 모든 아이템 정보를 리스트 형 객체로 화면에 뿌려준다.
+	  User user = (User) session.getAttribute("loginUser");
+      List<Item> itemList = service.getItemList(user);   //내 모든 아이템 정보를 리스트 형 객체로 화면에 뿌려준다.
       ModelAndView mav = new ModelAndView();      //뷰 : item/list
       mav.addObject("itemList",itemList);
       return mav;         //WEB-INF/view/item/list.jsp

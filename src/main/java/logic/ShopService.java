@@ -26,8 +26,8 @@ public class ShopService {
 	@Autowired
 	private BorderDao borderDao;
 	
-	public List<Item> getItemList(){
-	      return itemDao.list();
+	public List<Item> getItemList(User user){
+	      return itemDao.list(user);
 	   }
 	   
 	   public Item getItem(String id){

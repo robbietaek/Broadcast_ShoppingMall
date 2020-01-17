@@ -89,12 +89,31 @@ public class UserController {
       return mav;
 
    }
+   // 네이버 로그인
+   @RequestMapping(value="login1", method=RequestMethod.POST)
+    @ResponseBody
+    public String login1 (String id, String nickname, HttpSession session ) {
+       try{
+         User dbUser = service.getUser(id);
+         if(dbUser==null) {
+            session.setAttribute("email", id);
+            session.setAttribute("nickname", nickname);
+            return "userEntry.shop";
+         }else {
+            session.setAttribute("loginUser", dbUser);
+            
+         }
+      } catch (LoginException e) {
+         e.printStackTrace();
+      
+      }
+      return "../broadcast/index.shop";
+       
+    }
    // 카카오톡 로그인
    @RequestMapping(value="login3", method=RequestMethod.POST)
     @ResponseBody
     public String login3 (String email, String nickname, String profile,HttpSession session ) throws Exception {
-      
-      
       try{
          email = email.substring(1,email.length()-1);
          User dbUser = service.getUser(email);

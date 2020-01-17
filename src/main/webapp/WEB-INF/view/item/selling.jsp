@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/jspHeader.jsp"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,54 +66,21 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>주문번호</th>
-										<th>주문 날짜</th>
-										<th>상품 총액</th>
-										<th>상태</th>
-										<th>상세보기</th>
+										<th>등록번호</th>
+										<th>카테고리</th>
+										<th>상품이름</th>
+										<th>등록 날짜</th>
 									</tr>
 								</thead>
 								<tbody>
+								<c:forEach items="${itemList}" var = "i">
 									<tr>
-										<th># 1735</th>
-										<td>22/06/2013</td>
-										<td>￦50000</td>
-										<td><span class="badge badge-info">배송준비중</span></td>
-										<td><a href="customer-order.shop"
-											class="btn btn-template-outlined btn-sm">View</a></td>
+										<th>${i.itemid}</th>
+										<td>${fn:substring(i.tema,0,5)}</td>
+										<td>${fn:substring(i.itemname,0,15)}</td>
+										<td>${i.date}</td>
 									</tr>
-									<tr>
-										<th># 1735</th>
-										<td>22/06/2013</td>
-										<td>￦29000</td>
-										<td><span class="badge badge-info">배송준비중</span></td>
-										<td><a href="customer-order.shop"
-											class="btn btn-template-outlined btn-sm">View</a></td>
-									</tr>
-									<tr>
-										<th># 1735</th>
-										<td>22/06/2013</td>
-										<td>￦30000</td>
-										<td><span class="badge badge-success">배송완료</span></td>
-										<td><a href="customer-order.shop"
-											class="btn btn-template-outlined btn-sm">View</a></td>
-									</tr>
-									<tr>
-										<th># 1735</th>
-										<td>22/06/2013</td>
-										<td>￦61000</td>
-										<td><span class="badge badge-danger">취소</span></td>
-										<td><a href="customer-order.shop"
-											class="btn btn-template-outlined btn-sm">View</a></td>
-									</tr>
-									<tr>
-										<th># 1735</th>
-										<td>22/06/2013</td>
-										<td>￦18000</td>
-										<td><span class="badge badge-warning">입금확인중</span></td>
-										<td><a href="customer-order.shop"
-											class="btn btn-template-outlined btn-sm">View</a></td>
-									</tr>
+								</c:forEach>
 								</tbody>
 							</table>
 						</div>
