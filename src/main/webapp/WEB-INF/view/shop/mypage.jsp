@@ -37,10 +37,10 @@
                 <div class="box-simple">
                   <div class="icon-outlined">
                   	<i class="fa fa-desktop" 
-                  		onclick = "location.href = '../item/seller.shop'"></i>
+                  		onclick = "location.href = '../item/sell.shop?userid=${sessionScope.loginUser.userid}'"></i>
                   </div>
                   <h3 class="h4">
-                  	<a href = "../item/seller.shop">판매자 페이지</a></h3>
+                  	<a href = "../item/sell.shop?userid=${sessionScope.loginUser.userid}">판매자 페이지</a></h3>
                   <p>판매 목록관리, 판매된 물품, 반품신청목록 , Q&A 등을 확인할 수 있습니다.</p>
                 </div>
               </div>
@@ -48,10 +48,10 @@
                 <div class="box-simple">
                   <div class="icon-outlined">
                   	<i class="fa fa-globe" 
-                  		onclick = "location.href = '../item/customer-order.shop'"></i>
+                  		onclick = "location.href = '../item/customer-order.shop?userid=${sessionScope.loginUser.userid}'"></i>
                   </div>
                   <h3 class="h4">
-                  	<a href = "../item/customer-order.shop">구매자 페이지</a></h3>
+                  	<a href = "../item/customer-order.shop?userid=${sessionScope.loginUser.userid}">구매자 페이지</a></h3>
                   <p>구매목록 , 구매취소목록, 찜 목록, 배송정보 등을 볼 수 있습니다.</p>
                 </div>
               </div>

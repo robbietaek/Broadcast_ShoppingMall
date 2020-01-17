@@ -23,7 +23,7 @@ public class ItemController {
    @Autowired
    private ShopService service;
    
-   @RequestMapping("selled")
+   @RequestMapping("sell")
    public ModelAndView list() {
       //itemList : item테이블의 모든 레코드와 모든 컬럼을 정보를 저장
       List<Item> itemList = service.getItemList();   //내 모든 아이템 정보를 리스트 형 객체로 화면에 뿌려준다.
@@ -32,23 +32,16 @@ public class ItemController {
       return mav;         //WEB-INF/view/item/list.jsp
    }
    
-   @RequestMapping("create")
-   public ModelAndView create() {
-      ModelAndView mav = new ModelAndView("item/seller");
-      mav.addObject(new Item());
-      return mav;
-   }
-   
    
    @RequestMapping("register")
    public ModelAndView register(@Valid Item item, BindingResult bresult,HttpServletRequest request) { //valid를 빼면 공백을 해도됨
-      ModelAndView mav = new ModelAndView("item/seller");
+      ModelAndView mav = new ModelAndView("item/sell");
       if(bresult.hasErrors()) {      //에러가 있을 시 
          mav.getModel().putAll(bresult.getModel());
          return mav;
       }
       service.itemCreate(item,request);      //아이템에 있는걸 모두 DB에 넣는다.
-      mav.setViewName("redirect:/item/selled.shop");
+      mav.setViewName("redirect:/item/selling.shop");
       return mav;
    }
    
@@ -60,7 +53,7 @@ public class ItemController {
          return mav;
       }
       service.itemUpdate(item,request);
-      mav.setViewName("redirect:/item/selled.shop");
+      mav.setViewName("redirect:/item/selling.shop");
       return mav;
    }
    
