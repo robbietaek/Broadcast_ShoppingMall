@@ -7,9 +7,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 public class User {
-	@Size(min = 3, max = 10, message = "아이디는 3자 이상 10자 이하로 입력하세요.")
+	@Size(min = 3, max = 30, message = "아이디는 3자 이상 30자 이하로 입력하세요.")
 	private String userid;
-	@Size(min = 3, max = 10, message = "비밀번호는 3자 이상 10자 이하로 입력하세요.")
+	@Size(min = 3, max = 30, message = "비밀번호는 3자 이상 30자 이하로 입력하세요.")
 	private String pass;
 	@NotEmpty(message="사용자 이름은 필수 입력입니다.")
 	private String name;
