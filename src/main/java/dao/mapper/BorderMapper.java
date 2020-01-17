@@ -21,8 +21,9 @@ public interface BorderMapper {
 	@Select({"<script>",
 		" ${sql}" +
 		" <if test='tema != null'> where tema = #{tema} </if>",
-		"<if test='searchtype != null'> and ${searchtype} like ${searchcontent} </if>",
-		"</script>"
+		"<if test='searchtype != null'> and ${searchtype} like ${searchcontent} </if>"
+		+ "order by date desc"
+		+ "</script>"
 	})
 	List<Border> select(Map<String, Object> param);
 

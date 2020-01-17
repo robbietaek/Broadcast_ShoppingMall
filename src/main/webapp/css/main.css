@@ -9,7 +9,7 @@ th,td { border-bottom: 1px solid #c1c1c1;
 	text-align: center;
 	padding : 8px;
 	}
-th {background-color: #b4b4b4; color : white;}
+th {background-color: #4fbfa8; color : white;}
 td {background-color:#ffffff;}
 caption {
 	padding:5px;
@@ -22,10 +22,7 @@ input[type=text],input[type=password],textarea {
 input[type=button],input[type=submit] {
 	w3-button; w3-teal; w3-rigth;
 }
-.login {
-	border: solid 0px #000000;
-	background-color:#ffffff;
-}
+
 .button {
   border: none;
   color: white;
@@ -38,7 +35,7 @@ input[type=button],input[type=submit] {
   transition-duration: 0.4s;
   cursor: pointer;
   font-weight: bold;
-  background-color: #b4b4b4; 
+  background-color: #2ca069; 
   color: white; 
   border-radius: 8px;
 }
@@ -116,7 +113,7 @@ body#LoginForm{
 .back { text-align: left; margin-top:10px;}
 .back a {color: #444444; font-size: 15px;text-decoration: none;}
 
-/* ===============��Ʈ=============== */
+/* ===============ÆùÆ®=============== */
 
 /* @font-face { 
 	font-family: 'BMHANNAAir'; 

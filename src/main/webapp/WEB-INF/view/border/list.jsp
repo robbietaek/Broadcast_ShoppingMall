@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 목록</title>
-<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script type="text/javascript">
    function listdo(page) {
@@ -17,7 +17,10 @@
 </script>
 </head>
 <body>
-<table style="font-weight:bold">
+<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+<table style="font-weight:bold; text-align: center;">
 	<c:if test="${param.tema == 1}">
 		<caption>공지사항</caption>
 	</c:if>
@@ -28,6 +31,9 @@
 		<caption>자유게시판</caption>
     </c:if>
 </table>
+</div>
+</div>
+</div>
 <table>
    <tr>
        <td colspan="5">
