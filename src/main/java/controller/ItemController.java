@@ -23,7 +23,7 @@ public class ItemController {
    @Autowired
    private ShopService service;
    
-   @RequestMapping("sell")
+   @RequestMapping("selling")
    public ModelAndView list() {
       //itemList : item테이블의 모든 레코드와 모든 컬럼을 정보를 저장
       List<Item> itemList = service.getItemList();   //내 모든 아이템 정보를 리스트 형 객체로 화면에 뿌려준다.
