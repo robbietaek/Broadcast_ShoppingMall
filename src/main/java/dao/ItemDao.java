@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import dao.mapper.ItemMapper;
 import logic.Item;
+import logic.User;
 
 @Repository
 public class ItemDao {
@@ -18,9 +19,10 @@ public class ItemDao {
 	SqlSessionTemplate sqlSession;
 	private Map<String, Object> param = new HashMap<String, Object>();
 	
-	public List<Item> list() {
+	public List<Item> list(User user) {
 		param.clear();
-		return sqlSession.getMapper(ItemMapper.class).select(null);
+		param.put("userid",user.getUserid());
+		return sqlSession.getMapper(ItemMapper.class).select(param);
 	}
 	
 	public void insert(Item item) {

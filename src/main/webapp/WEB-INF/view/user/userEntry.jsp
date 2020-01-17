@@ -58,6 +58,7 @@
                      <c:if test="${!empty profile}">
                         <img src="${profile }" width="100" height="120" id="pic">
                      </c:if>
+                     <img src="${profile }" width="100" height="120" id="pic">
                      <hr>
                      <font size="1"> <a href="javascript:win_upload()">사진등록</a></font>
 
