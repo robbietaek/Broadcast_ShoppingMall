@@ -16,7 +16,7 @@ public class BorderDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	private Map<String, Object> param = new HashMap<>();
-	private String bordercolumn = "select no, tema, nickname, subject, content, file,"
+	private String bordercolumn = "select no, tema, nickname, subject, content, file fileUrl,"
 			                    + "date, view from border";
 	
 	public int count(String searchtype, String searchcontent, String tema) {
