@@ -19,7 +19,7 @@ public class Border {
 	private String content;
 
 	private MultipartFile file;
-	private String fileurl;
+	private String fileUrl;
 	private Date date;
 	private int view;
 	public int getNo() {
@@ -58,11 +58,11 @@ public class Border {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
-	public String getFileurl() {
-		return fileurl;
+	public String getFileUrl() {
+		return fileUrl;
 	}
-	public void setFileurl(String fileurl) {
-		this.fileurl = fileurl;
+	public void setFileUrl(String fileUrl) {
+		this.fileUrl = fileUrl;
 	}
 	public Date getDate() {
 		return date;
@@ -79,7 +79,7 @@ public class Border {
 	@Override
 	public String toString() {
 		return "Border [no=" + no + ", tema=" + tema + ", nickname=" + nickname + ", subject=" + subject + ", content="
-				+ content + ", file=" + file + ", fileurl=" + fileurl + ", date=" + date + ", view=" + view + "]";
+				+ content + ", file=" + file + ", fileUrl=" + fileUrl + ", date=" + date + ", view=" + view + "]";
 	}
 	
 	

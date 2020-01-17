@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,7 +26,7 @@ public class BorderController {
 	   @RequestMapping("list")
 	   public ModelAndView list(HttpServletRequest request, Integer pageNum, String searchtype, String searchcontent) { 
 	      ModelAndView mav = new ModelAndView();
-	      int tema = Integer.parseInt(request.getParameter("tema"));
+	      String tema = (request.getParameter("tema"));
 	      if(searchtype != null && searchtype.trim().equals(""))
 	    	  searchtype = null;
 			if(searchcontent != null && searchcontent.trim().equals(""))
@@ -63,21 +64,33 @@ public class BorderController {
 	   @PostMapping("write")
 	   public ModelAndView write(@Valid Border border, BindingResult bresult, HttpServletRequest request) {
 	            ModelAndView mav = new ModelAndView();
-	            if(bresult.hasErrors()) {
-	               mav.getModel().putAll(bresult.getModel());
-	               return mav;
-	            }
+	            String tema = (request.getParameter("tema"));
+	            System.out.println("1111");
+//	            if(bresult.hasErrors()) {
+//	               mav.getModel().putAll(bresult.getModel());
+//	               return mav;
+//	            }
 	         try {
+	        	System.out.println("*****************");
 	            service.borderWrite(border,request);
-	            mav.setViewName("redirect:list.shop");
+	            mav.setViewName("redirect:list.shop?tema="+tema);
 	         }catch (Exception e) {
 	            e.printStackTrace();
 	            throw new BoardException
-	               ("게시물 등록에 실패했습니다.","write.shop");
+	               ("게시물 등록에 실패했습니다.","write.shop?tema="+tema);
 	         }
 	            return mav;
 	      }
-
-	
-	
+	   @GetMapping("*")
+	   public ModelAndView getBoard(Integer no, HttpServletRequest request) {
+	      ModelAndView mav = new ModelAndView();
+	      Border border = null;
+	      if(no == null) {
+	         border = new Border();
+	      }else {
+	         border = service.getBorder(no, request);
+	      }
+	      mav.addObject("border", border);
+	      return mav;
+	   }
 }

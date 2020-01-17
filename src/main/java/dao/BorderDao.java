@@ -19,7 +19,7 @@ public class BorderDao {
 	private String bordercolumn = "select no, tema, nickname, subject, content, file,"
 			                    + "date, view from border";
 	
-	public int count(String searchtype, String searchcontent, int tema) {
+	public int count(String searchtype, String searchcontent, String tema) {
 	param.clear();
 	param.put("searchtype",searchtype);
 	param.put("tema", tema);
@@ -27,7 +27,7 @@ public class BorderDao {
 	return sqlSession.getMapper(BorderMapper.class).count(param);
 	}
 
-	public List<Border> list(Integer pageNum, int limit, String searchtype, String searchcontent,int tema) {
+	public List<Border> list(Integer pageNum, int limit, String searchtype, String searchcontent,String tema) {
 		String sql = bordercolumn;
 		param.clear();
 		param.put("sql", sql);
@@ -37,5 +37,27 @@ public class BorderDao {
 		param.put("tema",tema);
 		param.put("limit", limit);
 		return sqlSession.getMapper(BorderMapper.class).select(param);
+	}
+
+	public int maxnum() {
+		return sqlSession.getMapper(BorderMapper.class).maxnum();
+	}
+
+	public void insert(Border border) {
+		sqlSession.getMapper(BorderMapper.class).insert(border);		
+	}
+
+	public void viewadd(Integer no) {
+		param.clear();
+		param.put("no", no);
+		sqlSession.getMapper(BorderMapper.class).updateviewadd(param);
+	}
+
+	public Border selectOne(Integer no) {
+		String sql = bordercolumn;
+		param.clear();
+		param.put("sql", sql);
+		param.put("no", no);
+		return sqlSession.getMapper(BorderMapper.class).selectOne(param);
 	}
 }
