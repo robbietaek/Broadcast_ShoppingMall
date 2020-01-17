@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,13 +18,13 @@
 </head>
 <body>
 <table style="font-weight:bold">
-	<c:if test="${tema == 1}">
+	<c:if test="${param.tema == 1}">
 		<caption>공지사항</caption>
 	</c:if>
-	<c:if test="${tema == 2}">
+	<c:if test="${param.tema == 2}">
 		<caption>건의사항</caption>
 	</c:if>
-	<c:if test="${tema == 3}">
+	<c:if test="${param.tema == 3}">
 		<caption>자유게시판</caption>
     </c:if>
 </table>
@@ -30,10 +32,10 @@
    <tr>
        <td colspan="5">
           <div style="display : inline;">
-             <form action="list.shop?=${tema}" method="post" name="searchform">
+             <form action="list.shop?=${param.tema}" method="post" name="searchform">
                 <input type="hidden" name="pageNum" value="1">
-                <input type="hidden" name="code" value="${param.tema}">
-                <input type="hidden" name="id" value="${sessionScope.loginUser}">
+                <input type="hidden" name="tema" value="${param.tema}">
+                <input type="hidden" name="userid" value="${sessionScope.login}">
                    <select name="searchtype" style="width:100px;">
                       <option value="">선택하세요</option>
                       <option value="subject">제목</option>
@@ -63,15 +65,15 @@
           <c:set var="borderno" value="${borderno-1}"/>
           
           <td style="text-align:left;">
-          <c:if test="${!empty border.fileurl}"> <%-- 첨부파일 존재 --%>
-             <a href="file/${border.fileurl}">@</a>
+          <c:if test="${!empty border.fileUrl}"> <%-- 첨부파일 존재 --%>
+             <a href="file/${border.fileUrl}">@</a>
           </c:if>
-          <c:if test="${empty border.fileurl}">
+          <c:if test="${empty border.fileUrl}">
              &nbsp;&nbsp;&nbsp;
           </c:if>
-          <a href="detail.shop?tema=${border.tema}&num=${border.num}">${border.subject}</a>
+          <a href="detail.shop?tema=${border.tema}&no=${border.no}">${border.subject}</a>
           </td>
-          <td>${border.userid}</td>
+          <td>${border.nickname}</td>
           <td><fmt:formatDate value="${border.date}" pattern="yyyy-MM-dd HH:hh"/></td>
           <td>${border.view}</td>
       </tr>
@@ -109,7 +111,7 @@
 </c:if>
 <tr>
     <td colspan="5" align="right">
-       <a href="write.shop">[글쓰기]</a>
+       <a href="write.shop?tema=${param.tema}">[글쓰기]</a>
     </td>
 </tr>
 </table>
