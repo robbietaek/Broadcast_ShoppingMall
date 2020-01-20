@@ -3,6 +3,7 @@ package dao.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -14,14 +15,14 @@ public interface BorderMapper {
    @Select({"<script>",
       "select count(*) from border",
       "<if test='tema != null'> where tema = #{tema} </if>",
-      "<if test='searchtype != null'> and ${searchtype} like ${searchcontent} </if>"+
+      "<if test='searchtype != null'> where ${searchtype} like ${searchcontent} </if>"+
       "</script>"})
    int count(Map<String, Object> param);
 
    @Select({"<script>",
       " ${sql}" +
       " <if test='tema != null'> where tema = #{tema} </if>",
-      "<if test='searchtype != null'> and ${searchtype} like ${searchcontent} </if>"
+      "<if test='searchtype != null'> where ${searchtype} like ${searchcontent} </if>"
       + "order by date desc"
       + "</script>"
    })
@@ -39,5 +40,11 @@ public interface BorderMapper {
 
    @Select("${sql} where no=#{no}")
    Border selectOne(Map<String, Object> param);
+
+   @Delete("delete from border where no=#{no}")
+   void delete(Map<String, Object> param);
+
+   @Update("update border set nickname=#{nickname}, subject=#{subject}, content=#{content}, file=#{fileUrl} where no=#{no}")
+   void update(Border border);
 
 }

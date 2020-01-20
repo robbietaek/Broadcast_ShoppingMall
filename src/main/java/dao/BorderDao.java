@@ -16,7 +16,7 @@ public class BorderDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	private Map<String, Object> param = new HashMap<>();
-	private String bordercolumn = "select no, tema, nickname, subject, content, file fileUrl,"
+	private String bordercolumn = "select no, tema, nickname, subject, content, file,"
 			                    + "date, view from border";
 	
 	public int count(String searchtype, String searchcontent, String tema) {
@@ -59,5 +59,15 @@ public class BorderDao {
 		param.put("sql", sql);
 		param.put("no", no);
 		return sqlSession.getMapper(BorderMapper.class).selectOne(param);
+	}
+
+	public void delete(int no) {
+		param.clear();
+		param.put("no", no);
+		sqlSession.getMapper(BorderMapper.class).delete(param);
+	}
+
+	public void update(Border border) {
+		sqlSession.getMapper(BorderMapper.class).update(border);		
 	}
 }

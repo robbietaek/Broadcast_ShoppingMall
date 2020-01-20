@@ -152,7 +152,7 @@
 											class="required text-primary">*</span>
 										</label>
 										<form:textarea path="description" cols="50" rows="13"
-											class="form-control"></form:textarea>
+											class="form-control" id = "comment"></form:textarea>
 										<font color="red"><form:errors path="description" /></font>
 									</div>
 								</div>
