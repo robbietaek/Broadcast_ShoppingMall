@@ -11,7 +11,6 @@ public class User {
 	private String userid;
 	@Size(min = 3, max = 30, message = "비밀번호는 3자 이상 30자 이하로 입력하세요.")
 	private String pass;
-	@NotEmpty(message="사용자 이름은 필수 입력입니다.")
 	private String name;
 	private String tel;
 	private String age;

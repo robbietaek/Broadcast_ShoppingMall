@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import exception.BoardException;
 import logic.Border;
+import logic.Replyboard;
 import logic.ShopService;
 
 @Controller
@@ -53,7 +54,7 @@ public class BorderController {
          if(endpage > maxpage) endpage = maxpage;
          //화면에 출력되는 게시물 번호.
          int borderno = listcount - (pageNum - 1) * limit;
-         mav.addObject("team", tema);
+         mav.addObject("tema", tema);
          mav.addObject("pageNum", pageNum);
          mav.addObject("maxpage", maxpage);
          mav.addObject("startpage", startpage);
@@ -83,9 +84,36 @@ public class BorderController {
                return mav;
          }
       @GetMapping("*")
-      public ModelAndView getBoard(Integer no, HttpServletRequest request) {
+      public ModelAndView getBoard(Integer no, HttpServletRequest request, String searchtype, String searchcontent) {
          ModelAndView mav = new ModelAndView();
          Border border = null;
+         //댓글부분
+         int pageNum = 1;
+         int limit = 10;
+         try {
+        	 pageNum = Integer.parseInt(request.getParameter("pageNum"));
+         } catch(NumberFormatException e) {
+         }
+         if(searchtype != null && searchtype.trim().equals(""))
+            searchtype = null;
+         if(searchcontent != null && searchcontent.trim().equals(""))
+            searchcontent = null;
+         if(searchtype == null || searchcontent == null) {
+            searchtype = null;
+            searchcontent = null;
+          }
+         int replycount = service.replyCount(searchtype, searchcontent);
+         List<Replyboard> replylist = service.replylist(pageNum,limit, searchtype, searchcontent);
+         int maxpage = (int)((double)replycount/limit + 0.95);
+         int startpage = (int)((pageNum/10.0 + 0.9) - 1) * 10 + 1;
+         int endpage = startpage + 9;
+         if(endpage > maxpage) endpage = maxpage;
+         mav.addObject("no", no);
+         mav.addObject("pageNum", pageNum);
+         mav.addObject("maxpage", maxpage);
+         mav.addObject("startpage", startpage);
+         mav.addObject("endpage", endpage);       
+                 
          if(no == null) {
             border = new Border();
          }else {
@@ -103,7 +131,7 @@ public class BorderController {
    		   mav.setViewName("redirect:list.shop?tema="+tema);
    	   } catch (Exception e) {
    		   e.printStackTrace();
-              throw new BoardException("게시글 삭제에 실패했습니다.","delete.shop?num="+border.getNo());
+              throw new BoardException("게시글 삭제에 실패했습니다.","delete.shop?no="+border.getNo());
    	   }
    	   return mav;
       }
@@ -126,26 +154,18 @@ public class BorderController {
                }
             return mav;
        }
-      @RequestMapping("imgupload")
-      public String imgupload(MultipartFile upload, String CKEditorFuncNum, HttpServletRequest request, Model model) {
-         //upload : 업로드된 이미지 정보 저장. 이미지 파일.
-         String path = request.getServletContext().getRealPath("/")
-                  +   "border/imgfile/";
-         File f = new File(path);
-         if(!f.exists()) f.mkdirs();
-         if(!upload.isEmpty()) {
-            File file = //업로드 될 파일을 저장할 File 객체 지정 
-                  new File(path, upload.getOriginalFilename());
-         try {
-             upload.transferTo(file); //업로드 파일 생성
-            }catch(Exception e) {
-               e.printStackTrace();
-            }
-         }
-         String fileName = "/project/border/imgfile/"
-                        +upload.getOriginalFilename();
-         model.addAttribute("fileName", fileName);
-         model.addAttribute("CKEditorFuncNum", CKEditorFuncNum);
-         return "ckedit";   
-      }
+      @PostMapping("reply")
+      public ModelAndView reply(Replyboard replyboard, HttpServletRequest request, BindingResult bresult, Border border) {
+    	  ModelAndView mav = new ModelAndView();
+          String tema = (request.getParameter("tema"));
+          try {
+              service.replyboard(replyboard,request);
+              mav.setViewName("redirect:detail.shop?tema="+tema+"&no="+border.getNo());
+           }catch (Exception e) {
+              e.printStackTrace();
+              throw new BoardException
+                 ("게시물 등록에 실패했습니다.","detail.shop?tema="+tema+"&no="+border.getNo());
+           }
+              return mav;
+        }
 }
