@@ -5,12 +5,6 @@
 <html>
 <head>
 <title>판매 등록 물품 관리</title>
-<script>
-	function listdo(page) {
-		document.searchform.pageNum.value = page;
-		document.searchform.submit();
-	}
-</script>
 </head>
 <body>
 	<div id="heading-breadcrumbs">
@@ -78,14 +72,28 @@
 
 					<div class="d-flex justify-content-end">
 						<div class="col-sm-5 text-right">
-							<div class="input-group">
-								<input type="text" placeholder="Search" class="form-control"><span
-									class="input-group-btn">
-									<button type="submit" class="btn btn-template-main">
-										<i class="fa fa-search"></i>
-									</button>
-								</span>
-							</div>
+							<form action="selling.shop" method="post" name="searchform">
+								<div class="input-group">
+									<input type="hidden" name="pageNum" value="1"> <select
+										name="searchtype" style="width: 100px">
+										<option value="">검색</option>
+										<option value="itemname">물품명</option>
+										<option value="tema">카테고리</option>
+										<option value="date">등록일</option>
+									</select>
+									<script>
+										searchform.searchtype.value = "${param.searchtype}";
+									</script>
+
+									<input type="text" name="searchcontent"
+										value="${param.searchcontent }" placeholder="Search"
+										class="form-control"> <span class="input-group-btn">
+										<button type="submit" class="btn btn-template-main">
+											<i class="fa fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
 						</div>
 					</div>
 					<br>
@@ -97,8 +105,9 @@
 									<tr>
 										<th>등록번호</th>
 										<th>카테고리</th>
-										<th>상품이름</th>
+										<th>물품명</th>
 										<th>등록 날짜</th>
+										<th>상세/수정/삭제</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -106,8 +115,15 @@
 										<tr>
 											<th>${i.itemid}</th>
 											<td>${fn:substring(i.tema,0,5)}</td>
-											<td>${fn:substring(i.itemname,0,15)}</td>
-											<td>${i.date}</td>
+											<td>${fn:substring(i.itemname,0,10)}</td>
+											<td><fmt:formatDate value="${i.date}"
+													pattern="yyyy년MM월dd일 HH시mm분ss초" /></td>
+											<td><a href="shop-detail.shop?itemid=${i.itemid}"
+												class="btn btn-template-outlined btn-sm">View</a> 
+												<a href="sellingeditForm.shop?itemid=${i.itemid}"
+												class="btn btn-template-outlined btn-sm">Edit</a> 
+												<a href="sellingdelete.shop?itemid=${i.itemid}"
+												class="btn btn-template-outlined btn-sm">Delete</a>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -116,18 +132,42 @@
 							<div class="d-flex justify-content-center">
 								<nav aria-label="Page navigation example">
 									<ul class="pagination">
-										<li class="page-item"><a href="#" class="page-link">«</a></li>
-										<li class="page-item active"><a href="#"
-											class="page-link">1</a></li>
-										<li class="page-item"><a href="#" class="page-link">2</a></li>
-										<li class="page-item"><a href="#" class="page-link">3</a></li>
-										<li class="page-item"><a href="#" class="page-link">4</a></li>
-										<li class="page-item"><a href="#" class="page-link">5</a></li>
-										<li class="page-item"><a href="#" class="page-link">»</a></li>
+
+
+										<c:if test="${pageNum >1 }">
+											<li class="page-item"><a
+												href="selling.shop?userid=${sessionScope.loginUser.userid}&pageNum=${pageNum-1}"
+												class="page-link">«</a></li>
+										</c:if>
+
+										<c:if test="${pageNum <= 1 }">
+											<li class="page-item"><a href="#" class="page-link">«</a></li>
+										</c:if>
+
+										<c:forEach var="a" begin="${startpage}" end="${endpage }">
+
+											<c:if test="${a==pageNum }">
+												<li class="page-item"><a href="#" class="page-link">${a}</a></li>
+											</c:if>
+											<c:if test="${a!= pageNum }">
+												<li class="page-item"><a
+													href="selling.shop?userid=${sessionScope.loginUser.userid}&pageNum=${a}"
+													class="page-link">${a}</a></li>
+											</c:if>
+										</c:forEach>
+
+										<c:if test="${pageNum<maxpage }">
+											<li class="page-item"><a
+												href="selling.shop?userid=${sessionScope.loginUser.userid}&pageNum=${pageNum+1}"
+												class="page-link">»</a></li>
+										</c:if>
+
+										<c:if test="${pageNum >= maxpage }">
+											<li class="page-item"><a href="#" class="page-link">»</a></li>
+										</c:if>
 									</ul>
 								</nav>
 							</div>
-
 						</div>
 
 					</div>
