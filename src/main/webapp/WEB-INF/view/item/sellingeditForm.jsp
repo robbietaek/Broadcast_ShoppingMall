@@ -1,64 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jspHeader.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>상품 수정</title>
+<script>
+	function file_delete1() {
+		document.f.pictureUrl1 = ""
+		file_desc.style.display = "none";
+	}
+	function file_delete2() {
+		document.f.pictureUrl2 = ""
+		file_desc.style.display = "none";
+	}
+	function file_delete3() {
+		document.f.pictureUrl3 = ""
+		file_desc.style.display = "none";
+	}
+	function file_delete4() {
+		document.f.pictureUrl4 = ""
+		file_desc.style.display = "none";
+	}
+	function file_delete5() {
+		document.f.pictureUrl5 = ""
+		file_desc.style.display = "none";
+	}
+</script>
 </head>
 <body>
-   <div id="heading-breadcrumbs">
-      <div class="container">
-         <div class="row d-flex align-items-center flex-wrap">
-            <div class="col-md-7">
-               <h1 class="h2">상품 수정</h1>
-            </div>
-            <div class="col-md-5">
-               <ul class="breadcrumb d-flex justify-content-end">
-                  <li class="breadcrumb-item"><a href="index.shop">Home</a></li>
-                  <li class="breadcrumb-item active">Accordions</li>
-               </ul>
-            </div>
-         </div>
-      </div>
-   </div>
-   <section class="bar">
-      <div class="container">
-         <div class="row">
-            <div class="col-lg-3">
-               <!-- MENUS AND WIDGETS -->
-               <div class="panel panel-default sidebar-menu with-icons">
-                  <div class="panel-heading">
-                     <h3 class="h4 panel-title">Menu</h3>
-                  </div>
-                  <div class="panel-body">
-                     <ul class="nav nav-pills flex-column text-sm">
-                        <li class="nav-item"><a href="sell.shop?userid=${sessionScope.loginUser.userid}"
-                           class="nav-link">판매 등록</a></li>
-                        <li class="nav-item"><a href="selling.shop?userid=${sessionScope.loginUser.userid}"
-                           class="nav-link">판매 등록 물품 관리</a></li>
-                        <li class="nav-item"><a href="takeback.shop?userid=${sessionScope.loginUser.userid}"
-                           class="nav-link">반품 신청 목록 관리</a></li>
-                        <li class="nav-item"><a href="delivery.shop?userid=${sessionScope.loginUser.userid}"
-                           class="nav-link">배송 관리</a></li>
-                        <li class="nav-item"><a href=".shop?userid=${sessionScope.loginUser.userid}"
-                           class="nav-link">판매 통계</a></li>
-                        <li class="nav-item"><a href="qna.shop?userid=${sessionScope.loginUser.userid}"
-                           class="nav-link">Q&A 관리</a></li>
-                        <li class="nav-item"><a href=".shop?userid=${sessionScope.loginUser.userid}"
-                           class="nav-link">판매된 목록</a></li>
-                        <li class="nav-item"><a href=".shop?userid=${sessionScope.loginUser.userid}"
-                           class="nav-link">반품/취소된 목록</a></li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
+	<div id="heading-breadcrumbs">
+		<div class="container">
+			<div class="row d-flex align-items-center flex-wrap">
+				<div class="col-md-7">
+					<h1 class="h2">상품 수정</h1>
+				</div>
+				<div class="col-md-5">
+					<ul class="breadcrumb d-flex justify-content-end">
+						<li class="breadcrumb-item"><a href="index.shop">Home</a></li>
+						<li class="breadcrumb-item active">Accordions</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section class="bar">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<!-- MENUS AND WIDGETS -->
+					<div class="panel panel-default sidebar-menu with-icons">
+						<div class="panel-heading">
+							<h3 class="h4 panel-title">Menu</h3>
+						</div>
+						<div class="panel-body">
+							<ul class="nav nav-pills flex-column text-sm">
+								<li class="nav-item"><a
+									href="sell.shop?userid=${sessionScope.loginUser.userid}"
+									class="nav-link">판매 등록</a></li>
+								<li class="nav-item"><a
+									href="selling.shop?userid=${sessionScope.loginUser.userid}"
+									class="nav-link">판매 등록 물품 관리</a></li>
+								<li class="nav-item"><a
+									href="takeback.shop?userid=${sessionScope.loginUser.userid}"
+									class="nav-link">반품 신청 목록 관리</a></li>
+								<li class="nav-item"><a
+									href="delivery.shop?userid=${sessionScope.loginUser.userid}"
+									class="nav-link">배송 관리</a></li>
+								<li class="nav-item"><a
+									href=".shop?userid=${sessionScope.loginUser.userid}"
+									class="nav-link">판매 통계</a></li>
+								<li class="nav-item"><a
+									href="qna.shop?userid=${sessionScope.loginUser.userid}"
+									class="nav-link">Q&A 관리</a></li>
+								<li class="nav-item"><a
+									href=".shop?userid=${sessionScope.loginUser.userid}"
+									class="nav-link">판매된 목록</a></li>
+								<li class="nav-item"><a
+									href=".shop?userid=${sessionScope.loginUser.userid}"
+									class="nav-link">반품/취소된 목록</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 
 
-            <div id="blog-post" class="col-md-9">
-               <div id="comment-form">
+				<div id="blog-post" class="col-md-9">
+					<div id="comment-form">
 						<form:form modelAttribute="item" action="sellingedit.shop"
-							enctype="multipart/form-data">
+							enctype="multipart/form-data" name ="f">
+							
+						<c:set var= "pictureUrl1" value="${item.pictureUrl1}" />
+						<c:set var= "pictureUrl2" value="${item.pictureUrl2}" />
+						<c:set var= "pictureUrl3" value="${item.pictureUrl3}" />
+						<c:set var= "pictureUrl4" value="${item.pictureUrl4}" />
+						<c:set var= "pictureUrl5" value="${item.pictureUrl5}" />
+						
+						
+						
 							<spring:hasBindErrors name="item">
 								<font color="red"> <c:forEach
 										items="${errors.globalErrors}" var="error">
@@ -69,7 +108,7 @@
 
 							<form:hidden path="userid"
 								value="${sessionScope.loginUser.userid}" />
-							<form:hidden path = "itemid" value = "${itemid}"/>
+							<form:hidden path="itemid" value="${item.itemid}" />
 
 							<h4 class="text-uppercase">상품등록하기</h4>
 							<div class="row">
@@ -78,7 +117,8 @@
 										<label for="name">상품제목 <span
 											class="required text-primary">*</span>
 										</label>
-										<form:input path="subject" class="form-control" value = "${subject}" />
+										<form:input path="subject" class="form-control"
+											value="${item.subject}" />
 										<font color="red"><form:errors path="subject" /></font>
 									</div>
 								</div>
@@ -90,7 +130,7 @@
 										<label for="email">카테고리 <span
 											class="required text-primary">*</span>
 										</label>
-										<form:input path="tema" class="form-control" value = "${tema}"/>
+										<form:input path="tema" class="form-control" value="${item.tema}" />
 										<font color="red"><form:errors path="tema" /></font>
 									</div>
 								</div>
@@ -102,7 +142,8 @@
 										<label for="email">아이템 명 <span
 											class="required text-primary">*</span>
 										</label>
-										<form:input path="itemname" class="form-control" value = "${itemname}"/>
+										<form:input path="itemname" class="form-control"
+											value="${item.itemname}" />
 										<font color="red"><form:errors path="itemname" /></font>
 									</div>
 								</div>
@@ -114,7 +155,8 @@
 										<label for="email">가격 <span
 											class="required text-primary">*</span>
 										</label>
-										<form:input path="price" class="form-control" value = "${price }"/>
+										<form:input path="price" class="form-control"
+											value="${item.price}" />
 										<font color="red"><form:errors path="price" /></font>
 									</div>
 								</div>
@@ -125,11 +167,45 @@
 									<div class="form-group">
 										<label for="email">슬라이드 사진 (최대 5장) <span
 											class="required text-primary">*</span>
-										</label><br> <input type="file" name="picture1" value = "${pictureUrl1 }"><br>
-										<input type="file" name="picture2" value = "${pictureUrl2 }"><br> <input
-											type="file" name="picture3" value = "${pictureUrl3 }"><br> <input
-											type="file" name="picture4" value = "${pictureUrl4 }"><br> <input
-											type="file" name="picture5" value = "${pictureUrl5 }"><br>
+										</label><br>
+										
+										<c:if test="${!empty pictureUrl1}">
+											<div id="file_desc">
+												<a href="file/${item.pictureUrl1}">${item.pictureUrl1}</a> 
+												<a href="javascript:file_delete1()">[첨부파일삭제]</a>
+											</div>
+										</c:if>
+
+										<c:if test="${!empty pictureUrl2}">
+											<div id="file_desc">
+												<a href="file/${item.pictureUrl2}">${item.pictureUrl2}</a> 
+												<a href="javascript:file_delete2()">[첨부파일삭제]</a>
+											</div>
+										</c:if>
+										<c:if test="${!empty pictureUrl3}">
+											<div id="file_desc">
+												<a href="file/${item.pictureUrl3}">${item.pictureUrl3}</a> 
+												<a href="javascript:file_delete3()">[첨부파일삭제]</a>
+											</div>
+										</c:if>
+										<c:if test="${!empty pictureUrl4}">
+											<div id="file_desc">
+												<a href="file/${item.pictureUrl4}">${item.pictureUrl4}</a> 
+												<a href="javascript:file_delete4()">[첨부파일삭제]</a>
+											</div>
+										</c:if>
+										<c:if test="${!empty pictureUrl5}">
+											<div id="file_desc">
+												<a href="file/${item.pictureUrl5}">${item.pictureUrl5}</a> 
+												<a href="javascript:file_delete5()">[첨부파일삭제]</a>
+											</div>
+										</c:if>						
+																								
+										<input type="file" name="picture1"><br>
+										<input type="file" name="picture2"><br>
+										<input type="file" name="picture3"><br>
+										<input type="file" name="picture4"><br>
+										<input type="file" name="picture5"><br>
 									</div>
 								</div>
 							</div>
@@ -141,7 +217,8 @@
 											class="required text-primary">*</span>
 										</label>
 										<form:input path="vod" class="form-control" />
-										<font color="red"><form:errors path="vod" value = "${vod}"/></font>
+										<font color="red"><form:errors path="vod"
+												value="${item.vod}" /></font>
 									</div>
 								</div>
 							</div>
@@ -153,8 +230,9 @@
 											class="required text-primary">*</span>
 										</label>
 										<form:textarea path="description" cols="50" rows="13"
-											class="form-control"></form:textarea>
-										<font color="red"><form:errors path="description" value = "${description}"/></font>
+											class="form-control" id="comment"></form:textarea>
+										<font color="red"><form:errors path="description"
+												value="${item.description}" /></font>
 									</div>
 								</div>
 							</div>
@@ -175,11 +253,11 @@
 								</div>
 							</div>
 						</form:form>
-               </div>
-            </div>
+					</div>
+				</div>
 
-         </div>
-      </div>
-   </section>
+			</div>
+		</div>
+	</section>
 </body>
 </html>

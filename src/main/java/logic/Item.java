@@ -16,12 +16,12 @@ public class Item {
 	@NotEmpty(message = "상품명을 입력하세요")	
 	private String itemname;
 
-	@Min(value = 10, message = "10원 이상 가능합니다.")
-	@Max(value = 1000000, message = "100만원 이하만 가능합니다.")
+	@Min(value = 1, message = "1원 이상 가능합니다.")
+	@Max(value = 100000000, message = "1억원 이하만 가능합니다.")
 	private int price;
 
 	@NotEmpty(message = "상품 설명을 입력하세요")
-	@Size(min = 10, max = 2000, message = "10글자이상 2000글자 이하 가능")
+	@Size(min = 10, max = 20000, message = "10글자이상 20000글자 이하 가능")
 	private String description;
 	private String pictureUrl1;
 	private String pictureUrl2;

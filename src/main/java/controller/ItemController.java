@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,10 +9,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import logic.Item;
@@ -23,6 +26,20 @@ import logic.User;
 public class ItemController {
 	@Autowired
 	private ShopService service;
+	
+	
+	@RequestMapping("register")
+	public ModelAndView register(@Valid Item item, BindingResult bresult, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		if (bresult.hasErrors()) { // 에러가 있을 시
+			mav.getModel().putAll(bresult.getModel());
+			return mav;
+		}
+		service.itemCreate(item, request); // 아이템에 있는걸 모두 DB에 넣는다.
+		mav.setViewName("redirect:/item/selling.shop");
+		return mav;
+	}
+	
 
 	@RequestMapping("selling")
 	public ModelAndView list(Integer pageNum, String searchtype, String searchcontent, HttpSession session) {
@@ -66,23 +83,12 @@ public class ItemController {
 
 	}
 
-	@RequestMapping("register")
-	public ModelAndView register(@Valid Item item, BindingResult bresult, HttpServletRequest request) { // valid를 빼면 공백을
-																										// 해도됨
-		ModelAndView mav = new ModelAndView();
-		if (bresult.hasErrors()) { // 에러가 있을 시
-			mav.getModel().putAll(bresult.getModel());
-			return mav;
-		}
-		service.itemCreate(item, request); // 아이템에 있는걸 모두 DB에 넣는다.
-		mav.setViewName("redirect:/item/selling.shop");
-		return mav;
-	}
-
 	@GetMapping("sellingeditForm")
 	public ModelAndView sellingeditForm(String itemid) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject(service.getItem(itemid));
+		Item item = service.getItem(itemid);
+		mav.addObject("item",item);
+		System.out.println(service.getItem(itemid));
 		return mav;
 	}
 
@@ -106,15 +112,34 @@ public class ItemController {
 		mav.setViewName("redirect:/item/selling.shop");
 		return mav;
 	}
-
-	// @RequestMapping("detail")
-	// @RequestMapping("*") //그 외의 모든 요청정보를 해줄 때 사용. 이럴 때는 URL에 아무것도 사용하면 안됨. 클릭한 곳
-	// 그대로 설정해줌 GetMapping 과 동일함
+	
 	@GetMapping("*")
 	public ModelAndView itemSelect() {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject(new Item());
 		return mav;
+	}
+	
+	@RequestMapping("imgupload")
+	public String imgupload(MultipartFile upload, String CKEditorFuncNum, HttpServletRequest request, Model model) {
+		String path = request.getServletContext().getRealPath("/") + "item/imgfile/";
+		File f = new File(path);
+		if (!f.exists()) {
+			f.mkdirs();
+		}
+		// upload : 업로드된 이미지 정보 저장, 이미지 파일
+		if (!upload.isEmpty()) {
+			File file = new File(path, upload.getOriginalFilename()); // 업로드될 파일을 저장할 File 객체
+			try {
+				upload.transferTo(file); // 업로드 파일 생성
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		String fileName = "/project/item/imgfile/" + upload.getOriginalFilename(); // FullPath로 지정
+		model.addAttribute("fileName", fileName);
+		model.addAttribute("CKEditorFuncNum", CKEditorFuncNum);
+		return "ckedit";
 	}
 
 }
