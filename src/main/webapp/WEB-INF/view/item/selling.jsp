@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/jspHeader.jsp"%>	
+<%@ include file="/WEB-INF/jspHeader.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>판매 등록 물품 관리</title>
+<script>
+	function listdo(page) {
+		document.searchform.pageNum.value = page;
+		document.searchform.submit();
+	}
+</script>
 </head>
 <body>
 	<div id="heading-breadcrumbs">
@@ -33,21 +39,29 @@
 						</div>
 						<div class="panel-body">
 							<ul class="nav nav-pills flex-column text-sm">
-								<li class="nav-item"><a href="sell.shop?userid=${sessionScope.loginUser.userid}"
+								<li class="nav-item"><a
+									href="sell.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">판매 등록</a></li>
-								<li class="nav-item"><a href="selling.shop?userid=${sessionScope.loginUser.userid}"
+								<li class="nav-item"><a
+									href="selling.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">판매 등록 물품 관리</a></li>
-								<li class="nav-item"><a href="takeback.shop?userid=${sessionScope.loginUser.userid}"
+								<li class="nav-item"><a
+									href="takeback.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">반품 신청 목록 관리</a></li>
-								<li class="nav-item"><a href="delivery.shop?userid=${sessionScope.loginUser.userid}"
+								<li class="nav-item"><a
+									href="delivery.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">배송 관리</a></li>
-								<li class="nav-item"><a href=".shop?userid=${sessionScope.loginUser.userid}"
+								<li class="nav-item"><a
+									href=".shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">판매 통계</a></li>
-								<li class="nav-item"><a href="qna.shop?userid=${sessionScope.loginUser.userid}"
+								<li class="nav-item"><a
+									href="qna.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">Q&A 관리</a></li>
-								<li class="nav-item"><a href=".shop?userid=${sessionScope.loginUser.userid}"
+								<li class="nav-item"><a
+									href=".shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">판매된 목록</a></li>
-								<li class="nav-item"><a href=".shop?userid=${sessionScope.loginUser.userid}"
+								<li class="nav-item"><a
+									href=".shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">반품/취소된 목록</a></li>
 							</ul>
 						</div>
@@ -58,9 +72,24 @@
 
 				<div id="customer-orders" class="col-md-9">
 					<p class="text-muted lead">
-						궁금하신 점은 따로  <a
-							href="contact.shop">문의</a>해주시고, 평일 AM 09 - PM 18 연락 가능합니다.
+						궁금하신 점은 따로 <a href="contact.shop">문의</a>해주시고, 평일 AM 09 - PM 18 연락
+						가능합니다.
 					</p>
+
+					<div class="d-flex justify-content-end">
+						<div class="col-sm-5 text-right">
+							<div class="input-group">
+								<input type="text" placeholder="Search" class="form-control"><span
+									class="input-group-btn">
+									<button type="submit" class="btn btn-template-main">
+										<i class="fa fa-search"></i>
+									</button>
+								</span>
+							</div>
+						</div>
+					</div>
+					<br>
+
 					<div class="box mt-0 mb-lg-0">
 						<div class="table-responsive">
 							<table class="table table-hover">
@@ -73,17 +102,34 @@
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach items="${itemList}" var = "i">
-									<tr>
-										<th>${i.itemid}</th>
-										<td>${fn:substring(i.tema,0,5)}</td>
-										<td>${fn:substring(i.itemname,0,15)}</td>
-										<td>${i.date}</td>
-									</tr>
-								</c:forEach>
+									<c:forEach items="${itemList}" var="i">
+										<tr>
+											<th>${i.itemid}</th>
+											<td>${fn:substring(i.tema,0,5)}</td>
+											<td>${fn:substring(i.itemname,0,15)}</td>
+											<td>${i.date}</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
+
+							<div class="d-flex justify-content-center">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination">
+										<li class="page-item"><a href="#" class="page-link">«</a></li>
+										<li class="page-item active"><a href="#"
+											class="page-link">1</a></li>
+										<li class="page-item"><a href="#" class="page-link">2</a></li>
+										<li class="page-item"><a href="#" class="page-link">3</a></li>
+										<li class="page-item"><a href="#" class="page-link">4</a></li>
+										<li class="page-item"><a href="#" class="page-link">5</a></li>
+										<li class="page-item"><a href="#" class="page-link">»</a></li>
+									</ul>
+								</nav>
+							</div>
+
 						</div>
+
 					</div>
 				</div>
 			</div>
