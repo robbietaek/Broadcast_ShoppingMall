@@ -60,4 +60,14 @@ public class BorderDao {
 		param.put("no", no);
 		return sqlSession.getMapper(BorderMapper.class).selectOne(param);
 	}
+
+	public void delete(int no) {
+		param.clear();
+		param.put("no", no);
+		sqlSession.getMapper(BorderMapper.class).delete(param);
+	}
+
+	public void update(Border border) {
+		sqlSession.getMapper(BorderMapper.class).update(border);		
+	}
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,10 +8,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import exception.BoardException;
@@ -65,13 +68,11 @@ public class BorderController {
       public ModelAndView write(@Valid Border border, BindingResult bresult, HttpServletRequest request) {
                ModelAndView mav = new ModelAndView();
                String tema = (request.getParameter("tema"));
-               System.out.println("1111");
 //               if(bresult.hasErrors()) {
 //                  mav.getModel().putAll(bresult.getModel());
 //                  return mav;
 //               }
             try {
-              System.out.println("*****************");
                service.borderWrite(border,request);
                mav.setViewName("redirect:list.shop?tema="+tema);
             }catch (Exception e) {
@@ -92,5 +93,59 @@ public class BorderController {
          }
          mav.addObject("border", border);
          return mav;
+      }
+      @PostMapping("delete")
+      public ModelAndView delete(Border border, BindingResult bresult, HttpServletRequest request) {
+   	   ModelAndView mav = new ModelAndView();
+   	   String tema = request.getParameter("tema");
+   	   try {
+   		   service.borderDelete(border);
+   		   mav.setViewName("redirect:list.shop?tema="+tema);
+   	   } catch (Exception e) {
+   		   e.printStackTrace();
+              throw new BoardException("게시글 삭제에 실패했습니다.","delete.shop?num="+border.getNo());
+   	   }
+   	   return mav;
+      }
+      @PostMapping("update")
+      public ModelAndView update(@Valid Border border, BindingResult bresult, 
+                  HttpServletRequest request) {
+         ModelAndView mav = new ModelAndView();
+         Border dbBorder = service.getBorder(border.getNo());
+         String tema = request.getParameter("tema");
+         if(bresult.hasErrors()) {
+            mav.getModel().putAll(bresult.getModel());
+            return mav;   
+          }
+         try {
+            service.borderUpdate(border,request);
+            mav.setViewName("redirect:list.shop?tema=" + tema);
+               }catch(Exception e) {
+               e.printStackTrace();
+               throw new BoardException("게시글 수정에 실패했습니다.","update.shop?no="+border.getNo());
+               }
+            return mav;
+       }
+      @RequestMapping("imgupload")
+      public String imgupload(MultipartFile upload, String CKEditorFuncNum, HttpServletRequest request, Model model) {
+         //upload : 업로드된 이미지 정보 저장. 이미지 파일.
+         String path = request.getServletContext().getRealPath("/")
+                  +   "border/imgfile/";
+         File f = new File(path);
+         if(!f.exists()) f.mkdirs();
+         if(!upload.isEmpty()) {
+            File file = //업로드 될 파일을 저장할 File 객체 지정 
+                  new File(path, upload.getOriginalFilename());
+         try {
+             upload.transferTo(file); //업로드 파일 생성
+            }catch(Exception e) {
+               e.printStackTrace();
+            }
+         }
+         String fileName = "/project/border/imgfile/"
+                        +upload.getOriginalFilename();
+         model.addAttribute("fileName", fileName);
+         model.addAttribute("CKEditorFuncNum", CKEditorFuncNum);
+         return "ckedit";   
       }
 }

@@ -116,9 +116,11 @@
    </tr>
 </c:if>
 <tr>
-    <td colspan="5" align="right">
-       <a href="write.shop?tema=${param.tema}">[글쓰기]</a>
-    </td>
+   <c:if test="${!empty sessionScope.loginUser}">
+       <td colspan="5" align="right">
+          <a href="write.shop?tema=${param.tema}">[글쓰기]</a>
+       </td>
+   </c:if>
 </tr>
 </table>
 </body>
