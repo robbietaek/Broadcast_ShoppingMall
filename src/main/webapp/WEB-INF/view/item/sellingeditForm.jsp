@@ -171,36 +171,44 @@
 										
 										<c:if test="${!empty pictureUrl1}">
 											<div id="file_desc">
-												<a href="file/${item.pictureUrl1}">${item.pictureUrl1}</a> 
+												<a href="img/${item.pictureUrl1}">${item.pictureUrl1}</a> 
 												<a href="javascript:file_delete1()">[첨부파일삭제]</a>
 											</div>
 										</c:if>
 
 										<c:if test="${!empty pictureUrl2}">
 											<div id="file_desc">
-												<a href="file/${item.pictureUrl2}">${item.pictureUrl2}</a> 
+												<a href="img/${item.pictureUrl2}">${item.pictureUrl2}</a> 
 												<a href="javascript:file_delete2()">[첨부파일삭제]</a>
 											</div>
 										</c:if>
 										<c:if test="${!empty pictureUrl3}">
 											<div id="file_desc">
-												<a href="file/${item.pictureUrl3}">${item.pictureUrl3}</a> 
+												<a href="img/${item.pictureUrl3}">${item.pictureUrl3}</a> 
 												<a href="javascript:file_delete3()">[첨부파일삭제]</a>
 											</div>
 										</c:if>
 										<c:if test="${!empty pictureUrl4}">
 											<div id="file_desc">
-												<a href="file/${item.pictureUrl4}">${item.pictureUrl4}</a> 
+												<a href="img/${item.pictureUrl4}">${item.pictureUrl4}</a> 
 												<a href="javascript:file_delete4()">[첨부파일삭제]</a>
 											</div>
 										</c:if>
 										<c:if test="${!empty pictureUrl5}">
 											<div id="file_desc">
-												<a href="file/${item.pictureUrl5}">${item.pictureUrl5}</a> 
+												<a href="img/${item.pictureUrl5}">${item.pictureUrl5}</a> 
 												<a href="javascript:file_delete5()">[첨부파일삭제]</a>
 											</div>
 										</c:if>						
-																								
+										
+										<form:hidden path="pictureUrl1"/>
+										<form:hidden path="pictureUrl2"/>
+										<form:hidden path="pictureUrl3"/>
+										<form:hidden path="pictureUrl4"/>
+										<form:hidden path="pictureUrl5"/>
+										
+										
+										
 										<input type="file" name="picture1"><br>
 										<input type="file" name="picture2"><br>
 										<input type="file" name="picture3"><br>

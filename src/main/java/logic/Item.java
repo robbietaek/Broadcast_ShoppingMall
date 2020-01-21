@@ -21,7 +21,7 @@ public class Item {
 	private int price;
 
 	@NotEmpty(message = "상품 설명을 입력하세요")
-	@Size(min = 10, max = 20000, message = "10글자이상 20000글자 이하 가능")
+	@Size(min = 10, max = 20000000, message = "10글자이상 20000000글자 이하 가능")
 	private String description;
 	private String pictureUrl1;
 	private String pictureUrl2;
