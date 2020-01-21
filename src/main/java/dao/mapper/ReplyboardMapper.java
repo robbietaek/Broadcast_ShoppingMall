@@ -20,4 +20,7 @@ public interface ReplyboardMapper {
 	   })
 	List<Replyboard> select(Map<String, Object> param);
 
+	@Select("select ifnull(max(num),0) from replyboard")
+	int maxnum();
+
 }
