@@ -203,7 +203,7 @@ public class ItemController {
 		String fileName = "/project/item/imgfile/" + upload.getOriginalFilename(); // FullPath로 지정
 		model.addAttribute("fileName", fileName);
 		model.addAttribute("CKEditorFuncNum", CKEditorFuncNum);
-		return "/ckedit";
+		return "ckedit";
 	}
 
 }
