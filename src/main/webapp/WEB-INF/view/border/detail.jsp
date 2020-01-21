@@ -59,7 +59,18 @@
 </tr>
 </table>
 
-
+<form:form modelAttribute="replyboard" action="replyboardwrite.shop" name="f">
+<input type="hidden" name="no" value="${border.no}">
+<input type="hidden" name="userid" value="${sessionScope.loginUser.userid}">
+	<table>
+		<tr>
+		   <td style="text-align: left;">작성자 : <a style="font-size: 18px;">${sessionScope.loginUser.userid}</a>님<br>
+				<input type="text" name="content" style="width:90%;  height: 90px; " >
+				<input type="submit" class="button" style="height: 80px; width: 80px" value="등록"></td>
+		</tr>
+	</table>
+</form:form>
+<input type="hidden" name="pageNum" value="1">
 <!------------------ 댓글부분 ------------------->
 <table>
 <c:if test="${replycount==0}">

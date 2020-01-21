@@ -86,7 +86,34 @@ public class BorderController {
       @GetMapping("*")
       public ModelAndView getBoard(Integer no, HttpServletRequest request, String searchtype, String searchcontent) {
          ModelAndView mav = new ModelAndView();
-         Border border = null;    
+         Border border = null;
+         //댓글부분
+         int pageNum = 1;
+         int limit = 10;
+         try {
+        	 pageNum = Integer.parseInt(request.getParameter("pageNum"));
+         } catch(NumberFormatException e) {
+         }
+         if(searchtype != null && searchtype.trim().equals(""))
+            searchtype = null;
+         if(searchcontent != null && searchcontent.trim().equals(""))
+            searchcontent = null;
+         if(searchtype == null || searchcontent == null) {
+            searchtype = null;
+            searchcontent = null;
+          }
+         int replycount = service.replyCount(searchtype, searchcontent);
+         List<Replyboard> replylist = service.replylist(pageNum,limit, searchtype, searchcontent);
+         int maxpage = (int)((double)replycount/limit + 0.95);
+         int startpage = (int)((pageNum/10.0 + 0.9) - 1) * 10 + 1;
+         int endpage = startpage + 9;
+         if(endpage > maxpage) endpage = maxpage;
+         mav.addObject("no", no);
+         mav.addObject("pageNum", pageNum);
+         mav.addObject("maxpage", maxpage);
+         mav.addObject("startpage", startpage);
+         mav.addObject("endpage", endpage);       
+         mav.addObject("replycount", replycount);    
          if(no == null) {
             border = new Border();
          }else {
@@ -94,19 +121,6 @@ public class BorderController {
          }
          mav.addObject("border", border);
          return mav;
-      }
-      @PostMapping("delete")
-      public ModelAndView delete(Border border, BindingResult bresult, HttpServletRequest request) {
-   	   ModelAndView mav = new ModelAndView();
-   	   String tema = request.getParameter("tema");
-   	   try {
-   		   service.borderDelete(border);
-   		   mav.setViewName("redirect:list.shop?tema="+tema);
-   	   } catch (Exception e) {
-   		   e.printStackTrace();
-              throw new BoardException("게시글 삭제에 실패했습니다.","delete.shop?no="+border.getNo());
-   	   }
-   	   return mav;
       }
       @PostMapping("update")
       public ModelAndView update(@Valid Border border, BindingResult bresult, 

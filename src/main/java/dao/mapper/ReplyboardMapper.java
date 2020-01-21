@@ -3,6 +3,7 @@ package dao.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import logic.Replyboard;
@@ -23,6 +24,8 @@ public interface ReplyboardMapper {
 	@Select("select ifnull(max(num),0) from replyboard")
 	int maxnum();
 
+	@Insert("insert into replyboard(no,num,userid,content,grp,grplevel,grpstep)"
+			+ " values(#{no},#{num},#{userid},#{content},#{grp},#{grplevel},#{grpstep})")
 	void insert(Replyboard replyboard);
 
 }
