@@ -130,7 +130,8 @@
 										<label for="email">카테고리 <span
 											class="required text-primary">*</span>
 										</label>
-										<form:input path="tema" class="form-control" value="${item.tema}" />
+										<h3>${item.tema }</h3>
+										<form:hidden path="tema" value ="${item.tema }"/>
 										<font color="red"><form:errors path="tema" /></font>
 									</div>
 								</div>
