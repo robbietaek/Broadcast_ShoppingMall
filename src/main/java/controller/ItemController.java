@@ -113,6 +113,15 @@ public class ItemController {
 		return mav;
 	}
 	
+	
+	@RequestMapping("sellingdetail")
+	public ModelAndView sellingdetail(String itemid) {
+		ModelAndView mav = new ModelAndView();
+		Item item = service.getItem(itemid);
+		mav.addObject("item", item);
+		return mav;
+	}
+	
 	@GetMapping("*")
 	public ModelAndView itemSelect() {
 		ModelAndView mav = new ModelAndView();

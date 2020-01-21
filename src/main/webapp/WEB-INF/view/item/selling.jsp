@@ -118,7 +118,7 @@
 											<td>${fn:substring(i.itemname,0,10)}</td>
 											<td><fmt:formatDate value="${i.date}"
 													pattern="yyyy년MM월dd일 HH시mm분ss초" /></td>
-											<td><a href="shop-detail.shop?itemid=${i.itemid}"
+											<td><a href="sellingdetail.shop?itemid=${i.itemid}"
 												class="btn btn-template-outlined btn-sm">View</a> 
 												<a href="sellingeditForm.shop?itemid=${i.itemid}"
 												class="btn btn-template-outlined btn-sm">Edit</a> 
