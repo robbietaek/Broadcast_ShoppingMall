@@ -113,7 +113,7 @@ public class BorderController {
          mav.addObject("maxpage", maxpage);
          mav.addObject("startpage", startpage);
          mav.addObject("endpage", endpage);       
-                 
+         mav.addObject("replycount", replycount);    
          if(no == null) {
             border = new Border();
          }else {
