@@ -33,4 +33,12 @@ public class ReplyboardDao {
 		param.put("limit", limit);
 		return sqlSession.getMapper(ReplyboardMapper.class).select(param);
 	}
+
+	public int maxnum() {
+		return sqlSession.getMapper(ReplyboardMapper.class).maxnum();
+	}
+
+	public void insert(Replyboard replyboard) {
+		sqlSession.getMapper(ReplyboardMapper.class).insert(replyboard);
+	}
 }
