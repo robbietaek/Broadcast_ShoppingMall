@@ -46,13 +46,11 @@ public class ShopService {
 
 	}
 
-	/////////////////////////////////////////////////// User
-	/////////////////////////////////////////////////// //////////////////////////////////////////
+	/////////////////////////////////////////////////// User	///////////////////////////////////////////////////
 
 	public void insert(User user, HttpServletRequest request) {
-	      System.out.println(user.getPic().getOriginalFilename());
-	      uploadFileCreate(user.getPic(),request,"user/pic/");
-	      user.setProfile(user.getPic().getOriginalFilename());
+	      uploadFileCreate(user.getProfile(),request,"user/pic/");
+	      user.setProfileUrl(user.getProfile().getOriginalFilename());
 	      userDao.insert(user);
 	   }
 
@@ -68,9 +66,7 @@ public class ShopService {
 		return userDao.list(idchks);
 	}
 
-	//////////////////////////////////////////// Item
-	//////////////////////////////////////////// ////////////////////////////////////////////////////
-
+	//////////////////////////////////////////// Item	//////////////////////////////////////////// 
 	// 판매중 목록 카운트
 	public int itemcount(String searchtype, String searchcontent, String sessionid) {
 		return itemDao.sellingcount(searchtype, searchcontent, sessionid);
@@ -159,8 +155,7 @@ public class ShopService {
 		return itemDao.temalist(pageNum, limit, searchtype, searchcontent, tema);
 	}
 
-	////////////////////////////////////////// Boarder
-	////////////////////////////////////////// /////////////////////////////////////////////////
+	////////////////////////////////////////// Boarder	////////////////////////////////////////////////////////
 
 	// 게시판 부분
 	public int bordercount(String searchtype, String searchcontent, String tema) {
@@ -221,6 +216,20 @@ public class ShopService {
 		int max = replyboardDao.maxnum();
 		replyboard.setNum(++max);
 		replyboardDao.insert(replyboard);
+	}
+
+	
+	
+	//////////////////////////////////////////////////		방송		/////////////////////////////////////////////////////////
+	
+	//리스트 잠시 띄울 예정
+	public int broadcastcount(String searchtype, String searchcontent, String tema) {
+		return userDao.broadcastcount(searchtype, searchcontent, tema);
+	}
+	
+	//리스트 잠시 띄울 예정
+	public List<User> broadcastlist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
+		return userDao.broadcastlist(pageNum, limit, searchtype, searchcontent, tema);
 	}
 
 }

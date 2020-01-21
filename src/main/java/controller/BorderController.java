@@ -120,6 +120,7 @@ public class BorderController {
             border = service.getBorder(no, request);
          }
          mav.addObject("border", border);
+         mav.addObject(new Replyboard());
          return mav;
       }
       @PostMapping("update")

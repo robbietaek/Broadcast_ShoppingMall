@@ -137,6 +137,8 @@ function logoutWithNaver(){
 
 									<a href="../user/userEntry.shop" class="signup-btn"> <i
 										class="fa fa-user"></i> <span class="d-none d-md-inline-block">회원가입</span></a>
+									<a href="../broadcast/index.shop" class="signup-btn"> <i
+										class="fa fa-user"></i> <span class="d-none d-md-inline-block">방송 보러 가기</span></a>
 								</c:if>
 								<c:if test="${!empty sessionScope.loginUser}">
 									<a href="../broadcast/index.shop" class="signup-btn"> <i

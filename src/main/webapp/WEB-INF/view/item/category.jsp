@@ -91,7 +91,8 @@
 				<div class="col-md-9">
 					<div class="d-flex justify-content-end">
 						<div class="col-sm-5 text-right">
-							<form action="category.shop?tema=${param.tema}" method="post" name="searchform">
+							<form action="category.shop?tema=${param.tema}" method="post"
+								name="searchform">
 								<div class="input-group">
 									<input type="hidden" name="pageNum" value="1"> <select
 										name="searchtype" style="width: 100px">
@@ -149,47 +150,44 @@
 					</div>
 
 					<div class="pages">
-						<p class="loadMore text-center">
-							<a href="#" class="btn btn-template-outlined"><i
-								class="fa fa-chevron-down"></i> Load more</a>
-						</p>
-						<nav aria-label="Page navigation example">
-							<ul class="pagination">
+						<div class="d-flex justify-content-center">
+							<nav aria-label="Page navigation example">
+								<ul class="pagination">
 
-
-								<c:if test="${pageNum >1 }">
-									<li class="page-item"><a
-										href="category.shop?tema=${param.tema}&pageNum=${pageNum-1}"
-										class="page-link">«</a></li>
-								</c:if>
-
-								<c:if test="${pageNum <= 1 }">
-									<li class="page-item"><a href="#" class="page-link">«</a></li>
-								</c:if>
-
-								<c:forEach var="a" begin="${startpage}" end="${endpage }">
-
-									<c:if test="${a==pageNum }">
-										<li class="page-item"><a href="#" class="page-link">${a}</a></li>
-									</c:if>
-									<c:if test="${a!= pageNum }">
+									<c:if test="${pageNum >1 }">
 										<li class="page-item"><a
-											href="category.shop?tema=${param.tema}&pageNum=${a}"
-											class="page-link">${a}</a></li>
+											href="category.shop?tema=${param.tema}&pageNum=${pageNum-1}"
+											class="page-link">«</a></li>
 									</c:if>
-								</c:forEach>
 
-								<c:if test="${pageNum<maxpage }">
-									<li class="page-item"><a
-										href="category.shop?tema=${param.tema}&pageNum=${pageNum+1}"
-										class="page-link">»</a></li>
-								</c:if>
+									<c:if test="${pageNum <= 1 }">
+										<li class="page-item"><a href="#" class="page-link">«</a></li>
+									</c:if>
 
-								<c:if test="${pageNum >= maxpage }">
-									<li class="page-item"><a href="#" class="page-link">»</a></li>
-								</c:if>
-							</ul>
-						</nav>
+									<c:forEach var="a" begin="${startpage}" end="${endpage }">
+
+										<c:if test="${a==pageNum }">
+											<li class="page-item"><a href="#" class="page-link">${a}</a></li>
+										</c:if>
+										<c:if test="${a!= pageNum }">
+											<li class="page-item"><a
+												href="category.shop?tema=${param.tema}&pageNum=${a}"
+												class="page-link">${a}</a></li>
+										</c:if>
+									</c:forEach>
+
+									<c:if test="${pageNum<maxpage }">
+										<li class="page-item"><a
+											href="category.shop?tema=${param.tema}&pageNum=${pageNum+1}"
+											class="page-link">»</a></li>
+									</c:if>
+
+									<c:if test="${pageNum >= maxpage }">
+										<li class="page-item"><a href="#" class="page-link">»</a></li>
+									</c:if>
+								</ul>
+							</nav>
+						</div>
 					</div>
 				</div>
 			</div>

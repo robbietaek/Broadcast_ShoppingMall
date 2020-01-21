@@ -59,10 +59,10 @@
                      
                      <img id="pro" src="" width=100px; height=100px;>
                      
-                     <input type="hidden" id="profile" name="profile" value=""/>
+                     <input type="hidden" id="profileUrl" name="profileUrl" value=""/>
                      
                      <hr>
-                     <input type="file" id="pic" name="pic" class="inp-img"
+                     <input type="file" id="profile" name="profile" class="inp-img"
                             accept=".jpg,.jpeg,.png,.gif">
                      <script>
                      function readInputFile(input) {

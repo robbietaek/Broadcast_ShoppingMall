@@ -90,7 +90,6 @@ public class ItemController {
 		ModelAndView mav = new ModelAndView();
 		Item item = service.getItem(itemid);
 		mav.addObject("item",item);
-		System.out.println(service.getItem(itemid));
 		return mav;
 	}
 
@@ -139,7 +138,7 @@ public class ItemController {
 			searchcontent = null;
 		}
 
-		int limit = 10; // 페이지당 보여지는 게시물 건수
+		int limit = 12; // 페이지당 보여지는 게시물 건수
 		int listcount = service.categorycount(searchtype, searchcontent, tema); // 전체 등록된 게시물 건수
 		List<Item> itemList = service.categorylist(pageNum, limit, searchtype, searchcontent, tema); // 건수만큼 보드 객체를 가져와
 		int maxpage = (int) ((double) listcount / limit + 0.95); // 마지막페이지, 최대페이지
@@ -161,13 +160,6 @@ public class ItemController {
 		return mav;
 
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	@RequestMapping("sellingdetail")
 	public ModelAndView sellingdetail(String itemid) {
