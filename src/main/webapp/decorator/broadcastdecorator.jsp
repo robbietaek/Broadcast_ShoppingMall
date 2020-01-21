@@ -139,17 +139,20 @@ function logoutWithNaver(){
 
 									<a href="../user/userEntry.shop" class="signup-btn"> <i
 										class="fa fa-user"></i> <span class="d-none d-md-inline-block">회원가입</span></a>
+									
 								</c:if>
 								<c:if test="${!empty sessionScope.loginUser}">
 									<a href="../shop/mypage.shop?userid=${sessionScope.loginUser.userid}" class="signup-btn"> <i
 										class="fa fa-user"></i> <span class="d-none d-md-inline-block">Mypage</span></a>
+									 <a href="../shop/index.shop?userid=${sessionScope.loginUser.userid}" class="signup-btn"> <i
+										class="fa fa-user"></i> <span class="d-none d-md-inline-block">내 방송국 가기</span></a>
 									<c:if test="${fn:substring(sessionScope.loginUser.userid,0,2) eq 'n*'}">                    
                                         <a href="#" onclick="javascript:logoutWithNaver();" class="signup-btn"> <i
-                                          class="fa fa-user"></i> <span class="d-none d-md-inline-block">logout</span></a>
+                                          class="fa fa-sign-out"></i> <span class="d-none d-md-inline-block">logout</span></a>
                                   	</c:if>
                                   	<c:if test="${fn:substring(sessionScope.loginUser.userid,0,2) ne 'n*'}">
                                   		<a href="javascript:logout();" class="signup-btn"> <i
-                                       	  class="fa fa-user"></i> <span class="d-none d-md-inline-block">logout</span></a>
+                                       	  class="fa fa-sign-out"></i> <span class="d-none d-md-inline-block">logout</span></a>
                                     </c:if>
 								</c:if>
 							</div>

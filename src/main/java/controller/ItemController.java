@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -119,6 +121,9 @@ public class ItemController {
 		// itemList : item테이블의 모든 레코드와 모든 컬럼을 정보를 저장
 
 		ModelAndView mav = new ModelAndView();
+		SimpleDateFormat format = new SimpleDateFormat ("yyyyMMdd");
+		Date day = new Date();
+		String now = format.format(day);
 		String tema = (request.getParameter("tema"));
 		if (pageNum == null || pageNum.toString().equals("")) {
 			pageNum = 1;
@@ -144,6 +149,8 @@ public class ItemController {
 			endpage = maxpage;
 		}
 		int itemno = listcount - (pageNum - 1) * limit; // 화면에 출력되는 게시물 번호 (가짜번호)
+		mav.addObject("now",now);
+		mav.addObject("tema", tema);
 		mav.addObject("pageNum", pageNum);
 		mav.addObject("maxpage", maxpage);
 		mav.addObject("startpage", startpage);

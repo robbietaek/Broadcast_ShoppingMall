@@ -47,17 +47,16 @@ public interface ItemMapper {
 	
 	@Select({"<script>",
 	    "select itemid, itemname, price, description, picture1 pictureUrl1, picture2 pictureUrl2, picture3 pictureUrl3, picture4 pictureUrl4, picture5 pictureUrl5, vod, subject, tema, date from item ",
-	    " <if test='itemid != null'> where itemid = #{itemid}</if>",
-	    " <if test='tema != null'> where tema = #{tema}</if>",
-	    " <if test='searchtype != null'> where ${searchtype} like '%${searchcontent}%'</if>",
-	    " <if test='itemid == null'> order by date desc limit #{startrow},#{limit}</if>",
+	    " <if test='tema != null'> where tema like '${tema}' </if>",
+	    " <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%' </if>",
+	    " order by date desc limit #{startrow},#{limit}",
 	    "</script>"})
 	List<Item> temaselect(Map<String, Object> param);
 
 	@Select({"<script>",
 		"select count(*) from item ",
-		"<if test = 'searchtype!=null'> where ${searchtype} like '%${searchcontent}%' </if>",
-		"<if test = 'tema!=null'> where tema = #{tema} </if>",
+		"<if test = 'tema!=null'> where tema like '${tema}' </if>",
+		"<if test = 'searchtype!=null'> and ${searchtype} like '%${searchcontent}%' </if>",
 		"</script>"})
 	int temacount(Map<String, Object> param);
 	
