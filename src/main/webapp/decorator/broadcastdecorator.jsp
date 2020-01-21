@@ -179,13 +179,13 @@ function logoutWithNaver(){
 									<li class="nav-item"><a
 										href="../broadcast/index.shop" class="nav-link">전체</a></li>
 									<li class="nav-item"><a
-										href="../broadcast/game.shop" class="nav-link">게임</a></li>
+										href="../broadcast/index.shop?tema=game" class="nav-link">게임</a></li>
 									<li class="nav-item"><a
-										href="../broadcast/sports.shop" class="nav-link">스포츠</a></li>
+										href="../broadcast/index.shop?tema=sports" class="nav-link">스포츠</a></li>
 									<li class="nav-item"><a
-										href="../broadcast/bora.shop" class="nav-link">보이는라디오</a></li>
+										href="../broadcast/index.shop?tema=bora" class="nav-link">보이는라디오</a></li>
 									<li class="nav-item"><a
-										href="../broadcast/politics.shop" class="nav-link">정치
+										href="../broadcast/index.shop?tema=politics" class="nav-link">정치
 											/ 시사</a></li>
 								</ul></li>
 							<li class="nav-item"><a href="../broadcast/vodreplay.shop"

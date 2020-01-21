@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import dao.mapper.ItemMapper;
 import dao.mapper.UserMapper;
 import exception.LoginException;
 import logic.User;
@@ -29,8 +30,6 @@ public class UserDao {
 	public void insert(User user) {
 		sqlSession.getMapper(UserMapper.class).insert(user);
 	}
-
-	
 	
 	public List<User> list() {
 		return sqlSession.getMapper(UserMapper.class).select(null);
@@ -61,6 +60,26 @@ public class UserDao {
 		param.clear();
 		param.put("userids", ids);
 		return sqlSession.getMapper(UserMapper.class).select(param);
+	}
+
+
+
+	public int broadcastcount(String searchtype, String searchcontent, String tema) {
+		param.clear();
+		param.put("searchtype", searchtype);
+		param.put("searchcontent", searchcontent);
+		param.put("tema", tema);
+		return sqlSession.getMapper(UserMapper.class).broadcastcount(param);
+	}
+
+	public List<User> broadcastlist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
+		param.clear();
+		param.put("startrow", (pageNum - 1) * limit);
+		param.put("limit", limit);
+		param.put("searchtype", searchtype);
+		param.put("searchcontent", searchcontent);
+		param.put("tema",tema);
+		return sqlSession.getMapper(UserMapper.class).broadcastselect(param);
 	}
 
 	
