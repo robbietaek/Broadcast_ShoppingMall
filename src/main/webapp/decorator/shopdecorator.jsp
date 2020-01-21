@@ -139,18 +139,19 @@ function logoutWithNaver(){
 										class="fa fa-user"></i> <span class="d-none d-md-inline-block">회원가입</span></a>
 								</c:if>
 								<c:if test="${!empty sessionScope.loginUser}">
+									<a href="../broadcast/index.shop" class="signup-btn"> <i
+										class="fa fa-user"></i> <span class="d-none d-md-inline-block">방송 보러 가기</span></a>
+								
 									<a href="../shop/mypage.shop?userid=${sessionScope.loginUser.userid}" class="signup-btn"> <i
 										class="fa fa-user"></i> <span class="d-none d-md-inline-block">Mypage</span></a>
 									<c:if test="${fn:substring(sessionScope.loginUser.userid,0,2) eq 'n*'}">                    
                                         <a href="#" onclick="javascript:logoutWithNaver();" class="signup-btn"> <i
-                                          class="fa fa-user"></i> <span class="d-none d-md-inline-block">logout</span></a>
+                                          class="fa fa-sign-out"></i> <span class="d-none d-md-inline-block">logout</span></a>
                                   	</c:if>
                                   	<c:if test="${fn:substring(sessionScope.loginUser.userid,0,2) ne 'n*'}">
                                   		<a href="javascript:logout();" class="signup-btn"> <i
-                                       	  class="fa fa-user"></i> <span class="d-none d-md-inline-block">logout</span></a>
+                                       	  class="fa fa-sign-out"></i> <span class="d-none d-md-inline-block">logout</span></a>
                                     </c:if>
-									<a href="../shop/mypage.shop?userid=${sessionScope.loginUser.userid}" class="signup-btn"> <i
-										class="fa fa-user"></i> <span class="d-none d-md-inline-block">내 정보</span></a>
 								</c:if>
 							</div>
 						</div>
@@ -179,88 +180,37 @@ function logoutWithNaver(){
 					<div id="navigation" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav ml-auto">
 							<li class="nav-item dropdown active">
-								<a href="../shop/index.shop">홈 
+								<a href="../shop/index.shop">Home 
 									<b class="caret"></b></a></li>
 									
-							<li class="nav-item dropdown menu-large">
+							<li class="nav-item dropdown menu-small">
 								<a href="#" data-toggle="dropdown" 
-									class="dropdown-toggle">카테고리 
+									class="dropdown-toggle">Shopping
 									<b class="caret"></b></a>
 								<ul class="dropdown-menu megamenu">
 									<li>
 										<div class="row">
 											<div class="col-lg-3 col-md-6">
-												<h5>Men</h5>
+												<h5>Category</h5>
 												<ul class="list-unstyled mb-3">
 													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">T-shirts</a></li>
+														<a href="../item/category.shop?tema=clothes" 
+															class="nav-link">CLOTHES</a></li>
 													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">Shirts</a></li>
+														<a href="../item/category.shop?tema=food" 
+															class="nav-link">FOOD</a></li>
 													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">Pants</a></li>
+														<a href="../item/category.shop?tema=toy" 
+															class="nav-link">TOY</a></li>
 													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">Accessories</a></li>
-												</ul>
-											</div>
-											<div class="col-lg-3 col-md-6">
-												<h5>Ladies</h5>
-												<ul class="list-unstyled mb-3">
+														<a href="../item/category.shop?tema=music" 
+															class="nav-link">MUSIC</a></li>
 													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">T-shirts</a></li>
+														<a href="../item/category.shop?tema=beauty" 
+															class="nav-link">Beauty</a></li>
 													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">Skirts</a></li>
-													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">Pants</a></li>
-													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">Accessories</a></li>
-												</ul>
-											</div>
-											<div class="col-lg-3 col-md-6">
-												<h5>Kids</h5>
-												<ul class="list-unstyled mb-3">
-													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">T-shirts</a></li>
-													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">Pants</a></li>
-													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">Skirts</a></li>
-													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">Accessories</a></li>
-												</ul>
-											</div>
-											<div class="col-lg-3 col-md-6">
-												<h5>Brands</h5>
-												<ul class="list-unstyled mb-3">
-													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">NIKE</a></li>
-													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">ADIDAS</a></li>
-													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">UMBRO</a></li>
-													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">PUMA</a></li>
-													<li class="nav-item">
-														<a href="../item/shop-category-left.shop" 
-															class="nav-link">MAHAGRID</a></li>
-													<li class="nav-item">
-														<a href="../shop-category-left.shop" 
-															class="nav-link">NORTHFACE</a></li>
+														<a href="../item/category.shop?tema=sport" 
+															class="nav-link">SPORTS</a></li>
 												</ul>
 											</div>
 										</div>
@@ -268,36 +218,35 @@ function logoutWithNaver(){
 								</ul>
 							</li>
 							
-							<li class="nav-item dropdown menu-large">
+							
+							
+							<li class="nav-item dropdown menu-small">
 								<a href="#" data-toggle="dropdown" 
 									class="dropdown-toggle">VOD
 									<b class="caret"></b></a>
 								<ul class="dropdown-menu megamenu">
 									<li>
 										<div class="row">
-											<div class="col-lg-6">
-												<img src="img/template-easy-customize.png" alt=""
-													class="img-fluid d-none d-lg-block">
-											</div>
 											<div class="col-lg-3 col-md-6">
-												<h5>ETC</h5>
+												<h5>VOD</h5>
 												<ul class="list-unstyled mb-3">
 													<li class="nav-item">
-														<a href="../broadcast/vodreplay.shop" class="nav-link">최신 VOD</a></li>
+														<a href="../broadcast/vodreplay.shop" 
+															class="nav-link">★NEW</a></li>
 													<li class="nav-item">
-														<a href="../broadcast/vodreplay.shop"
-															class="nav-link">인기 VOD</a></li>
+														<a href="../broadcast/vodreplay.shop" 
+															class="nav-link">★HOT</a></li>
 												</ul>
 											</div>
 										</div>
 									</li>
 								</ul>
-							</li>							
+							</li>												
 							<!-- ========== FULL WIDTH MEGAMENU ==================-->
 							<li class="nav-item dropdown menu-large">
 								<a href="#" data-toggle="dropdown" 
 									data-hover="dropdown" data-delay="200"
-									class="dropdown-toggle">소통
+									class="dropdown-toggle">Communication
 									<b class="caret"></b></a>
 								<ul class="dropdown-menu megamenu">
 									<li>
