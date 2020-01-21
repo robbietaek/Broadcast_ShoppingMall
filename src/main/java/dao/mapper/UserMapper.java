@@ -13,8 +13,8 @@ import logic.User;
 public interface UserMapper {
 
 	@Insert("insert into user (userid, name, pass, tel, age, address, email, profile, nickname) values "
-			+ "(#{userid}, #{name}, #{pass}, #{tel}, #{age}, #{address}, #{email}, #{profileUrl},#{nickname})")
-	void insert(User user);
+	         + "(#{userid}, #{name}, #{pass}, #{tel}, #{age}, #{address}, #{email}, #{profile},#{nickname})")
+	   void insert(User user);
 
 	@Select({"<script> ",
 		"select * from user ",

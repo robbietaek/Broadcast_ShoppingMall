@@ -33,7 +33,7 @@
                   <h2 class="text-uppercase">로그인</h2>
                   <form:form modelAttribute="user" method="post"
                      action="login.shop">
-                     <form:hidden path="name" class="form-control" value = "aa"/>
+                     <form:hidden path="name" class="form-control" value = ""/>
                      <spring:hasBindErrors name="user">
                         <font color="red"> <c:forEach
                               items="${errors.globalErrors}" var="error">
@@ -107,6 +107,7 @@
                                                                     nickname : nickname
                                                                  },
                                                                  success: function(data){
+                                                                    
                                                                     if(data == 'userEntry.shop'){
                                                                     alert("해당 아이디가 없습니다.");
                                                                     location.href=data
@@ -121,7 +122,7 @@
                                                               });
                                                             
                                                             
-                                                              form.submit();
+                                                            
                                                          });
                                                 }
                                           });

@@ -1,10 +1,12 @@
 package controller;
 
 import java.security.MessageDigest;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -42,18 +44,20 @@ public class UserController {
    //1. 비밀번호 : 해쉬화 db에 저장
    //2. email : id의 해쉬값에서 키 결정. 암호화 db에 저장
    @PostMapping("userEntry")
-   public ModelAndView userEntry(@Valid User user, BindingResult bresult) throws Exception {
+   public ModelAndView userEntry(@Valid User user, BindingResult bresult,HttpServletRequest request) throws Exception {
       ModelAndView mav = new ModelAndView();
       if (bresult.hasErrors()) {
          bresult.reject("error.input.user");
          mav.getModel().putAll(bresult.getModel());
          return mav;
       }
-
+      System.out.println(user.getPic());
+   
+      
       // useraccount 테이블에 내용 등록. login.jsp
       try {
          user.setPass(CipherUtil.makehash(user.getPass()));
-         service.insert(user);
+         service.insert(user,request);
          mav.setViewName("redirect:../broadcast/index.shop");
       } catch (DataIntegrityViolationException e) {
          e.printStackTrace();
@@ -92,11 +96,12 @@ public class UserController {
    // 네이버 로그인
    @RequestMapping(value="login1", method=RequestMethod.POST)
     @ResponseBody
-    public String login1 (String id, String nickname, HttpSession session ) {
+    public String login1 (String id,String nickname,HttpSession session ) {
        try{
-         User dbUser = service.getUser(id);
+          
+         User dbUser = service.getUser("n*"+id);
          if(dbUser==null) {
-            session.setAttribute("email", id);
+            session.setAttribute("email", "n*"+id);
             session.setAttribute("nickname", nickname);
             return "userEntry.shop";
          }else {
@@ -136,11 +141,25 @@ public class UserController {
        
        
     }
-   
-   @RequestMapping("logout")
-   public String logout(HttpSession session) {
+   //HttpServletRequest request
+   @RequestMapping(value="logout", method=RequestMethod.POST)
+   @ResponseBody
+   public String logout(Model model,HttpServletRequest request) {
+      HttpSession session = request.getSession();
       session.invalidate();
+      model.addAttribute(new User());      
+      return request.getContextPath() + "/user/login.shop";
+   
+   }
+   
+   @RequestMapping(value="logout1")
+   public String logout1(Model model,HttpServletRequest request) {
+      System.out.println("naver로그아웃입니다.");
+      HttpSession session = request.getSession();
+      session.invalidate();
+      model.addAttribute(new User());      
       return "redirect:login.shop";
+   
    }
    @RequestMapping("main") //UserLoginAspect 클래스에 해당하는 핵심로직
    public String checkmain(HttpSession session) {
@@ -161,7 +180,8 @@ public class UserController {
       mav.addObject("user",user);
       return mav;
    }
-     
+   
+
    
    
 }
