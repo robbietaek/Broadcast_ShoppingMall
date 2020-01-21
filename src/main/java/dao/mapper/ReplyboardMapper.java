@@ -23,4 +23,6 @@ public interface ReplyboardMapper {
 	@Select("select ifnull(max(num),0) from replyboard")
 	int maxnum();
 
+	void insert(Replyboard replyboard);
+
 }

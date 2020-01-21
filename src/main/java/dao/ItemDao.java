@@ -31,7 +31,7 @@ public class ItemDao {
 	public Item selectOne(String itemid) {
 		param.clear();
 		param.put("itemid", itemid);
-		return sqlSession.getMapper(ItemMapper.class).select(param).get(0);
+		return sqlSession.getMapper(ItemMapper.class).sellingselect(param).get(0);
 	}
 
 	public void update(Item item) {
@@ -44,23 +44,44 @@ public class ItemDao {
 		sqlSession.getMapper(ItemMapper.class).delete(param);
 	}
 
-	// 판매등록된 리스트 숫자
-	public int count(String searchtype, String searchcontent, User user) {
+	// 내가 판매등록한 리스트 숫자
+	public int sellingcount(String searchtype, String searchcontent, String sessionid) {
 		param.clear();
 		param.put("searchtype", searchtype);
 		param.put("searchcontent", searchcontent);
-		param.put("user", user);
-		return sqlSession.getMapper(ItemMapper.class).count(param);
+		param.put("sessionid", sessionid);
+		return sqlSession.getMapper(ItemMapper.class).sellingcount(param);
 	}
 
-	// 판매등록된 리스트
-	public List<Item> list(Integer pageNum, int limit, String searchtype, String searchcontent, User user) {
+	// 내가 판매등록한 리스트
+	public List<Item> sellinglist(Integer pageNum, int limit, String searchtype, String searchcontent, String sessionid) {
 		param.clear();
 		param.put("startrow", (pageNum - 1) * limit);
 		param.put("limit", limit);
 		param.put("searchtype", searchtype);
 		param.put("searchcontent", searchcontent);
-		return sqlSession.getMapper(ItemMapper.class).select(param);
+		param.put("sessionid",sessionid);
+		return sqlSession.getMapper(ItemMapper.class).sellingselect(param);
+	}
+	
+	//테마별 카운트
+	public int temacount(String searchtype, String searchcontent, String tema) {
+		param.clear();
+		param.put("searchtype", searchtype);
+		param.put("searchcontent", searchcontent);
+		param.put("tema", tema);
+		return sqlSession.getMapper(ItemMapper.class).temacount(param);
+	}
+	
+	//테마별 리스트
+	public List<Item> temalist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
+		param.clear();
+		param.put("startrow", (pageNum - 1) * limit);
+		param.put("limit", limit);
+		param.put("searchtype", searchtype);
+		param.put("searchcontent", searchcontent);
+		param.put("tema",tema);
+		return sqlSession.getMapper(ItemMapper.class).temaselect(param);
 	}
 
 }

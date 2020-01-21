@@ -78,15 +78,6 @@
 						<div class="col-sm-6">
 							<div class="box">
 								<form>
-									<div class="sizes">
-										<h3>옵션-사이즈</h3>
-										<select class="bs-select">
-											<option value="small">Small</option>
-											<option value="medium">Medium</option>
-											<option value="large">Large</option>
-											<option value="x-large">X Large</option>
-										</select>
-									</div>
 									<p class="price">
 									<fmt:formatNumber type="number" maxFractionDigits="3" value="${item.price}" />원
 									</p>
