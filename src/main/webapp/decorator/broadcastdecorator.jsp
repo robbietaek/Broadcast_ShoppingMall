@@ -74,6 +74,43 @@
 <script src="../shop/js/front.js"></script>
 
 <decorator:head />
+<script type="text/javascript">
+function logout(){
+   $.ajax({
+      url:"../user/logout.shop",
+      type:"post",
+      success: function(data){
+         location.href=data
+         
+      },
+      error: function(e){
+            alert(JSON.stringify(e));
+         }
+   });
+}
+
+closetime = 1;
+function Start(URL, WIDTH, HEIGHT) {
+      windowprops = "left=50,top=50,width=" + WIDTH + ",height=" + HEIGHT;
+      preview = window.open(URL, "preview", windowprops);
+         if (closetime){
+            
+            setTimeout("preview.close();location.href='/project/user/logout1.shop';", closetime*100)
+            
+         }
+      }
+
+function logoutWithNaver(){
+      url='https://nid.naver.com/nidlogin.logout?returl=https://www.naver.com/';
+      width=100;
+      height = 100;
+      delay = 1;
+      timer = setTimeout("Start(url, width, height)", delay*1000);
+   }
+   
+
+   
+</script>
 </head>
 
 <body>
@@ -106,6 +143,14 @@
 								<c:if test="${!empty sessionScope.loginUser}">
 									<a href="../shop/mypage.shop?userid=${sessionScope.loginUser.userid}" class="signup-btn"> <i
 										class="fa fa-user"></i> <span class="d-none d-md-inline-block">Mypage</span></a>
+									<c:if test="${fn:substring(sessionScope.loginUser.userid,0,2) eq 'n*'}">                    
+                                        <a href="#" onclick="javascript:logoutWithNaver();" class="signup-btn"> <i
+                                          class="fa fa-user"></i> <span class="d-none d-md-inline-block">logout</span></a>
+                                  	</c:if>
+                                  	<c:if test="${fn:substring(sessionScope.loginUser.userid,0,2) ne 'n*'}">
+                                  		<a href="javascript:logout();" class="signup-btn"> <i
+                                       	  class="fa fa-user"></i> <span class="d-none d-md-inline-block">logout</span></a>
+                                    </c:if>
 								</c:if>
 							</div>
 						</div>

@@ -49,9 +49,12 @@ public class ShopService {
 	/////////////////////////////////////////////////// User
 	/////////////////////////////////////////////////// //////////////////////////////////////////
 
-	public void insert(User user) {
-		userDao.insert(user);
-	}
+	public void insert(User user, HttpServletRequest request) {
+	      System.out.println(user.getPic().getOriginalFilename());
+	      uploadFileCreate(user.getPic(),request,"user/pic/");
+	      user.setProfile(user.getPic().getOriginalFilename());
+	      userDao.insert(user);
+	   }
 
 	public User getUser(String userid) {
 		return userDao.selectOne(userid);

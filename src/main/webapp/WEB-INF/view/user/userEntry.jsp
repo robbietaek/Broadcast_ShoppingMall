@@ -11,6 +11,7 @@
       open("pictureForm.shop", "", op);
    }
 </script>
+
 </head>
 <body>
    <div id="heading-breadcrumbs">
@@ -42,7 +43,7 @@
                      - PM 18 문의 가능합니다.
                   </p>
                   <hr>
-                  <form:form modelAttribute="user" method="post"
+                  <form:form modelAttribute="user" method="post" enctype="multipart/form-data"
                      action="userEntry.shop">
                      <spring:hasBindErrors name="user">
                         <font color="red"> <c:forEach
@@ -52,16 +53,34 @@
                         </font>
                      </spring:hasBindErrors>
                      <br>
-                     <br>
+                     <label for="name-profile">프로필</label>
                      
-                     <input type="hidden" name="picture">
-                     <c:if test="${!empty profile}">
-                        <img src="${profile }" width="100" height="120" id="pic">
-                     </c:if>
-                     <img src="${profile }" width="100" height="120" id="pic">
+                     <div id="preview"></div>
+                     
+                     <img id="pro" src="" width=100px; height=100px;>
+                     
+                     <input type="hidden" id="profile" name="profile" value=""/>
+                     
                      <hr>
-                     <font size="1"> <a href="javascript:win_upload()">사진등록</a></font>
-
+                     <input type="file" id="pic" name="pic" class="inp-img"
+                            accept=".jpg,.jpeg,.png,.gif">
+                     <script>
+                     function readInputFile(input) {
+                         if(input.files && input.files[0]) {
+                             var reader = new FileReader();
+                             reader.onload = function (e) {
+                                $('#pro').hide();
+                                $('#preview').html("<img src="+ e.target.result +" style = 'width : 200px; height :150px'>");
+                                $('#profile').val(e.target.result);
+                             }
+                             reader.readAsDataURL(input.files[0]);
+                         }
+                     }
+                     $(".inp-img").on('change', function(){
+                         readInputFile(this);
+                     });
+                     
+                     </script>
 
                      <div class="form-group">
                         <label for="name-login">아이디</label>

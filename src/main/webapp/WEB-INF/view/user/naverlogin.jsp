@@ -32,7 +32,6 @@
                alert("해당 아이디가 없습니다.")
                opener.document.location.href=data
             }else{
-               alert("네이버 로그인 성공!");
                opener.document.location.href=data
             }
                self.close();
