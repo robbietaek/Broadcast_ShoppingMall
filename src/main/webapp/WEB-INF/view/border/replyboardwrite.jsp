@@ -19,7 +19,7 @@
 </script>
 </head>
 <body>
-<form:form modelAttribute="reply" action="reply.shop" enctype="multipart/form-data" name="f">
+<form:form modelAttribute="replyboard" action="replyboardwrite.shop" name="f">
 <input type="hidden" name="no" value="${param.no}">
 <input type="hidden" name="tema" value="${param.tema}">
 <table>
