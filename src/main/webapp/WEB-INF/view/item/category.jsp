@@ -48,7 +48,7 @@
 				</c:if>
 				<div class="col-md-5">
 					<ul class="breadcrumb d-flex justify-content-end">
-						<li class="breadcrumb-item"><a href="index.shop">Home</a></li>
+						<li class="breadcrumb-item"><a href="../shop/index.shop?userid=${sessionScope.loginUser.userid }">Home</a></li>
 						<li class="breadcrumb-item active">Category</li>
 					</ul>
 				</div>
@@ -124,12 +124,12 @@
 							<div class="col-lg-4 col-md-6">
 								<div class="product">
 									<div class="image">
-										<a href="sellingdetail.shop?itemid=${i.itemid}"><img
+										<a href="sellingdetail.shop?userid=${param.userid}&tema=${param.tema }&itemid=${i.itemid}"><img
 											src="img/${i.pictureUrl1}" alt="" class="img-fluid image1"></a>
 									</div>
 									<div class="text">
 										<h3 class="h5">
-											<a href="sellingdetail.shop?itemid=${i.itemid}">${i.itemname}</a>
+											<a href="sellingdetail.shop?userid=${param.userid}&tema=${param.tema }&itemid=${i.itemid}">${i.itemname}</a>
 										</h3>
 										<p class="price">
 											<fmt:formatNumber type="number" maxFractionDigits="3"

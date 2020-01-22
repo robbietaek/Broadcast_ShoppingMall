@@ -137,12 +137,12 @@
                               })
                            })
                            
-                           var naver_id_login = new naver_id_login("1pOeSW7I1etXR4tam8X7", "http://localhost:8080/project/user/naverlogin.shop");   // Client ID, CallBack URL 삽입
+                           var naver_id_login = new naver_id_login("1pOeSW7I1etXR4tam8X7", "http://192.168.0.239:8080/project/user/naverlogin.shop");   // Client ID, CallBack URL 삽입
                                                          // 단 'localhost'가 포함된 CallBack URL
                                var state = naver_id_login.getUniqState();
                               
                                naver_id_login.setButton("white", 20, 47);
-                               naver_id_login.setDomain("http://localhost:8080/project/user/login.shop");   //  URL
+                               naver_id_login.setDomain("http://192.168.0.239:8080/project/user/login.shop");   //  URL
                                naver_id_login.setState(state);
                                naver_id_login.setPopup();
                                naver_id_login.init_naver_id_login();
