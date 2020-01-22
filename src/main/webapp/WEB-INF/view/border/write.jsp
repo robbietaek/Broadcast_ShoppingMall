@@ -119,7 +119,7 @@
 												<div class="col-sm-12 text-right">
 													<button class="btn btn-template-outlined"
 														onclick="javascript:document.f.submit()">
-														<i class="fa fa-comment-o"></i> 상품등록하기
+														<i class="fa fa-comment-o"></i> 작성완료
 													</button>
 												</div>
 											</div>

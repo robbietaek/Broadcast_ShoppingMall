@@ -10,7 +10,8 @@ public class Replyboard {
 	private String content;
 	private int grp;
 	private int grplevel;
-	private int grpgroup;
+	private int grpstep;
+	
 	public int getNum() {
 		return num;
 	}
@@ -47,17 +48,18 @@ public class Replyboard {
 	public void setGrplevel(int grplevel) {
 		this.grplevel = grplevel;
 	}
-	public int getGrpgroup() {
-		return grpgroup;
+	public int getGrpstep() {
+		return grpstep;
 	}
-	public void setGrpgroup(int grpgroup) {
-		this.grpgroup = grpgroup;
+	public void setGrpstep(int grpstep) {
+		this.grpstep = grpstep;
 	}
 	@Override
 	public String toString() {
 		return "Replyboard [num=" + num + ", no=" + no + ", userid=" + userid + ", content=" + content + ", grp=" + grp
-				+ ", grplevel=" + grplevel + ", grpgroup=" + grpgroup + "]";
+				+ ", grplevel=" + grplevel + ", grpstep=" + grpstep + "]";
 	}
+	
 	
 	
 }

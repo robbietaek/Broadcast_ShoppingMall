@@ -23,21 +23,8 @@ import logic.ShopService;
 public class ReplyboardController {
 	@Autowired
 	private ShopService service;
-	    
-    @RequestMapping(value="replyboardwrite", method=RequestMethod.POST)
-    public ModelAndView reply(Replyboard replyboard, HttpServletRequest request, BindingResult bresult, Border border) {
-  	  ModelAndView mav = new ModelAndView();
-  	  System.out.println("**********");
-        try {
-            service.replywrite(replyboard,request);
-            mav.setViewName("redirect:detail.shop?no="+border.getNo());
-         }catch (Exception e) {
-            e.printStackTrace();
-            throw new BoardException
-               ("게시물 등록에 실패했습니다.","detail.shop?no="+border.getNo());
-         }
-            return mav;
-      }
+    
+	
     
     
     
