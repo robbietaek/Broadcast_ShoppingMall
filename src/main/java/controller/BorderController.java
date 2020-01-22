@@ -31,6 +31,7 @@ public class BorderController {
       public ModelAndView list(HttpServletRequest request, Integer pageNum, String searchtype, String searchcontent) { 
          ModelAndView mav = new ModelAndView();
          String tema = (request.getParameter("tema"));
+         String visitid = (request.getParameter("userid"));
          if(searchtype != null && searchtype.trim().equals(""))
             searchtype = null;
          if(searchcontent != null && searchcontent.trim().equals(""))
@@ -43,8 +44,8 @@ public class BorderController {
             pageNum = 1;
          }
          int limit = 10; //페이지당 게시물 건수
-         int listcount = service.bordercount(searchtype, searchcontent,tema); //전체 등록된 게시물 건수
-         List<Border> borderlist = service.borderlist(pageNum,limit, searchtype, searchcontent,tema);
+         int listcount = service.bordercount(searchtype, searchcontent,tema, visitid); //전체 등록된 게시물 건수
+         List<Border> borderlist = service.borderlist(pageNum,limit, searchtype, searchcontent,tema, visitid);
          // 최대 페이지
          int maxpage = (int)((double)listcount/limit + 0.95);
          // 보여지는 첫번째 페이지
@@ -69,17 +70,18 @@ public class BorderController {
       public ModelAndView write(@Valid Border border, BindingResult bresult, HttpServletRequest request) {
                ModelAndView mav = new ModelAndView();
                String tema = (request.getParameter("tema"));
-//               if(bresult.hasErrors()) {
-//                  mav.getModel().putAll(bresult.getModel());
-//                  return mav;
-//               }
+               String visitid = border.getUserid();
+               if(bresult.hasErrors()) {
+                  mav.getModel().putAll(bresult.getModel());
+                  return mav;
+               }
             try {
                service.borderWrite(border,request);
-               mav.setViewName("redirect:list.shop?tema="+tema);
+               mav.setViewName("redirect:list.shop?userid="+visitid+"&tema="+tema);
             }catch (Exception e) {
                e.printStackTrace();
                throw new BoardException
-                  ("게시물 등록에 실패했습니다.","write.shop?tema="+tema);
+                  ("게시물 등록에 실패했습니다.","write.shop?userid="+visitid+"&tema="+tema);
             }
                return mav;
          }
@@ -129,16 +131,18 @@ public class BorderController {
          ModelAndView mav = new ModelAndView();
          Border dbBorder = service.getBorder(border.getNo());
          String tema = request.getParameter("tema");
+         String visitid = (request.getParameter("userid"));
          if(bresult.hasErrors()) {
             mav.getModel().putAll(bresult.getModel());
+            System.out.println(bresult);
             return mav;   
           }
          try {
             service.borderUpdate(border,request);
-            mav.setViewName("redirect:list.shop?tema=" + tema);
+            mav.setViewName("redirect:list.shop?userid="+visitid+"&tema=" + tema);
                }catch(Exception e) {
                e.printStackTrace();
-               throw new BoardException("게시글 수정에 실패했습니다.","update.shop?no="+border.getNo());
+               throw new BoardException("게시글 수정에 실패했습니다.","update.shop?userid="+visitid+"&no="+border.getNo());
                }
             return mav;
        }

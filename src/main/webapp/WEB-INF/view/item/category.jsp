@@ -66,22 +66,22 @@
 						</div>
 						<div class="panel-body">
 							<ul class="nav nav-pills flex-column text-sm category-menu">
-								<li class="nav-item"><a href="category.shop?tema=clothes"
+								<li class="nav-item"><a href="category.shop?userid=${param.userid}&tema=clothes"
 									class="nav-link d-flex align-items-center justify-content-between"><span>Clothes</span></a>
 								</li>
-								<li class="nav-item"><a href="category.shop?tema=food"
+								<li class="nav-item"><a href="category.shop?userid=${param.userid}&tema=food"
 									class="nav-link d-flex align-items-center justify-content-between"><span>Food
 									</span></a></li>
-								<li class="nav-item"><a href="category.shop?tema=toy"
+								<li class="nav-item"><a href="category.shop?userid=${param.userid}&tema=toy"
 									class="nav-link d-flex align-items-center justify-content-between"><span>Toy
 									</span></a></li>
-								<li class="nav-item"><a href="category.shop?tema=music"
+								<li class="nav-item"><a href="category.shop?userid=${param.userid}&tema=music"
 									class="nav-link d-flex align-items-center justify-content-between"><span>Music
 									</span></a></li>
-								<li class="nav-item"><a href="category.shop?tema=beauty"
+								<li class="nav-item"><a href="category.shop?userid=${param.userid}&tema=beauty"
 									class="nav-link d-flex align-items-center justify-content-between"><span>Beauty
 									</span></a></li>
-								<li class="nav-item"><a href="category.shop?tema=sports"
+								<li class="nav-item"><a href="category.shop?userid=${param.userid}&tema=sports"
 									class="nav-link d-flex align-items-center justify-content-between"><span>Sports
 									</span></a></li>
 							</ul>

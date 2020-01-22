@@ -147,24 +147,24 @@ public class ShopService {
 		itemDao.update(item);
 	}
 
-	public int categorycount(String searchtype, String searchcontent, String tema) {
-		return itemDao.temacount(searchtype, searchcontent, tema);
+	public int categorycount(String searchtype, String searchcontent, String tema, String visitid) {
+		return itemDao.temacount(searchtype, searchcontent, tema, visitid);
 	}
 
-	public List<Item> categorylist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
-		return itemDao.temalist(pageNum, limit, searchtype, searchcontent, tema);
+	public List<Item> categorylist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema, String visitid) {
+		return itemDao.temalist(pageNum, limit, searchtype, searchcontent, tema, visitid);
 	}
 
 	////////////////////////////////////////// Boarder	////////////////////////////////////////////////////////
 
 	// 게시판 부분
-	public int bordercount(String searchtype, String searchcontent, String tema) {
-		return borderDao.count(searchtype, searchcontent, tema);
+	public int bordercount(String searchtype, String searchcontent, String tema, String visitid) {
+		return borderDao.count(searchtype, searchcontent, tema, visitid);
 	}
 
-	public List<Border> borderlist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
+	public List<Border> borderlist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema, String visitid) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		return borderDao.list(pageNum, limit, searchtype, searchcontent, tema);
+		return borderDao.list(pageNum, limit, searchtype, searchcontent, tema, visitid);
 	}
 
 	public void borderWrite(Border border, HttpServletRequest request) {

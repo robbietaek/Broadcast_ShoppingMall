@@ -65,22 +65,24 @@ public class ItemDao {
 	}
 	
 	//테마별 카운트
-	public int temacount(String searchtype, String searchcontent, String tema) {
+	public int temacount(String searchtype, String searchcontent, String tema, String visitid) {
 		param.clear();
 		param.put("searchtype", searchtype);
 		param.put("searchcontent", searchcontent);
 		param.put("tema", tema);
+		param.put("visitid",visitid);
 		return sqlSession.getMapper(ItemMapper.class).temacount(param);
 	}
 	
 	//테마별 리스트
-	public List<Item> temalist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
+	public List<Item> temalist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema, String visitid) {
 		param.clear();
 		param.put("startrow", (pageNum - 1) * limit);
 		param.put("limit", limit);
 		param.put("searchtype", searchtype);
 		param.put("searchcontent", searchcontent);
 		param.put("tema",tema);
+		param.put("visitid",visitid);
 		return sqlSession.getMapper(ItemMapper.class).temaselect(param);
 	}
 
