@@ -14,7 +14,7 @@ import logic.User;
 public interface ItemMapper {
 
 	@Select({"<script>",
-	    "select itemid, itemname, price, description, picture1 pictureUrl1, picture2 pictureUrl2, picture3 pictureUrl3, picture4 pictureUrl4, picture5 pictureUrl5, vod, subject, tema, date from item ",
+	    "select itemid, itemname, price, description, picture1 pictureUrl1, picture2 pictureUrl2, picture3 pictureUrl3, picture4 pictureUrl4, picture5 pictureUrl5, vod, subject, tema, date, delivery, deliverycost from item ",
 	    " <if test='itemid != null'> where itemid = #{itemid}</if>",
 	    " <if test='sessionid != null'> where userid = #{sessionid}</if>",
 	    " <if test='searchtype != null'> where ${searchtype} like '%${searchcontent}%'</if>",
@@ -33,7 +33,7 @@ public interface ItemMapper {
 	@Select("select ifnull(max(itemid),0) from item")
 	int maxid();
 
-	@Insert("insert into item (itemid, userid, itemname, price, description, picture1, picture2, picture3, picture4, picture5, vod, subject, tema, date) values (#{itemid}, #{userid},#{itemname}, #{price}, #{description}, #{pictureUrl1}, #{pictureUrl2}, #{pictureUrl3}, #{pictureUrl4}, #{pictureUrl5}, #{vod}, #{subject}, #{tema}, now())")
+	@Insert("insert into item (itemid, userid, itemname, price, description, picture1, picture2, picture3, picture4, picture5, vod, subject, tema, date, delivery, deliverycost) values (#{itemid}, #{userid},#{itemname}, #{price}, #{description}, #{pictureUrl1}, #{pictureUrl2}, #{pictureUrl3}, #{pictureUrl4}, #{pictureUrl5}, #{vod}, #{subject}, #{tema}, now(), #{delivery},#{deliverycost})")
 	void insert(Item item);
 
 	@Update("update item set itemname = #{itemname}, price = #{price}, description = #{description},"
@@ -47,7 +47,7 @@ public interface ItemMapper {
 
 	
 	@Select({"<script>",
-	    "select itemid, itemname, price, description, picture1 pictureUrl1, picture2 pictureUrl2, picture3 pictureUrl3, picture4 pictureUrl4, picture5 pictureUrl5, vod, subject, tema, date from item ",
+	    "select itemid, itemname, price, description, picture1 pictureUrl1, picture2 pictureUrl2, picture3 pictureUrl3, picture4 pictureUrl4, picture5 pictureUrl5, vod, subject, tema, date, delivery, deliverycost from item ",
 	    " <if test='tema != null and visitid != null'> where tema like '${tema}' and userid = #{visitid} </if>",
 	    " <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%' </if>",
 	    " order by date desc limit #{startrow},#{limit}",

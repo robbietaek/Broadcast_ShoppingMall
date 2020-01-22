@@ -37,8 +37,8 @@
 				</div>
 				<div class="col-md-5">
 					<ul class="breadcrumb d-flex justify-content-end">
-						<li class="breadcrumb-item"><a href="index.shop">Home</a></li>
-						<li class="breadcrumb-item active">Accordions</li>
+						<li class="breadcrumb-item"><a href="index.shop?userid=${sessionScope.loginUser.userid }">Home</a></li>
+						<li class="breadcrumb-item active">상품 수정</li>
 					</ul>
 				</div>
 			</div>
@@ -162,6 +162,33 @@
 									</div>
 								</div>
 							</div>
+							
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="email">운행 회사<span
+											class="required text-primary">*</span>
+										</label>
+										<form:select path="delivery" class="bs-select">
+											<option value="CJ대한통운">CJ대한통운</option>
+											<option value="한진택배">한진택배</option>
+											<option value="우체국택배">우체국택배</option>
+											<option value="롯데택배">롯데택배</option>
+											<option value="로진택배">로진택배</option>
+										</form:select>
+										<font color="red"><form:errors path="delivery" /></font>
+									</div>
+								</div>
+								<div class="col-sm-5">
+									<div class="form-group">
+										<label for="email">운행 요금<span
+											class="required text-primary">*</span>
+										</label>
+										<form:input path="deliverycost" class="form-control" />
+										<font color="red"><form:errors path="deliverycost" /></font>
+									</div>
+								</div>
+							</div>							
 
 							<div class="row">
 								<div class="col-sm-5">

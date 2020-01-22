@@ -15,8 +15,8 @@
 				</div>
 				<div class="col-md-5">
 					<ul class="breadcrumb d-flex justify-content-end">
-						<li class="breadcrumb-item"><a href="index.shop">Home</a></li>
-						<li class="breadcrumb-item active">Accordions</li>
+						<li class="breadcrumb-item"><a href="../shop/index.shop?userid=${sessionScope.loginUser.userid }">Home</a></li>
+						<li class="breadcrumb-item active">물품관리</li>
 					</ul>
 				</div>
 			</div>
@@ -118,11 +118,11 @@
 											<td>${fn:substring(i.itemname,0,10)}</td>
 											<td><fmt:formatDate value="${i.date}"
 													pattern="yyyy년MM월dd일 HH시mm분ss초" /></td>
-											<td><a href="sellingdetail.shop?itemid=${i.itemid}"
+											<td><a href="sellingdetail.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
 												class="btn btn-template-outlined btn-sm">View</a> 
-												<a href="sellingeditForm.shop?itemid=${i.itemid}"
+												<a href="sellingeditForm.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
 												class="btn btn-template-outlined btn-sm">Edit</a> 
-												<a href="sellingdelete.shop?itemid=${i.itemid}"
+												<a href="sellingdelete.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
 												class="btn btn-template-outlined btn-sm">Delete</a>
 										</tr>
 									</c:forEach>
