@@ -167,7 +167,7 @@ function logoutWithNaver(){
 		<header class="nav-holder make-sticky">
 			<div id="navbar" role="navigation" class="navbar navbar-expand-lg">
 				<div class="container">
-					<a href="../shop/index.shop" class="navbar-brand home">
+					<a href="../shop/index.shop?userid=${param.userid}" class="navbar-brand home">
 						<img src="img/logo.png" alt="Universal logo"
 							class="d-none d-md-inline-block">
 						<img src="img/logo-small.png" alt="Universal logo"
@@ -182,7 +182,7 @@ function logoutWithNaver(){
 					<div id="navigation" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav ml-auto">
 							<li class="nav-item dropdown active">
-								<a href="../shop/index.shop">Home 
+								<a href="../shop/index.shop?userid=${param.userid}">Home 
 									<b class="caret"></b></a></li>
 									
 							<li class="nav-item dropdown menu-small">
@@ -196,22 +196,22 @@ function logoutWithNaver(){
 												<h5>Category</h5>
 												<ul class="list-unstyled mb-3">
 													<li class="nav-item">
-														<a href="../item/category.shop?tema=clothes" 
+														<a href="../item/category.shop?userid=${param.userid}&tema=clothes" 
 															class="nav-link">CLOTHES</a></li>
 													<li class="nav-item">
-														<a href="../item/category.shop?tema=food" 
+														<a href="../item/category.shop?userid=${param.userid}&tema=food" 
 															class="nav-link">FOOD</a></li>
 													<li class="nav-item">
-														<a href="../item/category.shop?tema=toy" 
+														<a href="../item/category.shop?userid=${param.userid}&tema=toy" 
 															class="nav-link">TOY</a></li>
 													<li class="nav-item">
-														<a href="../item/category.shop?tema=music" 
+														<a href="../item/category.shop?userid=${param.userid}&tema=music" 
 															class="nav-link">MUSIC</a></li>
 													<li class="nav-item">
-														<a href="../item/category.shop?tema=beauty" 
+														<a href="../item/category.shop?userid=${param.userid}&tema=beauty" 
 															class="nav-link">Beauty</a></li>
 													<li class="nav-item">
-														<a href="../item/category.shop?tema=sport" 
+														<a href="../item/category.shop?userid=${param.userid}&tema=sport" 
 															class="nav-link">SPORTS</a></li>
 												</ul>
 											</div>
@@ -233,10 +233,10 @@ function logoutWithNaver(){
 												<h5>VOD</h5>
 												<ul class="list-unstyled mb-3">
 													<li class="nav-item">
-														<a href="../broadcast/vodreplay.shop" 
+														<a href="../broadcast/vodreplay.shop?userid=${param.userid}" 
 															class="nav-link">★NEW</a></li>
 													<li class="nav-item">
-														<a href="../broadcast/vodreplay.shop" 
+														<a href="../broadcast/vodreplay.shop?userid=${param.userid}" 
 															class="nav-link">★HOT</a></li>
 												</ul>
 											</div>
@@ -262,7 +262,7 @@ function logoutWithNaver(){
 												<h5>공지사항</h5>
 												<ul class="list-unstyled mb-3">
 													<li class="nav-item">
-														<a href="../border/list.shop?tema=1" 
+														<a href="../border/list.shop?userid=${param.userid}&tema=1" 
 															class="nav-link">
 															공지사항</a></li>
 												</ul>
@@ -271,13 +271,13 @@ function logoutWithNaver(){
 												<h5>게시판</h5>
 												<ul class="list-unstyled mb-3">
 													<li class="nav-item">
-														<a href="../border/list.shop?tema=2" 
+														<a href="../border/list.shop?userid=${param.userid}&tema=2" 
 															class="nav-link">
 														건의사항</a></li>
 												</ul>
 												<ul class="list-unstyled mb-3">
 													<li class="nav-item">
-														<a href="../border/list.shop?tema=3" 
+														<a href="../border/list.shop?userid=${param.userid}&tema=3" 
 															class="nav-link">
 														자유게시판</a></li>
 												</ul>

@@ -48,7 +48,7 @@ public interface ItemMapper {
 	
 	@Select({"<script>",
 	    "select itemid, itemname, price, description, picture1 pictureUrl1, picture2 pictureUrl2, picture3 pictureUrl3, picture4 pictureUrl4, picture5 pictureUrl5, vod, subject, tema, date from item ",
-	    " <if test='tema != null'> where tema like '${tema}' </if>",
+	    " <if test='tema != null and visitid != null'> where tema like '${tema}' and userid = #{visitid} </if>",
 	    " <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%' </if>",
 	    " order by date desc limit #{startrow},#{limit}",
 	    "</script>"})
@@ -56,7 +56,7 @@ public interface ItemMapper {
 
 	@Select({"<script>",
 		"select count(*) from item ",
-		"<if test = 'tema!=null'> where tema like '${tema}' </if>",
+		"<if test = 'tema!=null and visitid != null'> where tema like '${tema}' and userid = #{visitid} </if>",
 		"<if test = 'searchtype!=null'> and ${searchtype} like '%${searchcontent}%' </if>",
 		"</script>"})
 	int temacount(Map<String, Object> param);

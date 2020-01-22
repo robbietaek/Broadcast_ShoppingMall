@@ -57,11 +57,11 @@
 						</div>
 						<div class="panel-body">
 							<ul class="nav nav-pills flex-column text-sm">
-								<li class="nav-item"><a href="list.shop?tema=1"
+								<li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=1"
 									class="nav-link">공지사항</a></li>
-								<li class="nav-item"><a href="list.shop?tema=2"
+								<li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=2"
 									class="nav-link">건의사항</a></li>
-								<li class="nav-item"><a href="list.shop?tema=3"
+								<li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=3"
 									class="nav-link">자유게시판</a></li>
 							</ul>
 						</div>
@@ -75,6 +75,7 @@
 								enctype="multipart/form-data" name="f">
 								<input type="hidden" name="no" value="${param.no}">
 								<input type="hidden" name="tema" value="${param.tema}">
+								<form:hidden path="userid" value = "${param.userid}"/>
 								<table class="table table-hover">
 									<thead>
 										<tr>

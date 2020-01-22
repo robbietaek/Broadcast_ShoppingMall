@@ -19,15 +19,16 @@ public class BorderDao {
 	private String bordercolumn = "select no, tema, nickname, subject, content, file fileUrl,"
 			                    + "date, view from border";
 	
-	public int count(String searchtype, String searchcontent, String tema) {
+	public int count(String searchtype, String searchcontent, String tema, String visitid) {
 	param.clear();
 	param.put("searchtype",searchtype);
 	param.put("tema", tema);
 	param.put("searchcontent", "'%" + searchcontent + "%'");
+	param.put("visitid",visitid);
 	return sqlSession.getMapper(BorderMapper.class).count(param);
 	}
 
-	public List<Border> list(Integer pageNum, int limit, String searchtype, String searchcontent,String tema) {
+	public List<Border> list(Integer pageNum, int limit, String searchtype, String searchcontent,String tema, String visitid) {
 		String sql = bordercolumn;
 		param.clear();
 		param.put("sql", sql);
@@ -36,6 +37,7 @@ public class BorderDao {
 		param.put("startrow", (pageNum - 1) * limit);
 		param.put("tema",tema);
 		param.put("limit", limit);
+		param.put("visitid",visitid);
 		return sqlSession.getMapper(BorderMapper.class).select(param);
 	}
 

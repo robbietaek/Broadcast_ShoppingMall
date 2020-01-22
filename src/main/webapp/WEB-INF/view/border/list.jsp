@@ -57,11 +57,11 @@
 						</div>
 						<div class="panel-body">
 							<ul class="nav nav-pills flex-column text-sm">
-								<li class="nav-item"><a href="list.shop?tema=1"
+								<li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=1"
 									class="nav-link">공지사항</a></li>
-								<li class="nav-item"><a href="list.shop?tema=2"
+								<li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=2"
 									class="nav-link">건의사항</a></li>
-								<li class="nav-item"><a href="list.shop?tema=3"
+								<li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=3"
 									class="nav-link">자유게시판</a></li>
 							</ul>
 						</div>
@@ -123,7 +123,7 @@
 														<a href="file/${border.fileUrl}">@</a>
 													</c:if> <c:if test="${empty border.fileUrl}">
              &nbsp;&nbsp;&nbsp;
-          </c:if> <a href="detail.shop?tema=${border.tema}&no=${border.no}">${border.subject}</a>
+          </c:if> <a href="detail.shop?userid=${param.userid}&tema=${border.tema}&no=${border.no}">${border.subject}</a>
 												</td>
 												<td>${border.nickname}</td>
 												<td><fmt:formatDate value="${border.date}"
@@ -141,7 +141,7 @@
 								<tr>
 									<c:if test="${!empty sessionScope.loginUser}">
 										<td colspan="5" align="right"><a
-											href="write.shop?tema=${param.tema}">[글쓰기]</a></td>
+											href="write.shop?userid=${param.userid}&tema=${param.tema}">[글쓰기]</a></td>
 									</c:if>
 								</tr>
 								</tbody>

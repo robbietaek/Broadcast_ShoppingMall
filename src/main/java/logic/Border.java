@@ -22,6 +22,7 @@ public class Border {
 	private String fileUrl;
 	private Date date;
 	private int view;
+	private String userid;
 	public int getNo() {
 		return no;
 	}
@@ -76,12 +77,17 @@ public class Border {
 	public void setView(int view) {
 		this.view = view;
 	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 	@Override
 	public String toString() {
 		return "Border [no=" + no + ", tema=" + tema + ", nickname=" + nickname + ", subject=" + subject + ", content="
-				+ content + ", file=" + file + ", fileUrl=" + fileUrl + ", date=" + date + ", view=" + view + "]";
+				+ content + ", file=" + file + ", fileUrl=" + fileUrl + ", date=" + date + ", view=" + view
+				+ ", userid=" + userid + "]";
 	}
-	
-	
 	
 }

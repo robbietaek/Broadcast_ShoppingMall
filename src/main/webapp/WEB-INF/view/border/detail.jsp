@@ -72,11 +72,11 @@
 						</div>
 						<div class="panel-body">
 							<ul class="nav nav-pills flex-column text-sm">
-								<li class="nav-item"><a href="list.shop?tema=1"
+								<li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=1"
 									class="nav-link">공지사항</a></li>
-								<li class="nav-item"><a href="list.shop?tema=2"
+								<li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=2"
 									class="nav-link">건의사항</a></li>
-								<li class="nav-item"><a href="list.shop?tema=3"
+								<li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=3"
 									class="nav-link">자유게시판</a></li>
 							</ul>
 						</div>
@@ -234,9 +234,9 @@
 											<tr>
 												<td colspan="2"><c:if
 														test="${sessionScope.loginUser.nickname == border.nickname}">
-														<a href="update.shop?tema=${border.tema}&no=${border.no}">[수정]</a>
-														<a href="delete.shop?tema=${border.tema}&no=${border.no}">[삭제]</a>
-													</c:if> <a href="list.shop?tema=${border.tema}">[게시물 목록]</a></td>
+														<a href="update.shop?userid=${param.userid}&tema=${border.tema}&no=${border.no}">[수정]</a>
+														<a href="delete.shop?userid=${param.userid}&tema=${border.tema}&no=${border.no}">[삭제]</a>
+													</c:if> <a href="list.shop?userid=${param.userid}&tema=${border.tema}">[게시물 목록]</a></td>
 											</tr>
 										</table>
 									</div>
