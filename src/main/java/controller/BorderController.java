@@ -89,6 +89,7 @@ public class BorderController {
       public ModelAndView getBoard(Integer no, HttpServletRequest request, String searchtype, String searchcontent) {
          ModelAndView mav = new ModelAndView();
          Border border = null;
+         Replyboard replyboard = null;
          //댓글부분
          int pageNum = 1;
          int limit = 10;
@@ -104,7 +105,7 @@ public class BorderController {
             searchtype = null;
             searchcontent = null;
           }
-         int replycount = service.replyCount(searchtype, searchcontent);
+         int replycount = service.replyCount(searchtype, searchcontent,no);
          List<Replyboard> replylist = service.replylist(pageNum,limit, searchtype, searchcontent);
          int maxpage = (int)((double)replycount/limit + 0.95);
          int startpage = (int)((pageNum/10.0 + 0.9) - 1) * 10 + 1;
@@ -115,12 +116,14 @@ public class BorderController {
          mav.addObject("maxpage", maxpage);
          mav.addObject("startpage", startpage);
          mav.addObject("endpage", endpage);       
-         mav.addObject("replycount", replycount);    
+         mav.addObject("replycount", replycount);
+         mav.addObject("replylist", replylist);
          if(no == null) {
             border = new Border();
          }else {
             border = service.getBorder(no, request);
          }
+         mav.addObject("replyboard", replyboard);
          mav.addObject("border", border);
          mav.addObject(new Replyboard());
          return mav;
@@ -146,4 +149,17 @@ public class BorderController {
                }
             return mav;
        }
+      @PostMapping("replyboardwrite")
+      public ModelAndView replyboardwrite(Replyboard replyboard, HttpServletRequest request, BindingResult bresult, Border border) {
+    	  ModelAndView mav = new ModelAndView();
+          try {
+              service.replyboardwrite(replyboard,request);
+              mav.setViewName("redirect:detail.shop?no="+border.getNo());
+           }catch (Exception e) {
+              e.printStackTrace();
+              throw new BoardException
+                 ("게시물 등록에 실패했습니다.","detail.shop?no="+border.getNo());
+           }
+              return mav;
+        }
 }

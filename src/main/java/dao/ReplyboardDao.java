@@ -18,9 +18,10 @@ public class ReplyboardDao {
 	private SqlSessionTemplate sqlSession;
 	private Map<String, Object> param = new HashMap<>();
 	
-	public int count(String searchtype, String searchcontent) {
+	public int count(String searchtype, String searchcontent, Integer no) {
 		param.clear();
 		param.put("searchtype",searchtype);
+		param.put("no", no);
 		param.put("searchcontent", "'%" + searchcontent + "%'");
 		return sqlSession.getMapper(ReplyboardMapper.class).count(param);
 	}
@@ -40,5 +41,12 @@ public class ReplyboardDao {
 
 	public void insert(Replyboard replyboard) {
 		sqlSession.getMapper(ReplyboardMapper.class).insert(replyboard);
+	}
+
+	public void grpstepadd(int grp, int grpstep) {
+		param.clear();
+		param.put("grp",grp);
+		param.put("grpstep",grpstep);
+		sqlSession.getMapper(ReplyboardMapper.class).grpstepadd(param);
 	}
 }

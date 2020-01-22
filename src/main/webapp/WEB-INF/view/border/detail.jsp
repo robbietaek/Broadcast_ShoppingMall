@@ -106,7 +106,7 @@
 										<td class="legtcol">
 											<table>
 												<tr>
-												${border.content }
+												${border.content}
 												</tr>
 											</table>
 										</td>
@@ -165,17 +165,17 @@
 											</c:if>
 
 											<c:if test="${replycount > 0 }">
-												<input type="hidden" name="no" value="${replyboard.no}">
-												<input type="hidden" name="num" value="${replyboard.num}">
-												<input type="hidden" name="userid"
-													value="${replyboard.userid}">
-												<input type="hidden" name="content"
-													value="${replyboard.content}">
+											<c:forEach items="${replylist}" var="r">
+												<input name="num" value="${r.num}">
+												<input name="userid"
+													value="${r.userid}">
+												<input name="content"
+													value="${r.content}">
 
 												<tr>
 													<td style="width: 20%;"><c:if
-															test="${replyboard.grplevel>0}">
-															<c:forEach var="i" begin="2" end="${replyboard.grplevel}">
+															test="${r.grplevel>0}">
+															<c:forEach var="i" begin="2" end="${r.grplevel}">
                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </c:forEach>└
          </c:if> userid : ${replyboard.userid}</td>
@@ -190,14 +190,16 @@
 													
 													</td>
 													<td style="font-size: 13px"><c:if
-															test="${sessionScope.loginUser == replyboard.id}">
+															test="${sessionScope.loginUser == replyboard.userid}">
 															<a
 																href="javascript:up('${replyboard.no}','${replyboard.num}','${replyboard.userid}','${replyboard.content}')">[수정]</a>
 															<a
 																href="javascript:del('${replyboard.no}','${replyboard.num}')">[삭제]</a>
 														</c:if></td>
 												</tr>
+												</c:forEach>
 											</c:if>
+											
 											<tr>
 												<td colspan="5">
 													<div class="w3-container">
@@ -225,6 +227,7 @@
 												</td>
 											</tr>
 										</table>
+										
 									</div>
 								</tr>
 								<tr>

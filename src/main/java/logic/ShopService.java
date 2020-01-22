@@ -179,11 +179,11 @@ public class ShopService {
 		borderDao.insert(border);
 	}
 
-	public Border getBorder(Integer num, HttpServletRequest request) {
+	public Border getBorder(Integer no, HttpServletRequest request) {
 		if (request.getRequestURI().contains("detail.shop")) {
-			borderDao.viewadd(num);
+			borderDao.viewadd(no);
 		}
-		return borderDao.selectOne(num);
+		return borderDao.selectOne(no);
 	}
 
 	public void borderDelete(Border border) {
@@ -203,8 +203,8 @@ public class ShopService {
 		borderDao.update(border);
 	}
 
-	public int replyCount(String searchtype, String searchcontent) {
-		return replyboardDao.count(searchtype, searchcontent);
+	public int replyCount(String searchtype, String searchcontent, Integer no) {
+		return replyboardDao.count(searchtype, searchcontent, no);
 	}
 
 	public List<Replyboard> replylist(int pageNum, int limit, String searchtype, String searchcontent) {
@@ -212,12 +212,14 @@ public class ShopService {
 		return replyboardDao.list(pageNum, limit, searchtype, searchcontent);
 	}
 
-	public void replywrite(Replyboard replyboard, HttpServletRequest request) {
+	public void replyboardwrite(Replyboard replyboard, HttpServletRequest request) {
+		replyboardDao.grpstepadd(replyboard.getGrp(), replyboard.getGrpstep());
 		int max = replyboardDao.maxnum();
+		replyboard.setGrplevel(replyboard.getGrplevel()+1);
+		replyboard.setGrpstep(replyboard.getGrpstep()+1);
 		replyboard.setNum(++max);
 		replyboardDao.insert(replyboard);
 	}
-
 	
 	
 	//////////////////////////////////////////////////		방송		/////////////////////////////////////////////////////////
@@ -231,5 +233,4 @@ public class ShopService {
 	public List<User> broadcastlist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
 		return userDao.broadcastlist(pageNum, limit, searchtype, searchcontent, tema);
 	}
-
 }

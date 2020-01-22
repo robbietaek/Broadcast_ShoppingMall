@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import logic.Replyboard;
 
@@ -16,6 +17,7 @@ public interface ReplyboardMapper {
 	@Select({"<script>",
 	      "select * from replyboard" +
 	      "<if test='searchtype != null'> where ${searchtype} like ${searchcontent} </if>"
+	      + "<when test='no != null'>and no=#{no} </when>"
 	      + "order by grp desc"
 	      + "</script>"
 	   })
@@ -27,5 +29,9 @@ public interface ReplyboardMapper {
 	@Insert("insert into replyboard(no,num,userid,content,grp,grplevel,grpstep)"
 			+ " values(#{no},#{num},#{userid},#{content},#{grp},#{grplevel},#{grpstep})")
 	void insert(Replyboard replyboard);
+
+	@Update("update replyboard set grpstep = grpstep +1 where grp=#{grp} and grpstep > #{grpstep}")
+	void grpstepadd(Map<String, Object> param);
+
 
 }
