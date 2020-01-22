@@ -139,9 +139,17 @@
 									</tr>
 								</c:if>
 								<tr>
-									<c:if test="${!empty sessionScope.loginUser}">
-										<td colspan="5" align="right"><a
+								    <c:if test="${tema==1}">
+								       <c:if test="${sessionScope.loginUser.userid==param.userid}">
+								          <td colspan="5" align="right"><a
 											href="write.shop?userid=${param.userid}&tema=${param.tema}">[글쓰기]</a></td>
+								       </c:if>
+								    </c:if>
+								    <c:if test="${tema!=1}">
+									   <c:if test="${!empty sessionScope.loginUser}">
+										   <td colspan="5" align="right"><a
+											   href="write.shop?userid=${param.userid}&tema=${param.tema}">[글쓰기]</a></td>
+									   </c:if>
 									</c:if>
 								</tr>
 								</tbody>
