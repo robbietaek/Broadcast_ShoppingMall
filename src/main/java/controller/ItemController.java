@@ -16,11 +16,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import exception.BoardException;
 import logic.Item;
 import logic.ShopService;
+import logic.Shopbasket;
 import logic.User;
 
 @Controller // @Component+Controller 기능
@@ -163,12 +167,45 @@ public class ItemController {
 	}
 	
 	@RequestMapping("sellingdetail")
-	public ModelAndView sellingdetail(String itemid) {
+	public ModelAndView sellingdetail(String itemid, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		Item item = service.getItem(itemid);
+		
+		if(session.getAttribute("loginUser")!=null) {
+			User loginuser = (User)session.getAttribute("loginUser");
+			int jjimcount = service.getjjimcount(itemid, loginuser.getUserid());
+			mav.addObject("jjimcount",jjimcount);
+		}
 		mav.addObject("item", item);
+		mav.addObject("shopbasket",new Shopbasket());
+
 		return mav;
 	}
+	
+	
+    @RequestMapping(value = "jjiminsert", produces="text/html;charset=UTF-8")
+    @ResponseBody
+    public String jjiminsert(String userid, int itemid, String tema, HttpSession session){
+    	Shopbasket sb = new Shopbasket();
+    	User user = (User)session.getAttribute("loginUser");
+    	sb.setUserid(user.getUserid());
+    	sb.setItemid(itemid);
+        service.jjiminsert(sb);
+        return "<script> location.href = 'sellingdetail.shop?userid="+userid+"&tema="+tema+"&itemid="+itemid+"'\n </script>";
+    }
+    
+    
+    @RequestMapping(value = "jjimdelete", produces="text/html;charset=UTF-8")
+    @ResponseBody
+    public String jjimdelete(String userid, int itemid, String tema, HttpSession session){
+    	Shopbasket sb = new Shopbasket();
+    	User user = (User)session.getAttribute("loginUser");
+    	sb.setUserid(user.getUserid());
+    	sb.setItemid(itemid);
+        service.jjimdelete(sb);
+        return "<script> location.href = 'sellingdetail.shop?userid="+userid+"&tema="+tema+"&itemid="+itemid+"'\n </script>";
+    }
+
 	
 	@GetMapping("*")
 	public ModelAndView itemSelect() {
