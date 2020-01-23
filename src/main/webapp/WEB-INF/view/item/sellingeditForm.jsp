@@ -7,24 +7,24 @@
 <title>상품 수정</title>
 <script>
 	function file_delete1() {
-		document.f.pictureUrl1 = ""
-		file_desc.style.display = "none";
+		document.f.pictureUrl1.value = ""
+		file_desc1.style.display = "none";
 	}
 	function file_delete2() {
-		document.f.pictureUrl2 = ""
-		file_desc.style.display = "none";
+		document.f.pictureUrl2.value = ""
+		file_desc2.style.display = "none";
 	}
 	function file_delete3() {
-		document.f.pictureUrl3 = ""
-		file_desc.style.display = "none";
+		document.f.pictureUrl3.value = ""
+		file_desc3.style.display = "none";
 	}
 	function file_delete4() {
-		document.f.pictureUrl4 = ""
-		file_desc.style.display = "none";
+		document.f.pictureUrl4.value = ""
+		file_desc4.style.display = "none";
 	}
 	function file_delete5() {
-		document.f.pictureUrl5 = ""
-		file_desc.style.display = "none";
+		document.f.pictureUrl5.value = ""
+		file_desc5.style.display = "none";
 	}
 </script>
 </head>
@@ -89,15 +89,7 @@
 					<div id="comment-form">
 						<form:form modelAttribute="item" action="sellingedit.shop"
 							enctype="multipart/form-data" name ="f">
-							
-						<c:set var= "pictureUrl1" value="${item.pictureUrl1}" />
-						<c:set var= "pictureUrl2" value="${item.pictureUrl2}" />
-						<c:set var= "pictureUrl3" value="${item.pictureUrl3}" />
-						<c:set var= "pictureUrl4" value="${item.pictureUrl4}" />
-						<c:set var= "pictureUrl5" value="${item.pictureUrl5}" />
-						
-						
-						
+												
 							<spring:hasBindErrors name="item">
 								<font color="red"> <c:forEach
 										items="${errors.globalErrors}" var="error">
@@ -197,33 +189,33 @@
 											class="required text-primary">*</span>
 										</label><br>
 										
-										<c:if test="${!empty pictureUrl1}">
-											<div id="file_desc">
+										<c:if test="${!empty item.pictureUrl1}">
+											<div id="file_desc1">
 												<a href="img/${item.pictureUrl1}">${item.pictureUrl1}</a> 
 												<a href="javascript:file_delete1()">[첨부파일삭제]</a>
 											</div>
 										</c:if>
 
-										<c:if test="${!empty pictureUrl2}">
-											<div id="file_desc">
+										<c:if test="${!empty item.pictureUrl2}">
+											<div id="file_desc2">
 												<a href="img/${item.pictureUrl2}">${item.pictureUrl2}</a> 
 												<a href="javascript:file_delete2()">[첨부파일삭제]</a>
 											</div>
 										</c:if>
-										<c:if test="${!empty pictureUrl3}">
-											<div id="file_desc">
+										<c:if test="${!empty item.pictureUrl3}">
+											<div id="file_desc3">
 												<a href="img/${item.pictureUrl3}">${item.pictureUrl3}</a> 
 												<a href="javascript:file_delete3()">[첨부파일삭제]</a>
 											</div>
 										</c:if>
-										<c:if test="${!empty pictureUrl4}">
-											<div id="file_desc">
+										<c:if test="${!empty item.pictureUrl4}">
+											<div id="file_desc4">
 												<a href="img/${item.pictureUrl4}">${item.pictureUrl4}</a> 
 												<a href="javascript:file_delete4()">[첨부파일삭제]</a>
 											</div>
 										</c:if>
-										<c:if test="${!empty pictureUrl5}">
-											<div id="file_desc">
+										<c:if test="${!empty item.pictureUrl5}">
+											<div id="file_desc5">
 												<a href="img/${item.pictureUrl5}">${item.pictureUrl5}</a> 
 												<a href="javascript:file_delete5()">[첨부파일삭제]</a>
 											</div>
