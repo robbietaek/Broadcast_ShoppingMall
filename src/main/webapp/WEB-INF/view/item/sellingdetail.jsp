@@ -5,6 +5,48 @@
 <html>
 <head>
 <title>상품 상세 보기</title>
+<!-- <script>
+$(document).ready(function() {
+	var elements = element.getElementsByClassName('btn btn-default fa fa-heart-o');
+	$("#btnRecommend").on('click',function() {
+		
+		if(elements=='btn btn-default fa fa-heart-o'){
+			$(this).attr('class','btn btn-default fa fa-heart')
+		} else {
+			$(this).attr('class','btn btn-default fa fa-heart-o')
+			$(this).attr('class','btn btn-default fa fa-heart-o')
+		}
+	});
+})
+
+</script>
+ -->
+ <script>
+$(document).ready(function() {
+   $("#btnRecommend").on('click', function() {
+      if ( $(this).prop('checked')) { 
+         $.ajax("jjiminsert.shop?userid=${param.userid}&tema=${param.tema}&itemid=${param.itemid}",{
+            success : function(data){//콜백함수
+            },
+            error : function(e){
+            }
+         })
+		 $(this).parent().attr('class','btn btn-default fa fa-heart')
+         cnt++;
+      } else {
+         $.ajax("jjimdelete.shop?userid=${param.userid}&tema=${param.tema}&itemid=${param.itemid}",{
+            success : function(data){//콜백함수
+            },
+            error : function(e){
+            }
+         })
+			$(this).parent().attr('class','btn btn-default fa fa-heart-o')
+         cnt--;
+      }
+
+   }); 
+});
+</script>
 </head>
 <body>
 	<div id="heading-breadcrumbs">
@@ -70,37 +112,50 @@
 							</div>
 						</div>
 						<div class="col-sm-6">
-								<form>
-									<div class="sizes">
-										<h1>${item.itemname }
-											<button type="submit" data-toggle="tooltip"
-												data-placement="top" title="Add to wishlist"
-												class="btn btn-default">
-												<i class="fa fa-heart-o"></i>
-											</button>
-										</h1>
-									</div>
-									<p class="price">
-										<fmt:formatNumber type="number" maxFractionDigits="3"
-											value="${item.price}" />
-										원
-									</p>
-									<div class="text-right">
-										<h4>${item.delivery }[2~3일뒤도착예정]</h4>
-										<h5>
-											배송료 :
-											<fmt:formatNumber type="number" maxFractionDigits="3"
-												value="${item.deliverycost}" />
-											원
-										</h5>
-									</div>
-									<div id="details" class="box mb-4 mt-4 text-right">
-										<button type="submit" class="btn btn-template-outlined">
-											<a href="../item/shop-basket.shop"><i
-												class="fa fa-shopping-cart"></i> 구매하기</a>
-										</button>
-									</div>
-								</form>
+						
+						
+
+							<div class="sizes">
+								<h1>${item.itemname }
+								<c:if test="${!empty sessionScope.loginUser }">
+									<label
+										<c:if test="${jjimcount>0}">class="btn btn-default fa fa-heart"</c:if>
+										<c:if test="${jjimcount==0}">class="btn btn-default fa fa-heart-o"</c:if>
+										style="color: red"> <input type="checkbox"
+										data-toggle="tooltip" data-placement="top" title="찜하기"
+										id="btnRecommend"
+										<c:if test="${jjimcount>0}">checked="checked"</c:if>>
+									</label>
+								</c:if>	
+								</h1>
+							</div>
+						
+							
+							
+							
+							
+							<p class="price">
+								<fmt:formatNumber type="number" maxFractionDigits="3"
+									value="${item.price}" />
+								원
+							</p>
+							<div class="text-right">
+								<h4>${item.delivery }[2~3일뒤도착예정]</h4>
+								<h5>
+									배송료 :
+									<fmt:formatNumber type="number" maxFractionDigits="3"
+										value="${item.deliverycost}" />
+									원
+								</h5>
+							</div>
+							<form>
+								<div id="details" class="box mb-4 mt-4 text-right">
+									<button type="submit" class="btn btn-template-outlined">
+										<a href="../item/shop-basket.shop"><i
+											class="fa fa-shopping-cart"></i> 구매하기</a>
+									</button>
+								</div>
+							</form>
 							<div data-slider-id="1" class="owl-thumbs">
 								<c:if test="${!empty item.pictureUrl1}">
 									<button class="owl-thumb-item">

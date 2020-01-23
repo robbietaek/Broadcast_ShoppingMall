@@ -154,6 +154,19 @@ public class ShopService {
 	public List<Item> categorylist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema, String visitid) {
 		return itemDao.temalist(pageNum, limit, searchtype, searchcontent, tema, visitid);
 	}
+	
+
+	public void jjiminsert(Shopbasket sb) {
+		itemDao.jjiminsert(sb);
+	}
+	
+	public int getjjimcount(String itemid, String userid) {
+		return itemDao.getjjimcount(itemid, userid);
+	}
+	
+	public void jjimdelete(Shopbasket sb) {
+		itemDao.jjimdelete(sb);		
+	}
 
 	////////////////////////////////////////// Boarder	////////////////////////////////////////////////////////
 
@@ -233,4 +246,9 @@ public class ShopService {
 	public List<User> broadcastlist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
 		return userDao.broadcastlist(pageNum, limit, searchtype, searchcontent, tema);
 	}
+
+
+
+
+
 }

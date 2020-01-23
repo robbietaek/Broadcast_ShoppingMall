@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import dao.mapper.ItemMapper;
 import logic.Item;
+import logic.Shopbasket;
 import logic.User;
 
 @Repository
@@ -84,6 +85,21 @@ public class ItemDao {
 		param.put("tema",tema);
 		param.put("visitid",visitid);
 		return sqlSession.getMapper(ItemMapper.class).temaselect(param);
+	}
+
+	public void jjiminsert(Shopbasket sb) {
+		sqlSession.getMapper(ItemMapper.class).jjiminsert(sb);
+	}
+
+	public int getjjimcount(String itemid, String userid) {
+		param.clear();
+		param.put("itemid", itemid);
+		param.put("userid", userid);
+		return sqlSession.getMapper(ItemMapper.class).jjimcount(param);
+	}
+
+	public void jjimdelete(Shopbasket sb) {
+		sqlSession.getMapper(ItemMapper.class).jjimdelete(sb);		
 	}
 
 }
