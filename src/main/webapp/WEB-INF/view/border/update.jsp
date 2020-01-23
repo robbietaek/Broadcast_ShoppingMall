@@ -9,13 +9,12 @@
 <title>게시글 수정</title>
 <script type="text/javascript">
 	function file_delete() {
-		document.f.fileUrl = ""
+		document.f.fileUrl.value = ""
 		file_desc.style.display = "none";
 	}
 </script>
 </head>
 <body>
-	<c:set var="fileUrl" value="${border.fileUrl}" />
 	<div id="heading-breadcrumbs">
 		<div class="container">
 			<div class="row d-flex align-items-center flex-wrap">
@@ -123,7 +122,7 @@
 											</td>
 										<tr>
 									</c:if>
-
+									<form:hidden path="fileUrl"/>
 									<tr>
 										<td>첨부파일</td>
 										<td><input type="file" name="file"></td>

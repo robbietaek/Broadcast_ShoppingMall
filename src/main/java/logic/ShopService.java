@@ -137,7 +137,7 @@ public class ShopService {
 		if (item.getPicture4() != null && !item.getPicture4().isEmpty()) { // 업로드된 이미지파일이 존재하면
 			// 파일을 업로드 : 업로드된 파일의 내용을 파일에 저장
 			uploadFileCreate(item.getPicture4(), request, "item/img/");
-			item.setPictureUrl3(item.getPicture4().getOriginalFilename());
+			item.setPictureUrl4(item.getPicture4().getOriginalFilename());
 		}
 		if (item.getPicture5() != null && !item.getPicture5().isEmpty()) { // 업로드된 이미지파일이 존재하면
 			// 파일을 업로드 : 업로드된 파일의 내용을 파일에 저장
