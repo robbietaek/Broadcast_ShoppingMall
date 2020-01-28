@@ -26,10 +26,9 @@ public class ReplyboardDao {
 		return sqlSession.getMapper(ReplyboardMapper.class).count(param);
 	}
 
-	public List<Replyboard> list(int pageNum, int limit, String searchtype, String searchcontent) {
+	public List<Replyboard> list(int pageNum, int limit, Integer no) {
 		param.clear();
-		param.put("searchtype",searchtype);
-		param.put("searchcontent", "'%" + searchcontent + "%'");
+		param.put("no",no);
 		param.put("startrow", (pageNum - 1) * limit);
 		param.put("limit", limit);
 		return sqlSession.getMapper(ReplyboardMapper.class).select(param);
@@ -48,5 +47,11 @@ public class ReplyboardDao {
 		param.put("grp",grp);
 		param.put("grpstep",grpstep);
 		sqlSession.getMapper(ReplyboardMapper.class).grpstepadd(param);
+	}
+
+	public void delete(int num) {
+		param.clear();
+		param.put("num", num);
+		sqlSession.getMapper(ReplyboardMapper.class).delete(param);
 	}
 }

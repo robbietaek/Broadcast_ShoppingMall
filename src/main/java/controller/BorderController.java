@@ -106,7 +106,7 @@ public class BorderController {
             searchcontent = null;
           }
          int replycount = service.replyCount(searchtype, searchcontent,no);
-         List<Replyboard> replylist = service.replylist(pageNum,limit, searchtype, searchcontent);
+         List<Replyboard> replylist = service.replylist(pageNum,limit,no);
          int maxpage = (int)((double)replycount/limit + 0.95);
          int startpage = (int)((pageNum/10.0 + 0.9) - 1) * 10 + 1;
          int endpage = startpage + 9;
@@ -149,6 +149,26 @@ public class BorderController {
                }
             return mav;
        }
+      
+      @PostMapping("delete")
+      public ModelAndView delete(Border border, String userid, BindingResult bresult, HttpServletRequest request) {
+   	   ModelAndView mav = new ModelAndView();
+   	   Border dbBorder = service.getBorder(border.getNo());
+   	   String tema = request.getParameter("tema");
+       String visitid = (request.getParameter("userid"));
+       System.out.println(visitid);
+   	   try {
+   		   service.borderDelete(border,request);
+   		   mav.setViewName("redirect:list.shop?userid="+visitid+"&tema="+tema+"&no="+border.getNo());
+   	   } catch (Exception e) {
+   		   e.printStackTrace();
+              throw new BoardException("게시글 삭제에 실패했습니다.","delete.shop?no="+border.getNo());
+   	   }
+   	   return mav;
+      }
+      
+      
+      
       @PostMapping("replyboardwrite")
       public ModelAndView replyboardwrite(Replyboard replyboard, HttpServletRequest request, BindingResult bresult, Border border) {
     	  ModelAndView mav = new ModelAndView();
@@ -162,4 +182,21 @@ public class BorderController {
            }
               return mav;
         }
+      
+      @PostMapping("deletereply")
+      public ModelAndView update(Integer num, BindingResult bresult, Border border, HttpServletRequest request) {
+   	   ModelAndView mav = new ModelAndView();
+       String visitid = (request.getParameter("userid"));
+       String tema = request.getParameter("tema");
+   	   try {
+   		   service.replyboardDelete(num);
+   		   mav.setViewName("redirect:detail.shop?userid="+visitid+"&tema="+tema+"&no="+border.getNo());
+   	   } catch (Exception e) {
+   		   e.printStackTrace();
+              throw new BoardException("게시글 삭제에 실패했습니다.","delete.shop?num="+num);
+   	   }
+   	   return mav;
+      }
+      
+      
 }

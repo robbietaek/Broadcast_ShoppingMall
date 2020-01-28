@@ -22,11 +22,6 @@
 		location.href = "reply.shop?no=" + no + "&num=" + num + "&grp=" + grp
 				+ "&grplevel=" + grplevel + "&grpstep=" + grpstep;
 	}
-	function del(no, num) {
-		if (confirm("댓글을 삭제하시겠습니까?")) {
-			location.href = "deletereply.shop?no=" + no + "&num=" + num;
-		}
-	}
 </script>
 </head>
 <body>
@@ -165,24 +160,22 @@
 											</c:if>
 
 											<c:if test="${replycount > 0 }">
-											<c:forEach items="${replylist}" var="r">
-												<input name="num" value="${r.num}">
-												<input name="userid"
-													value="${r.userid}">
-												<input name="content"
-													value="${r.content}">
-
+											<c:forEach var="r" items="${replylist}">
+											    <input type="hidden" name="no" value="${r.no}">
+			                                    <input type="hidden" name="num" value="${r.num}">
+												<input type="hidden" name="userid" value="${r.userid}">
+												<input type="hidden" name="content" value="${r.content}">
 												<tr>
 													<td style="width: 20%;"><c:if
 															test="${r.grplevel>0}">
 															<c:forEach var="i" begin="2" end="${r.grplevel}">
                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </c:forEach>└
-         </c:if> userid : ${replyboard.userid}</td>
+         </c:if> userid : ${r.userid}</td>
 
 													<td style="width: 50%; text-align: left;">
-														${replyboard.content}&nbsp;&nbsp; <a
-														href="javascript:recom('${replyboard.no}','${replyboard.num}','${replyboard.grp}','${replyboard.grplevel}','${replyboard.grpstep}','${border.tema}')">[댓글]
+														${r.content}&nbsp;&nbsp; <a
+														href="javascript:recom('${r.no}','${r.num}','${r.grp}','${r.grplevel}','${r.grpstep}','${border.tema}')">[댓글]
 
 
 
@@ -190,11 +183,16 @@
 													
 													</td>
 													<td style="font-size: 13px"><c:if
-															test="${sessionScope.loginUser == replyboard.userid}">
+															test="${sessionScope.loginUser.userid == r.userid}">
 															<a
-																href="javascript:up('${replyboard.no}','${replyboard.num}','${replyboard.userid}','${replyboard.content}')">[수정]</a>
-															<a
-																href="javascript:del('${replyboard.no}','${replyboard.num}')">[삭제]</a>
+																href="javascript:up('${r.no}','${r.num}','${r.userid}','${r.content}')">[수정]</a>
+																
+														<form:form modelAttribute="replyboard" action="deletereply.shop" enctype="multipart/form-data" name="f">
+														<input type="hidden" name="num" value="${replyboard.num}">
+														<input type="hidden" name="tema" value="${border.tema}">
+														<input type="hidden" name="no" value="${border.no}">
+														<input type="submit" value="[삭제]">
+														</form:form>									
 														</c:if></td>
 												</tr>
 												</c:forEach>
