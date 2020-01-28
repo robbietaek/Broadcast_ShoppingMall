@@ -151,7 +151,7 @@ $(document).ready(function() {
 							<form>
 								<div id="details" class="box mb-4 mt-4 text-right">
 									<button type="submit" class="btn btn-template-outlined">
-										<a href="../item/shop-basket.shop"><i
+										<a href="../item/buyingpage.shop?itemid=${param.itemid}"><i
 											class="fa fa-shopping-cart"></i> 구매하기</a>
 									</button>
 								</div>

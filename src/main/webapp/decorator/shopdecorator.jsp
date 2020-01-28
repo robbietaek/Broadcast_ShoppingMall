@@ -168,10 +168,13 @@ function logoutWithNaver(){
 			<div id="navbar" role="navigation" class="navbar navbar-expand-lg">
 				<div class="container">
 					<a href="../shop/index.shop?userid=${param.userid}" class="navbar-brand home">
-						<img src="img/logo.png" alt="Universal logo"
-							class="d-none d-md-inline-block">
-						<img src="img/logo-small.png" alt="Universal logo"
-							class="d-inline-block d-md-none">
+					
+					
+						<img src="../logo/small-mark.png" alt="Universal logo"
+							class="d-none d-md-inline-block" style = "width :170px; height : 50px;">
+						<img src="../logo/small-mark.png" alt="Universal logo"
+							class="d-inline-block d-md-none" style = "width :170px; height : 50px;">
+							
 						<span class="sr-only">Universal - go to homepage</span></a>
 					<button type="button" data-toggle="collapse"
 							data-target="#navigation"

@@ -17,7 +17,7 @@ public interface UserMapper {
 	   void insert(User user);
 
 	@Select({"<script> ",
-		"select userid, name, pass, tel, age, address, email, profile profileUrl, nickname from user ",
+		"select userid, name, pass, tel, age, address, email, profile profileUrl, nickname, card1, card2 from user ",
 		"<if test = 'userid!=null'> where userid = #{userid}</if>",
 //		"<if test = 'ids != null'> where userid in (${ids})</if>",	//스트링에 한번에 이메일 보내는 방식
 		"<if test = 'userids != null'> where userid in "
@@ -36,7 +36,7 @@ public interface UserMapper {
 	int broadcastcount(Map<String, Object> param);
 	
 	@Select({"<script>",
-	    "select userid, name, pass, tel, age, address, email, profile profileUrl, nickname from user ",
+	    "select userid, name, pass, tel, age, address, email, profile profileUrl, nickname, card1, card2 from user ",
 	    " <if test='tema != null'> where tema like '${tema}' </if>",
 	    " <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%' </if>",
 	    " <if test='searchtype != null and tema==null'> where ${searchtype} like '%${searchcontent}%' </if>",
