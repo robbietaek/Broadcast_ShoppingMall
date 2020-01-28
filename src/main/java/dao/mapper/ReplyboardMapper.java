@@ -3,6 +3,7 @@ package dao.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -15,10 +16,9 @@ public interface ReplyboardMapper {
 	int count(Map<String, Object> param);
 
 	@Select({"<script>",
-	      "select * from replyboard" +
-	      "<if test='searchtype != null'> where ${searchtype} like ${searchcontent} </if>"
-	      + "<when test='no != null'>and no=#{no} </when>"
-	      + "order by grp desc"
+	      "select * from replyboard" 
+	      + "<when test='no != null'> where no=#{no} </when>",
+	      "order by grp desc"
 	      + "</script>"
 	   })
 	List<Replyboard> select(Map<String, Object> param);
@@ -32,6 +32,9 @@ public interface ReplyboardMapper {
 
 	@Update("update replyboard set grpstep = grpstep +1 where grp=#{grp} and grpstep > #{grpstep}")
 	void grpstepadd(Map<String, Object> param);
+
+	@Delete("delete from replyboard where num=#{num}")
+	void delete(Map<String, Object> param);
 
 
 }
