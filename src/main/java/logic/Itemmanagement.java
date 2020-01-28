@@ -14,6 +14,8 @@ public class Itemmanagement {
 	private String pictureUrl;
 	private int quantity;
 	private String delivery;
+	private String deliverycost;
+	private String deliverymessage;
 	private String payment;
 	private String content;
 	private String return1;
@@ -78,6 +80,18 @@ public class Itemmanagement {
 	public void setDelivery(String delivery) {
 		this.delivery = delivery;
 	}
+	public String getDeliverycost() {
+		return deliverycost;
+	}
+	public void setDeliverycost(String deliverycost) {
+		this.deliverycost = deliverycost;
+	}
+	public String getDeliverymessage() {
+		return deliverymessage;
+	}
+	public void setDeliverymessage(String deliverymessage) {
+		this.deliverymessage = deliverymessage;
+	}
 	public String getPayment() {
 		return payment;
 	}
@@ -106,8 +120,10 @@ public class Itemmanagement {
 	public String toString() {
 		return "Itemmanagement [item=" + item + ", saleid=" + saleid + ", userid=" + userid + ", buyerid=" + buyerid
 				+ ", code=" + code + ", price=" + price + ", picture=" + picture + ", pictureUrl=" + pictureUrl
-				+ ", quantity=" + quantity + ", delivery=" + delivery + ", payment=" + payment + ", content=" + content
+				+ ", quantity=" + quantity + ", delivery=" + delivery + ", deliverycost=" + deliverycost
+				+ ", deliverymessage=" + deliverymessage + ", payment=" + payment + ", content=" + content
 				+ ", return1=" + return1 + ", itemid=" + itemid + "]";
 	}
+
 	
 }

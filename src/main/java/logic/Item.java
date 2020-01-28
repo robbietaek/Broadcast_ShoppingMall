@@ -176,6 +176,4 @@ public class Item {
 				+ ", picture3=" + picture3 + ", picture4=" + picture4 + ", picture5=" + picture5 + "]";
 	}
 
-	
-
 }

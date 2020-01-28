@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import exception.BoardException;
 import logic.Item;
+import logic.Itemmanagement;
 import logic.ShopService;
 import logic.Shopbasket;
 import logic.User;
@@ -204,6 +205,18 @@ public class ItemController {
     	sb.setItemid(itemid);
         service.jjimdelete(sb);
         return "<script> location.href = 'sellingdetail.shop?userid="+userid+"&tema="+tema+"&itemid="+itemid+"'\n </script>";
+    }
+    
+    
+    @RequestMapping("buyingpage")
+    public ModelAndView buying(String itemid, HttpSession session) {
+    	ModelAndView mav = new ModelAndView();
+    	Item item = service.getItem(itemid);
+    	User user = (User)session.getAttribute("loginUser");
+    	mav.addObject("item",item);
+    	mav.addObject("user",user);
+    	mav.addObject(new Itemmanagement());
+    	return mav;
     }
 
 	

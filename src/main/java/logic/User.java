@@ -17,92 +17,86 @@ public class User {
 	private String profileUrl;
 	private String email;
 	private String nickname;
-
+	private String card1;
+	private String card2;
 	public String getUserid() {
 		return userid;
 	}
-
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-
 	public String getPass() {
 		return pass;
 	}
-
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getTel() {
 		return tel;
 	}
-
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-
 	public String getAge() {
 		return age;
 	}
-
 	public void setAge(String age) {
 		this.age = age;
 	}
-
 	public String getAddress() {
 		return address;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
 	public MultipartFile getProfile() {
 		return profile;
 	}
-
 	public void setProfile(MultipartFile profile) {
 		this.profile = profile;
 	}
-
 	public String getProfileUrl() {
 		return profileUrl;
 	}
-
 	public void setProfileUrl(String profileUrl) {
 		this.profileUrl = profileUrl;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getNickname() {
 		return nickname;
 	}
-
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-
+	public String getCard1() {
+		return card1;
+	}
+	public void setCard1(String card1) {
+		this.card1 = card1;
+	}
+	public String getCard2() {
+		return card2;
+	}
+	public void setCard2(String card2) {
+		this.card2 = card2;
+	}
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", pass=" + pass + ", name=" + name + ", tel=" + tel + ", age=" + age
 				+ ", address=" + address + ", profile=" + profile + ", profileUrl=" + profileUrl + ", email=" + email
-				+ ", nickname=" + nickname + "]";
+				+ ", nickname=" + nickname + ", card1=" + card1 + ", card2=" + card2 + "]";
 	}
+
 
 }
