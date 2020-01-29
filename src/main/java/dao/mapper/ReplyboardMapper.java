@@ -36,5 +36,6 @@ public interface ReplyboardMapper {
 	@Delete("delete from replyboard where num=#{num}")
 	void delete(Map<String, Object> param);
 
-
+	@Update("update replyboard set content=#{content} where num=#{num}")
+	void update(Replyboard replyboard);
 }

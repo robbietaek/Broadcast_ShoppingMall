@@ -17,7 +17,7 @@
    <table>
       <tr>
          <td colspan="2">
-            <a href="javascript:document.f.submit()">[댓글 삭제]</a>
+            <input type="submit" value="[삭제]">
          </td>
       </tr>
    </table>

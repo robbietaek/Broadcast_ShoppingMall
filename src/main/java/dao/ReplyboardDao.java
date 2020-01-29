@@ -54,4 +54,8 @@ public class ReplyboardDao {
 		param.put("num", num);
 		sqlSession.getMapper(ReplyboardMapper.class).delete(param);
 	}
+
+	public void update(Replyboard replyboard) {
+		sqlSession.getMapper(ReplyboardMapper.class).update(replyboard);	
+	}
 }

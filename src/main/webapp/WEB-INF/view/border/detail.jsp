@@ -189,9 +189,9 @@
 																
 														<form:form modelAttribute="replyboard" action="deletereply.shop" enctype="multipart/form-data" name="f">
 														<input type="hidden" name="num" value="${replyboard.num}">
-														<input type="hidden" name="tema" value="${border.tema}">
+														<input type="hidden" name="tema" value="${param.tema}">
 														<input type="hidden" name="no" value="${border.no}">
-														<input type="submit" value="[삭제]">
+														<a href="javascript:document.f.submit()">[삭제]</a>
 														</form:form>									
 														</c:if></td>
 												</tr>
