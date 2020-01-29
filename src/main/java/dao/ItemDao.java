@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import dao.mapper.ItemMapper;
+import dao.mapper.ItemmanagementMapper;
 import logic.Item;
+import logic.Itemmanagement;
 import logic.Shopbasket;
 import logic.User;
 
@@ -101,5 +103,16 @@ public class ItemDao {
 	public void jjimdelete(Shopbasket sb) {
 		sqlSession.getMapper(ItemMapper.class).jjimdelete(sb);		
 	}
+	
+	public int getsalemaxid() {
+		return sqlSession.getMapper(ItemmanagementMapper.class).getsalemaxid();
+	}
+
+	public void buying(Itemmanagement im) {
+		sqlSession.getMapper(ItemmanagementMapper.class).buying(im);
+	}
+
+
+
 
 }

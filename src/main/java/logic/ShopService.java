@@ -167,6 +167,15 @@ public class ShopService {
 	public void jjimdelete(Shopbasket sb) {
 		itemDao.jjimdelete(sb);		
 	}
+	
+	////////////////////////////////////// ItemManagement ///////////////////////////////////////
+	
+
+	public void buying(Itemmanagement im) {
+		int maxsaleid = itemDao.getsalemaxid();
+		im.setItemid(++maxsaleid);
+		itemDao.buying(im);
+	}
 
 	////////////////////////////////////////// Boarder	////////////////////////////////////////////////////////
 
@@ -248,5 +257,6 @@ public class ShopService {
 	public List<User> broadcastlist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
 		return userDao.broadcastlist(pageNum, limit, searchtype, searchcontent, tema);
 	}
+
 	
 }

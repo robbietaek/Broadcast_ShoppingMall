@@ -148,14 +148,14 @@ $(document).ready(function() {
 									원
 								</h5>
 							</div>
-							<form>
+							<form:form modelAttribute="itemmanagement" action = "buyingpage.shop">
 								<div id="details" class="box mb-4 mt-4 text-right">
+								<form:hidden path = "itemid" value = "${param.itemid }"/>
 									<button type="submit" class="btn btn-template-outlined">
-										<a href="../item/buyingpage.shop?itemid=${param.itemid}"><i
-											class="fa fa-shopping-cart"></i> 구매하기</a>
+										<i class="fa fa-shopping-cart"></i> 구매하기
 									</button>
 								</div>
-							</form>
+							</form:form>
 							<div data-slider-id="1" class="owl-thumbs">
 								<c:if test="${!empty item.pictureUrl1}">
 									<button class="owl-thumb-item">
