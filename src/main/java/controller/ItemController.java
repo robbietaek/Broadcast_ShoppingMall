@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import exception.BoardException;
+import exception.LoginException;
 import logic.Item;
 import logic.Itemmanagement;
 import logic.ShopService;
@@ -229,14 +230,23 @@ public class ItemController {
     		im.setPayment(payment[0]+payment[1]);
     	}else if (payment[0]=="" && payment[1] == "" && payment[2]!=null){
     		im.setPayment(payment[2]);
+    	}else {
+    		throw new BoardException("결제를 선택하세요","buyingpage.shop");
     	}
     	im.setUserid(item.getUserid());
     	im.setCode(1);
     	im.setSubject(item.getSubject());
     	im.setItemname(item.getItemname());
-    	
     	service.buying(im);
-    	
+    	mav.setViewName("redirect:/item/buyingcomplete.shop?itemid="+item.getItemid());
+    	return mav;
+    }
+    
+    @RequestMapping("buyingcomplete")
+    public ModelAndView buyingcomplete(String itemid) {
+    	ModelAndView mav = new ModelAndView();
+    	Item item = service.getItem(itemid);
+    	mav.addObject("item",item);
     	return mav;
     }
 
