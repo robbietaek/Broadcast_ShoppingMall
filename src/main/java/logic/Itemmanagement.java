@@ -1,35 +1,27 @@
 package logic;
 
-import org.springframework.web.multipart.MultipartFile;
+import java.util.Date;
 
 public class Itemmanagement {
 
-	Item item;
-	private String saleid;
+	private int saleid;
 	private String userid;
 	private String buyerid;
+	private int itemid;
 	private int code;
+	private String return1;
+	private String subject;
+	private String itemname;
 	private String price;
-	private MultipartFile picture;
-	private String pictureUrl;
-	private int quantity;
 	private String delivery;
 	private String deliverycost;
 	private String deliverymessage;
 	private String payment;
-	private String content;
-	private String return1;
-	private String itemid;
-	public Item getItem() {
-		return item;
-	}
-	public void setItem(Item item) {
-		this.item = item;
-	}
-	public String getSaleid() {
+	private Date date;
+	public int getSaleid() {
 		return saleid;
 	}
-	public void setSaleid(String saleid) {
+	public void setSaleid(int saleid) {
 		this.saleid = saleid;
 	}
 	public String getUserid() {
@@ -44,35 +36,41 @@ public class Itemmanagement {
 	public void setBuyerid(String buyerid) {
 		this.buyerid = buyerid;
 	}
+	public int getItemid() {
+		return itemid;
+	}
+	public void setItemid(int itemid) {
+		this.itemid = itemid;
+	}
 	public int getCode() {
 		return code;
 	}
 	public void setCode(int code) {
 		this.code = code;
 	}
+	public String getReturn1() {
+		return return1;
+	}
+	public void setReturn1(String return1) {
+		this.return1 = return1;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	public String getItemname() {
+		return itemname;
+	}
+	public void setItemname(String itemname) {
+		this.itemname = itemname;
+	}
 	public String getPrice() {
 		return price;
 	}
 	public void setPrice(String price) {
 		this.price = price;
-	}
-	public MultipartFile getPicture() {
-		return picture;
-	}
-	public void setPicture(MultipartFile picture) {
-		this.picture = picture;
-	}
-	public String getPictureUrl() {
-		return pictureUrl;
-	}
-	public void setPictureUrl(String pictureUrl) {
-		this.pictureUrl = pictureUrl;
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
 	}
 	public String getDelivery() {
 		return delivery;
@@ -98,32 +96,18 @@ public class Itemmanagement {
 	public void setPayment(String payment) {
 		this.payment = payment;
 	}
-	public String getContent() {
-		return content;
+	public Date getDate() {
+		return date;
 	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getReturn1() {
-		return return1;
-	}
-	public void setReturn1(String return1) {
-		this.return1 = return1;
-	}
-	public String getItemid() {
-		return itemid;
-	}
-	public void setItemid(String itemid) {
-		this.itemid = itemid;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	@Override
 	public String toString() {
-		return "Itemmanagement [item=" + item + ", saleid=" + saleid + ", userid=" + userid + ", buyerid=" + buyerid
-				+ ", code=" + code + ", price=" + price + ", picture=" + picture + ", pictureUrl=" + pictureUrl
-				+ ", quantity=" + quantity + ", delivery=" + delivery + ", deliverycost=" + deliverycost
-				+ ", deliverymessage=" + deliverymessage + ", payment=" + payment + ", content=" + content
-				+ ", return1=" + return1 + ", itemid=" + itemid + "]";
+		return "Itemmanagement [saleid=" + saleid + ", userid=" + userid + ", buyerid=" + buyerid + ", itemid=" + itemid
+				+ ", code=" + code + ", return1=" + return1 + ", subject=" + subject + ", itemname=" + itemname
+				+ ", price=" + price + ", delivery=" + delivery + ", deliverycost=" + deliverycost
+				+ ", deliverymessage=" + deliverymessage + ", payment=" + payment + ", date=" + date + "]";
 	}
-
 	
 }

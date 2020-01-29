@@ -179,6 +179,7 @@ public class ItemController {
 		}
 		mav.addObject("item", item);
 		mav.addObject("shopbasket",new Shopbasket());
+		mav.addObject(new Itemmanagement());
 
 		return mav;
 	}
@@ -209,13 +210,33 @@ public class ItemController {
     
     
     @RequestMapping("buyingpage")
-    public ModelAndView buying(String itemid, HttpSession session) {
+    public ModelAndView buyingpage(String itemid, HttpSession session) {
     	ModelAndView mav = new ModelAndView();
     	Item item = service.getItem(itemid);
     	User user = (User)session.getAttribute("loginUser");
     	mav.addObject("item",item);
     	mav.addObject("user",user);
     	mav.addObject(new Itemmanagement());
+    	return mav;
+    }
+    
+    @RequestMapping("buying")
+    public ModelAndView buying(Itemmanagement im, String payment[]) {
+    	ModelAndView mav = new ModelAndView();
+    	int itemid = im.getItemid();
+    	Item item = service.getItem(itemid+"");
+    	if(payment[0]!="" && payment[1] != "") {
+    		im.setPayment(payment[0]+payment[1]);
+    	}else if (payment[0]=="" && payment[1] == "" && payment[2]!=null){
+    		im.setPayment(payment[2]);
+    	}
+    	im.setUserid(item.getUserid());
+    	im.setCode(1);
+    	im.setSubject(item.getSubject());
+    	im.setItemname(item.getItemname());
+    	
+    	service.buying(im);
+    	
     	return mav;
     }
 

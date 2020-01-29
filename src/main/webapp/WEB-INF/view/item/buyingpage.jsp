@@ -42,7 +42,12 @@
 					<p class="text-muted lead">${item.itemname}</p>
 				</div>
 				<div id="basket" class="col-lg-9">
-					<form:form modelAttribute="itemmanagement" action="buying">
+					<form:form modelAttribute="itemmanagement" action="buying.shop">
+					<form:hidden path = "buyerid" value = "${sessionScope.loginUser.userid }"/>
+					<form:hidden path = "price" value = "${item.price }"/>
+					<form:hidden path = "delivery" value = "${item.delivery}"/>
+					<form:hidden path = "deliverycost" value = "${item.deliverycost }"/>
+					<form:hidden path = "itemid" value="${item.itemid }"/>
 						<div class="box mt-0 pb-0 no-horizontal-padding">
 							<form method="get" action="../item/shop-checkout1.shop">
 								<div class="table-responsive">
@@ -132,6 +137,7 @@
 																<tr>
 																	<td style="background: silver; width: 25%">은행 <form:select
 																			path="payment">
+																			<option value = "">선택하세요</option>
 																			<option value="신한">신한</option>
 																			<option value="국민">국민</option>
 																			<option value="우리">우리</option>
@@ -157,6 +163,7 @@
 																	<td style="width: 70%">
 																	<form:select
 																			path="payment">
+																			<option value = "">선택하세요.</option>
 																			<c:if test="${!empty user.card1}">
 																				<option value="${user.card1}">${user.card1}</option>
 																			</c:if>
