@@ -15,7 +15,7 @@ import logic.User;
 public interface ItemMapper {
 
 	@Select({"<script>",
-	    "select itemid, itemname, price, description, "
+	    "select itemid, userid, itemname, price, description, "
 	    + "picture1 pictureUrl1, picture2 pictureUrl2, picture3 pictureUrl3, picture4 pictureUrl4, picture5 pictureUrl5, "
 	    + "vod, subject, tema, date, delivery, deliverycost from item ",
 	    " <if test='itemid != null'> where itemid = #{itemid}</if>",
@@ -55,7 +55,7 @@ public interface ItemMapper {
 
 	
 	@Select({"<script>",
-	    "select itemid, itemname, price, description, "
+	    "select itemid, userid, itemname, price, description, "
 	    + "picture1 pictureUrl1, picture2 pictureUrl2, picture3 pictureUrl3, picture4 pictureUrl4, picture5 pictureUrl5, "
 	    + "vod, subject, tema, date, delivery, deliverycost from item ",
 	    " <if test='tema != null and visitid != null'> where tema like '${tema}' and userid = #{visitid} </if>",
