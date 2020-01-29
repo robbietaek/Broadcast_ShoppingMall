@@ -132,14 +132,8 @@ public class BorderController {
       public ModelAndView update(@Valid Border border, BindingResult bresult, 
                   HttpServletRequest request) {
          ModelAndView mav = new ModelAndView();
-         Border dbBorder = service.getBorder(border.getNo());
          String tema = request.getParameter("tema");
          String visitid = (request.getParameter("userid"));
-         if(bresult.hasErrors()) {
-            mav.getModel().putAll(bresult.getModel());
-            System.out.println(bresult);
-            return mav;   
-          }
          try {
             service.borderUpdate(border,request);
             mav.setViewName("redirect:list.shop?userid="+visitid+"&tema=" + tema);
@@ -197,6 +191,19 @@ public class BorderController {
    	   }
    	   return mav;
       }
-      
-      
+      @PostMapping("updatereply")
+      public ModelAndView updatereply(Replyboard replyboard,Border border, BindingResult bresult, 
+                  HttpServletRequest request) {
+         ModelAndView mav = new ModelAndView();
+         String tema = request.getParameter("tema");
+         String visitid = (request.getParameter("userid"));
+         try {
+            service.ReplyboardUpdate(replyboard,request);
+            mav.setViewName("redirect:detail.shop?userid="+visitid+"&tema="+tema+"&no="+border.getNo());
+               }catch(Exception e) {
+               e.printStackTrace();
+               throw new BoardException("게시글 수정에 실패했습니다.","update.shop?userid="+visitid+"&no="+border.getNo());
+               }
+            return mav;
+       }
 }

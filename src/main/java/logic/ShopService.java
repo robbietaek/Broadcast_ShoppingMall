@@ -245,6 +245,9 @@ public class ShopService {
     public void replyboardDelete(int num) {
     	replyboardDao.delete(num);
 	}
+    public void ReplyboardUpdate(Replyboard replyboard, HttpServletRequest request) {
+    	replyboardDao.update(replyboard);
+	}
 	
 	//////////////////////////////////////////////////		방송		/////////////////////////////////////////////////////////
 	
@@ -257,6 +260,5 @@ public class ShopService {
 	public List<User> broadcastlist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
 		return userDao.broadcastlist(pageNum, limit, searchtype, searchcontent, tema);
 	}
-
 	
 }
