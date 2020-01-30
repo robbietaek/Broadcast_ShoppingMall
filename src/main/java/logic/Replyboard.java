@@ -11,7 +11,15 @@ public class Replyboard {
 	private int grp;
 	private int grplevel;
 	private int grpstep;
+	private int boardnum;
 	
+	
+	public int getBoardnum() {
+		return boardnum;
+	}
+	public void setBoardnum(int boardnum) {
+		this.boardnum = boardnum;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -57,7 +65,7 @@ public class Replyboard {
 	@Override
 	public String toString() {
 		return "Replyboard [num=" + num + ", no=" + no + ", userid=" + userid + ", content=" + content + ", grp=" + grp
-				+ ", grplevel=" + grplevel + ", grpstep=" + grpstep + "]";
+				+ ", grplevel=" + grplevel + ", grpstep=" + grpstep + ", boardnum=" + boardnum + "]";
 	}
 	
 	
