@@ -12,7 +12,8 @@
 <form:form modelAttribute="border" action="delete.shop" enctype="multipart/form-data" name="f">
    <form:hidden path="no"/>
    <input type="hidden" name="no" value="${border.no}">
-   <input type="hidden" name="tema" value="${param.tema}">
+   <input type="hidden" name="tema" value="${border.tema}">
+   <input type="hidden" name="userid" value="${param.userid}">
    <table>
       <tr>
          <td colspan="2">

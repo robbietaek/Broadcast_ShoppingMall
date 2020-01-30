@@ -11,10 +11,10 @@
 		document.sf.pageNum.value = page;
 		document.sf.submit();
 	}
-	function up(no, num, name, content) {
+	function up(no, num, userid) {
 		if (confirm("댓글을 수정하시겠습니까?")) {
 			location.href = "updatereply.shop?no=" + no + "&num=" + num
-					+ "&name=" + name + "&content=" + content;
+					+ "&userid=" + userid;
 
 		}
 	}
@@ -188,10 +188,11 @@
 																href="javascript:up('${r.no}','${r.num}','${r.userid}','${r.content}')">[수정]</a>
 																
 														<form:form modelAttribute="replyboard" action="deletereply.shop" enctype="multipart/form-data" name="f">
-														<input type="hidden" name="num" value="${replyboard.num}">
-														<input type="hidden" name="tema" value="${param.tema}">
-														<input type="hidden" name="no" value="${border.no}">
-														<a href="javascript:document.f.submit()">[삭제]</a>
+														<input type="hidden" name="num" value="${r.num}" />
+														<input type="hidden" name="boardnum" value="${border.no}"/>
+														<input type="hidden" name="userid" value="${r.userid}"/>
+														<input type="hidden" name="tema" value="${border.tema}"/>													
+														<input type="submit" value="[삭제]">
 														</form:form>									
 														</c:if></td>
 												</tr>

@@ -67,8 +67,8 @@
 							<form:form modelAttribute="replyboard" action="updatereply.shop"
 								enctype="multipart/form-data" name="f">
 								<input type="hidden" name="no" value="${param.no}">
+								<input type="hidden" name="num" value="${param.num}">
 								<input type="hidden" name="tema" value="${param.tema}">
-								<form:hidden path="userid" value = "${param.userid}"/>
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -87,7 +87,7 @@
 										<tr>
 											<td>내용</td>
 											<td><form:textarea path="content" rows="15" cols="80"
-													class="form-control" /> 
+													class="form-control"/> 
 												<font color="red"><form:errors path="content" /></font></td>
 										</tr>
 									</tbody>

@@ -178,16 +178,16 @@ public class BorderController {
         }
       
       @PostMapping("deletereply")
-      public ModelAndView update(Integer num, BindingResult bresult, Border border, HttpServletRequest request) {
+      public ModelAndView update(Replyboard replyboard, BindingResult bresult, HttpServletRequest request) {
    	   ModelAndView mav = new ModelAndView();
        String visitid = (request.getParameter("userid"));
        String tema = request.getParameter("tema");
    	   try {
-   		   service.replyboardDelete(num);
-   		   mav.setViewName("redirect:detail.shop?userid="+visitid+"&tema="+tema+"&no="+border.getNo());
+   		   service.replyboardDelete(replyboard.getNum());
+   		   mav.setViewName("redirect:detail.shop?userid="+visitid+"&tema="+tema+"&no="+replyboard.getBoardnum());
    	   } catch (Exception e) {
    		   e.printStackTrace();
-              throw new BoardException("게시글 삭제에 실패했습니다.","delete.shop?num="+num);
+              throw new BoardException("게시글 삭제에 실패했습니다.","delete.shop?num="+replyboard.getNum());
    	   }
    	   return mav;
       }
