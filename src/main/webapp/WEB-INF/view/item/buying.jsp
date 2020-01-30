@@ -48,6 +48,7 @@
 					<form:hidden path = "delivery" value = "${item.delivery}"/>
 					<form:hidden path = "deliverycost" value = "${item.deliverycost }"/>
 					<form:hidden path = "itemid" value="${item.itemid }"/>
+					<form:hidden path = "quantity" value = "${quantity }"/>
 						<div class="box mt-0 pb-0 no-horizontal-padding">
 							<form method="get" action="../item/shop-checkout1.shop">
 								<div class="table-responsive">

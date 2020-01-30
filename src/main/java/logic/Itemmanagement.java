@@ -2,6 +2,9 @@ package logic;
 
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 public class Itemmanagement {
 
 	private int saleid;
@@ -9,15 +12,19 @@ public class Itemmanagement {
 	private String buyerid;
 	private int itemid;
 	private int code;
-	private String return1;
 	private String subject;
 	private String itemname;
+	
+	@Min(value = 1, message = "1개 이상부터 가능합니다.")
+	@Max(value = 10, message = "10개 이하만 가능합니다.")	
 	private int quantity;
+	
 	private String price;
 	private String delivery;
 	private String deliverycost;
 	private String deliverymessage;
 	private String payment;
+	private String reason;
 	private Date date;
 	public int getSaleid() {
 		return saleid;
@@ -48,12 +55,6 @@ public class Itemmanagement {
 	}
 	public void setCode(int code) {
 		this.code = code;
-	}
-	public String getReturn1() {
-		return return1;
-	}
-	public void setReturn1(String return1) {
-		this.return1 = return1;
 	}
 	public String getSubject() {
 		return subject;
@@ -103,6 +104,12 @@ public class Itemmanagement {
 	public void setPayment(String payment) {
 		this.payment = payment;
 	}
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 	public Date getDate() {
 		return date;
 	}
@@ -112,11 +119,16 @@ public class Itemmanagement {
 	@Override
 	public String toString() {
 		return "Itemmanagement [saleid=" + saleid + ", userid=" + userid + ", buyerid=" + buyerid + ", itemid=" + itemid
-				+ ", code=" + code + ", return1=" + return1 + ", subject=" + subject + ", itemname=" + itemname
-				+ ", quantity=" + quantity + ", price=" + price + ", delivery=" + delivery + ", deliverycost="
-				+ deliverycost + ", deliverymessage=" + deliverymessage + ", payment=" + payment + ", date=" + date
-				+ "]";
+				+ ", code=" + code + ", subject=" + subject + ", itemname=" + itemname + ", quantity=" + quantity
+				+ ", price=" + price + ", delivery=" + delivery + ", deliverycost=" + deliverycost
+				+ ", deliverymessage=" + deliverymessage + ", payment=" + payment + ", reason=" + reason + ", date="
+				+ date + ", getSaleid()=" + getSaleid() + ", getUserid()=" + getUserid() + ", getBuyerid()="
+				+ getBuyerid() + ", getItemid()=" + getItemid() + ", getCode()=" + getCode() + ", getSubject()="
+				+ getSubject() + ", getItemname()=" + getItemname() + ", getQuantity()=" + getQuantity()
+				+ ", getPrice()=" + getPrice() + ", getDelivery()=" + getDelivery() + ", getDeliverycost()="
+				+ getDeliverycost() + ", getDeliverymessage()=" + getDeliverymessage() + ", getPayment()="
+				+ getPayment() + ", getReason()=" + getReason() + ", getDate()=" + getDate() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
-
 	
 }

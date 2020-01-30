@@ -36,10 +36,24 @@ public class ItemController {
 	@Autowired
 	private ShopService service;
 	
-	
-	@RequestMapping("register")
-	public ModelAndView register(@Valid Item item, BindingResult bresult, HttpServletRequest request) {
+	@GetMapping("*")
+	public ModelAndView itemSelect() {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject(new Item());
+		return mav;
+	}
+
+	@GetMapping("sell")		//화면뿌려주기
+	public ModelAndView sellForm() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject(new Item());
+		return mav;
+	}
+	
+	@PostMapping("sell")	//유효성검증 및 데이터 전달
+	public ModelAndView sell(@Valid Item item, BindingResult bresult, HttpSession session,  HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		User user = (User)session.getAttribute("loginUser");
 		if (bresult.hasErrors()) { // 에러가 있을 시
 			mav.getModel().putAll(bresult.getModel());
 			return mav;
@@ -91,16 +105,16 @@ public class ItemController {
 		return mav;
 
 	}
-
-	@GetMapping("sellingeditForm")
+	
+	@GetMapping("sellingedit")
 	public ModelAndView sellingeditForm(String itemid) {
 		ModelAndView mav = new ModelAndView();
 		Item item = service.getItem(itemid);
 		mav.addObject("item",item);
 		return mav;
 	}
-
-	@RequestMapping("sellingedit")
+	
+	@PostMapping("sellingedit")
 	public ModelAndView sellingedit(@Valid Item item, BindingResult bresult, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		if (bresult.hasErrors()) {
@@ -168,9 +182,9 @@ public class ItemController {
 		return mav;
 
 	}
-	
-	@RequestMapping("sellingdetail")
-	public ModelAndView sellingdetail(String itemid, HttpSession session) {
+		
+	@GetMapping("sellingdetail")
+	public ModelAndView sellingdetailForm(String itemid, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		Item item = service.getItem(itemid);
 		
@@ -182,9 +196,54 @@ public class ItemController {
 		mav.addObject("item", item);
 		mav.addObject("shopbasket",new Shopbasket());
 		mav.addObject(new Itemmanagement());
-
 		return mav;
 	}
+	
+    @PostMapping("sellingdetail")
+    public ModelAndView sellingdetail(@Valid Itemmanagement im, BindingResult bresult, String itemid, HttpSession session) {
+    	ModelAndView mav = new ModelAndView();
+		if (bresult.hasErrors()) {
+			mav.getModel().putAll(bresult.getModel());
+			return mav;
+		}
+    	int quantity = im.getQuantity();
+    	mav.addObject("itemid",itemid);
+    	mav.addObject("quantity",quantity);
+    	mav.setViewName("redirect:buying.shop");
+    	return mav;
+    }
+    
+    @GetMapping("buying")
+    public ModelAndView buyingForm(String itemid, String quantity, HttpSession session) {
+    	ModelAndView mav = new ModelAndView();
+    	Item item = service.getItem(itemid);
+    	User user = (User)session.getAttribute("loginUser");
+    	mav.addObject("item",item);
+    	mav.addObject("user",user);
+    	mav.addObject("quantity",quantity);
+    	mav.addObject(new Itemmanagement());
+    	return mav;
+    }
+    
+    
+    @PostMapping("buying")
+    public ModelAndView buying(Itemmanagement im, String payment[]) {
+    	ModelAndView mav = new ModelAndView();
+    	int itemid = im.getItemid();
+    	Item item = service.getItem(itemid+"");
+    	if(payment[0]!="" && payment[1] != "") {
+    		im.setPayment(payment[0]+payment[1]);
+    	}else if (payment[0]=="" && payment[1] == "" && payment[2]!=null){
+    		im.setPayment(payment[2]);
+    	}
+    	im.setUserid(item.getUserid());
+    	im.setCode(1);
+    	im.setSubject(item.getSubject());
+    	im.setItemname(item.getItemname());
+    	service.buying(im);
+    	mav.setViewName("redirect:/item/buyingcomplete.shop?itemid="+item.getItemid());
+    	return mav;
+    }
 	
 	
     @RequestMapping(value = "jjiminsert", produces="text/html;charset=UTF-8")
@@ -209,38 +268,7 @@ public class ItemController {
         service.jjimdelete(sb);
         return "<script> location.href = 'sellingdetail.shop?userid="+userid+"&tema="+tema+"&itemid="+itemid+"'\n </script>";
     }
-    
-    
-    @RequestMapping("buyingpage")
-    public ModelAndView buyingpage(String itemid, String quantity, HttpSession session) {
-    	ModelAndView mav = new ModelAndView();
-    	Item item = service.getItem(itemid);
-    	User user = (User)session.getAttribute("loginUser");
-    	mav.addObject("item",item);
-    	mav.addObject("user",user);
-    	mav.addObject("quantity",quantity);
-    	mav.addObject(new Itemmanagement());
-    	return mav;
-    }
-    
-    @RequestMapping("buying")
-    public ModelAndView buying(Itemmanagement im, String payment[]) {
-    	ModelAndView mav = new ModelAndView();
-    	int itemid = im.getItemid();
-    	Item item = service.getItem(itemid+"");
-    	if(payment[0]!="" && payment[1] != "") {
-    		im.setPayment(payment[0]+payment[1]);
-    	}else if (payment[0]=="" && payment[1] == "" && payment[2]!=null){
-    		im.setPayment(payment[2]);
-    	}
-    	im.setUserid(item.getUserid());
-    	im.setCode(1);
-    	im.setSubject(item.getSubject());
-    	im.setItemname(item.getItemname());
-    	service.buying(im);
-    	mav.setViewName("redirect:/item/buyingcomplete.shop?itemid="+item.getItemid());
-    	return mav;
-    }
+
     
     @RequestMapping("buyingcomplete")
     public ModelAndView buyingcomplete(String itemid) {
@@ -250,13 +278,6 @@ public class ItemController {
     	return mav;
     }
 
-	
-	@GetMapping("*")
-	public ModelAndView itemSelect() {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject(new Item());
-		return mav;
-	}
 	
 	@RequestMapping("imgupload")
 	public String imgupload(MultipartFile upload, String CKEditorFuncNum, HttpServletRequest request, Model model) {

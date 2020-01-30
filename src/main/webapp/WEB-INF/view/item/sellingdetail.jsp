@@ -73,9 +73,7 @@ $(document).ready(function() {
 	<div id="heading-breadcrumbs">
 		<div class="container">
 			<div class="row d-flex align-items-center flex-wrap">
-				<div class="col-md-7">
-					<h1 class="h2">${item.itemname}</h1>
-				</div>
+				<div class="col-md-7"></div>
 				<div class="col-md-5">
 					<ul class="breadcrumb d-flex justify-content-end">
 						<li class="breadcrumb-item"><a
@@ -102,72 +100,73 @@ $(document).ready(function() {
 						<a href="#details" class="scroll-to text-uppercase">스크롤을 내려 상품
 							상세 설명을 보세요.</a>
 					</p>
-					<div id="productMain" class="row">
-						<div class="col-sm-6">
-							<div data-slider-id="1" class="owl-carousel shop-detail-carousel">
-								<c:if test="${!empty item.pictureUrl1}">
-									<div>
-										<img src="img/${item.pictureUrl1}" alt="" class="img-fluid">
-									</div>
-								</c:if>
-								<c:if test="${!empty item.pictureUrl2}">
-									<div>
-										<img src="img/${item.pictureUrl2}" alt="" class="img-fluid">
-									</div>
-								</c:if>
-								<c:if test="${!empty item.pictureUrl3}">
-									<div>
-										<img src="img/${item.pictureUrl3}" alt="" class="img-fluid">
-									</div>
-								</c:if>
-								<c:if test="${!empty item.pictureUrl4}">
-									<div>
-										<img src="img/${item.pictureUrl4}" alt="" class="img-fluid">
-									</div>
-								</c:if>
-								<c:if test="${!empty item.pictureUrl5}">
-									<div>
-										<img src="img/${item.pictureUrl5}" alt="" class="img-fluid">
-									</div>
-								</c:if>
+					<form:form modelAttribute="itemmanagement" action="sellingdetail.shop">
+						<div class="row">
+							<div class="col-sm-6">
+								<div data-slider-id="1"
+									class="owl-carousel shop-detail-carousel">
+									<c:if test="${!empty item.pictureUrl1}">
+										<div>
+											<img src="img/${item.pictureUrl1}" alt="" class="img-fluid">
+										</div>
+									</c:if>
+									<c:if test="${!empty item.pictureUrl2}">
+										<div>
+											<img src="img/${item.pictureUrl2}" alt="" class="img-fluid">
+										</div>
+									</c:if>
+									<c:if test="${!empty item.pictureUrl3}">
+										<div>
+											<img src="img/${item.pictureUrl3}" alt="" class="img-fluid">
+										</div>
+									</c:if>
+									<c:if test="${!empty item.pictureUrl4}">
+										<div>
+											<img src="img/${item.pictureUrl4}" alt="" class="img-fluid">
+										</div>
+									</c:if>
+									<c:if test="${!empty item.pictureUrl5}">
+										<div>
+											<img src="img/${item.pictureUrl5}" alt="" class="img-fluid">
+										</div>
+									</c:if>
+								</div>
+								<div data-slider-id="1" class="owl-thumbs">
+									<c:if test="${!empty item.pictureUrl1}">
+										<button class="owl-thumb-item">
+											<img src="img/${item.pictureUrl1}" alt="" class="img-fluid"
+												style="width: 85px; height: 85px">
+										</button>
+									</c:if>
+									<c:if test="${!empty item.pictureUrl2}">
+										<button class="owl-thumb-item">
+											<img src="img/${item.pictureUrl2}" alt="" class="img-fluid"
+												style="width: 85px; height: 85px">
+										</button>
+									</c:if>
+									<c:if test="${!empty item.pictureUrl3}">
+										<button class="owl-thumb-item">
+											<img src="img/${item.pictureUrl3}" alt="" class="img-fluid"
+												style="width: 85px; height: 85px">
+										</button>
+									</c:if>
+									<c:if test="${!empty item.pictureUrl4}">
+										<button class="owl-thumb-item">
+											<img src="img/${item.pictureUrl4}" alt="" class="img-fluid"
+												style="width: 85px; height: 85px">
+										</button>
+									</c:if>
+									<c:if test="${!empty item.pictureUrl5}">
+										<button class="owl-thumb-item">
+											<img src="img/${item.pictureUrl5}" alt="" class="img-fluid"
+												style="width: 85px; height: 85px">
+										</button>
+									</c:if>
+								</div>
 							</div>
-							<div data-slider-id="1" class="owl-thumbs">
-								<c:if test="${!empty item.pictureUrl1}">
-									<button class="owl-thumb-item">
-										<img src="img/${item.pictureUrl1}" alt="" class="img-fluid"
-											style="width: 85px; height: 85px">
-									</button>
-								</c:if>
-								<c:if test="${!empty item.pictureUrl2}">
-									<button class="owl-thumb-item">
-										<img src="img/${item.pictureUrl2}" alt="" class="img-fluid"
-											style="width: 85px; height: 85px">
-									</button>
-								</c:if>
-								<c:if test="${!empty item.pictureUrl3}">
-									<button class="owl-thumb-item">
-										<img src="img/${item.pictureUrl3}" alt="" class="img-fluid"
-											style="width: 85px; height: 85px">
-									</button>
-								</c:if>
-								<c:if test="${!empty item.pictureUrl4}">
-									<button class="owl-thumb-item">
-										<img src="img/${item.pictureUrl4}" alt="" class="img-fluid"
-											style="width: 85px; height: 85px">
-									</button>
-								</c:if>
-								<c:if test="${!empty item.pictureUrl5}">
-									<button class="owl-thumb-item">
-										<img src="img/${item.pictureUrl5}" alt="" class="img-fluid"
-											style="width: 85px; height: 85px">
-									</button>
-								</c:if>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<form:form modelAttribute="itemmanagement"
-								action="buyingpage.shop">
-								<div class="sizes">
+							<div class="col-sm-6">
+
+								<div class="sizes" id="productMain">
 									<h3 class="text-left" style="color: #2e2e2e;">
 										&nbsp;&nbsp;&nbsp;${item.itemname}
 										<c:if test="${!empty sessionScope.loginUser }">
@@ -208,22 +207,28 @@ $(document).ready(function() {
 										<h7 style="color: black; font: text-bold;">배송 안내 </h7>&nbsp;&nbsp;&nbsp;
 										<h7 style="color: grey;"> <br>
 										배송기간 : 2~10일 이내 (주말 및 공휴일 배송일에서 제외) <br>
-										* 추가 배송비 : 제주 및 도서 산간 지역은 추가 배송비가 있습니다. 
+										* 추가 배송비 : 제주 및 도서 산간 지역은 추가 배송비가 있습니다. <form:hidden
+											path="itemid" value="${param.itemid }" />
+										<br>
+										<table>
+											<tr>
+												<td>개수</td>
+												<td><form:input path="quantity" class="form-control"
+														style="width : 100%" value="1" />
+														<font color="red"><form:errors path="quantity" /></font></td>
+												<td>개</td>
+											</tr>
+										</table>
+										<button type="submit" class="btn btn-template-outlined"
+											style="width: 100%; height: 80px; font-size: 1.0rem">
+											<i class="fa fa-shopping-cart"></i> BUY IT NOW!
+										</button>
 									</div>
 
-									<br>
-									<form:hidden path="itemid" value="${param.itemid }" />
-									<button type="submit" class="btn btn-template-outlined"
-										style="width: 100%; height: 80px;font-size: 1.0rem">
-										<i class="fa fa-shopping-cart"></i> BUY IT NOW!
-									</button>
-
 								</div>
-
-
-							</form:form>
+							</div>
 						</div>
-					</div>
+					</form:form>
 					<div id="details" class="box mb-4 mt-4">${item.description }
 					</div>
 
