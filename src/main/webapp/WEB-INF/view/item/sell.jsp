@@ -65,7 +65,7 @@
 
 				<div id="blog-post" class="col-md-9">
 					<div id="comment-form">
-						<form:form modelAttribute="item" action="register.shop"
+						<form:form modelAttribute="item" action="sell.shop"
 							enctype="multipart/form-data">
 							<spring:hasBindErrors name="item">
 								<font color="red"> <c:forEach
@@ -114,7 +114,6 @@
 											class="required text-primary">*</span>
 										</label>
 										<form:input path="vod" class="form-control" />
-										<font color="red"><form:errors path="vod" /></font>
 									</div>
 								</div>
 							</div>
@@ -147,6 +146,7 @@
 											class="required text-primary">*</span>
 										</label>
 										<form:select path="delivery" class="bs-select">
+											<option value ="">선택하세요</option>
 											<option value="CJ대한통운">CJ대한통운</option>
 											<option value="한진택배">한진택배</option>
 											<option value="우체국택배">우체국택배</option>

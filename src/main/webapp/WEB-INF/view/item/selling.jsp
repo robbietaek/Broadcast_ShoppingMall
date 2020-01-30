@@ -120,7 +120,7 @@
 													pattern="yyyy년MM월dd일 HH시mm분ss초" /></td>
 											<td><a href="sellingdetail.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
 												class="btn btn-template-outlined btn-sm">View</a> 
-												<a href="sellingeditForm.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
+												<a href="sellingedit.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
 												class="btn btn-template-outlined btn-sm">Edit</a> 
 												<a href="sellingdelete.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
 												class="btn btn-template-outlined btn-sm">Delete</a>

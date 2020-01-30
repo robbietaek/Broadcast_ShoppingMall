@@ -21,13 +21,20 @@ public class Item {
 	private int price;
 
 	@NotEmpty(message = "상품 설명을 입력하세요")
-	@Size(min = 10, max = 20000000, message = "10글자이상 20000000글자 이하 가능")
+	@Size(min = 5, max = 20000, message = "5글자이상 20000글자 이하 가능")
 	private String description;
+	
+	@NotEmpty(message = "제목을 입력하세요.")
+	@Size(min = 5, max = 100, message = "5글자이상 100글자 이하 가능")
 	private String subject;
+	@NotEmpty(message = "카테고리를 선택하세요.")
 	private String tema;
+	
 	private String vod;
 	private Date date;
 	private String delivery;
+	
+	@NotEmpty(message = "배송료를 선택하세요.")
 	private String deliverycost;
 	private String pictureUrl1;
 	private String pictureUrl2;
