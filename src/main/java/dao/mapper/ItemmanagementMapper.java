@@ -11,9 +11,9 @@ public interface ItemmanagementMapper {
 	int getsalemaxid();
 
 	@Insert("insert into itemmanagement "
-			+ "(saleid,userid,buyerid,itemid,code,return1,subject,itemname, price, "
+			+ "(saleid,userid,buyerid,itemid,code,return1,subject,itemname, quantity, price, "
 			+ "delivery, deliverycost, deliverymessage, payment, date) values "
-			+ "(#{saleid},#{userid},#{buyerid},#{itemid},#{code},#{return1},#{subject},#{itemname}, #{price}, "
+			+ "(#{saleid},#{userid},#{buyerid},#{itemid},#{code},#{return1},#{subject},#{quantity},#{itemname}, #{price}, "
 			+ "#{delivery}, #{deliverycost}, #{deliverymessage}, #{payment}, now())")
 	void buying(Itemmanagement im);
 

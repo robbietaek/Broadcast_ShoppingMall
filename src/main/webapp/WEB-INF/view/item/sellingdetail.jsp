@@ -21,31 +21,52 @@ $(document).ready(function() {
 
 </script>
  -->
- <script>
-$(document).ready(function() {
-   $("#btnRecommend").on('click', function() {
-      if ( $(this).prop('checked')) { 
-         $.ajax("jjiminsert.shop?userid=${param.userid}&tema=${param.tema}&itemid=${param.itemid}",{
-            success : function(data){//콜백함수
-            },
-            error : function(e){
-            }
-         })
-		 $(this).parent().attr('class','btn btn-default fa fa-heart')
-         cnt++;
-      } else {
-         $.ajax("jjimdelete.shop?userid=${param.userid}&tema=${param.tema}&itemid=${param.itemid}",{
-            success : function(data){//콜백함수
-            },
-            error : function(e){
-            }
-         })
-			$(this).parent().attr('class','btn btn-default fa fa-heart-o')
-         cnt--;
-      }
+<script>
+	$(document)
+			.ready(
+					function() {
+						$("#btnRecommend")
+								.on(
+										'click',
+										function() {
+											if ($(this).prop('checked')) {
+												$
+														.ajax(
+																"jjiminsert.shop?userid=${param.userid}&tema=${param.tema}&itemid=${param.itemid}",
+																{
+																	success : function(
+																			data) {//콜백함수
+																	},
+																	error : function(
+																			e) {
+																	}
+																})
+												$(this)
+														.parent()
+														.attr('class',
+																'btn btn-default fa fa-heart')
+												cnt++;
+											} else {
+												$
+														.ajax(
+																"jjimdelete.shop?userid=${param.userid}&tema=${param.tema}&itemid=${param.itemid}",
+																{
+																	success : function(
+																			data) {//콜백함수
+																	},
+																	error : function(
+																			e) {
+																	}
+																})
+												$(this)
+														.parent()
+														.attr('class',
+																'btn btn-default fa fa-heart-o')
+												cnt--;
+											}
 
-   }); 
-});
+										});
+					});
 </script>
 </head>
 <body>
@@ -110,52 +131,6 @@ $(document).ready(function() {
 									</div>
 								</c:if>
 							</div>
-						</div>
-						<div class="col-sm-6">
-						
-						
-
-							<div class="sizes">
-								<h1>${item.itemname }
-								<c:if test="${!empty sessionScope.loginUser }">
-									<label
-										<c:if test="${jjimcount>0}">class="btn btn-default fa fa-heart"</c:if>
-										<c:if test="${jjimcount==0}">class="btn btn-default fa fa-heart-o"</c:if>
-										style="color: red"> <input type="checkbox"
-										data-toggle="tooltip" data-placement="top" title="찜하기"
-										id="btnRecommend"
-										<c:if test="${jjimcount>0}">checked="checked"</c:if>>
-									</label>
-								</c:if>	
-								</h1>
-							</div>
-						
-							
-							
-							
-							
-							<p class="price">
-								<fmt:formatNumber type="number" maxFractionDigits="3"
-									value="${item.price}" />
-								원
-							</p>
-							<div class="text-right">
-								<h4>${item.delivery }[2~3일뒤도착예정]</h4>
-								<h5>
-									배송료 :
-									<fmt:formatNumber type="number" maxFractionDigits="3"
-										value="${item.deliverycost}" />
-									원
-								</h5>
-							</div>
-							<form:form modelAttribute="itemmanagement" action = "buyingpage.shop">
-								<div id="details" class="box mb-4 mt-4 text-right">
-								<form:hidden path = "itemid" value = "${param.itemid }"/>
-									<button type="submit" class="btn btn-template-outlined">
-										<i class="fa fa-shopping-cart"></i> 구매하기
-									</button>
-								</div>
-							</form:form>
 							<div data-slider-id="1" class="owl-thumbs">
 								<c:if test="${!empty item.pictureUrl1}">
 									<button class="owl-thumb-item">
@@ -188,6 +163,65 @@ $(document).ready(function() {
 									</button>
 								</c:if>
 							</div>
+						</div>
+						<div class="col-sm-6">
+							<form:form modelAttribute="itemmanagement"
+								action="buyingpage.shop">
+								<div class="sizes">
+									<h3 class="text-left" style="color: #2e2e2e;">
+										&nbsp;&nbsp;&nbsp;${item.itemname}
+										<c:if test="${!empty sessionScope.loginUser }">
+											<label
+												<c:if test="${jjimcount>0}">class="btn btn-default fa fa-heart"</c:if>
+												<c:if test="${jjimcount==0}">class="btn btn-default fa fa-heart-o"</c:if>
+												style="border: white; background-color: white; color: red; font-size: 100%;"
+												class="text-right"> <input type="checkbox"
+												data-toggle="tooltip" data-placement="top" title="찜하기"
+												id="btnRecommend"
+												<c:if test="${jjimcount>0}">checked="checked"</c:if>>
+											</label>
+										</c:if>
+									</h3>
+									<h4 class="text-left" style="color: #2e2e2e;">
+										&nbsp;&nbsp;&nbsp;
+										<fmt:formatNumber type="number" maxFractionDigits="3"
+											value="${item.price}" />
+										원
+									</h4>
+								</div>
+
+								<div id="details" class="box mb-7 mt-4 text-left">
+
+									<div class="text-left">
+										<h7 style="color: black;">방송 링크 </h7>
+										&nbsp;&nbsp;&nbsp;
+										<h7 style="color: grey;">${item.vod}</h7>
+										<br>
+										<h7 style="color: black;">배송 방법 </h7>
+										&nbsp;&nbsp;&nbsp;
+										<h7 style="color: grey;"> ${item.delivery}</h7>
+										<br>
+										<h7 style="color: black;">배송비 &nbsp;&nbsp;&nbsp; <a
+											style="color: grey;"> <fmt:formatNumber type="number"
+												maxFractionDigits="3" value="${item.deliverycost}" />원
+										</a> <br>
+										<h7 style="color: black; font: text-bold;">배송 안내 </h7>&nbsp;&nbsp;&nbsp;
+										<h7 style="color: grey;"> <br>
+										배송기간 : 2~10일 이내 (주말 및 공휴일 배송일에서 제외) <br>
+										* 추가 배송비 : 제주 및 도서 산간 지역은 추가 배송비가 있습니다. 
+									</div>
+
+									<br>
+									<form:hidden path="itemid" value="${param.itemid }" />
+									<button type="submit" class="btn btn-template-outlined"
+										style="width: 100%; height: 80px;font-size: 1.0rem">
+										<i class="fa fa-shopping-cart"></i> BUY IT NOW!
+									</button>
+
+								</div>
+
+
+							</form:form>
 						</div>
 					</div>
 					<div id="details" class="box mb-4 mt-4">${item.description }

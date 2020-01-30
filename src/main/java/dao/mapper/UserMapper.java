@@ -30,7 +30,7 @@ public interface UserMapper {
 	@Select({"<script>",
 		"select count(*) from user ",
 		"<if test = 'tema!=null'> where tema like '${tema}' </if>",
-		"<if test = 'searchtype!=null'> and ${searchtype} like '%${searchcontent}%' </if>",
+		"<if test = 'searchtype!=null and tema!=null'> and ${searchtype} like '%${searchcontent}%' </if>",
 		"<if test = 'searchtype!=null and tema==null'> where ${searchtype} like '%${searchcontent}%' </if>",
 		"</script>"})
 	int broadcastcount(Map<String, Object> param);
@@ -38,7 +38,7 @@ public interface UserMapper {
 	@Select({"<script>",
 	    "select userid, name, pass, tel, age, address, email, profile profileUrl, nickname, card1, card2 from user ",
 	    " <if test='tema != null'> where tema like '${tema}' </if>",
-	    " <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%' </if>",
+	    " <if test='searchtype != null and tema!=null'> and ${searchtype} like '%${searchcontent}%' </if>",
 	    " <if test='searchtype != null and tema==null'> where ${searchtype} like '%${searchcontent}%' </if>",
 	    " order by userid desc limit #{startrow},#{limit}",
 	    "</script>"})

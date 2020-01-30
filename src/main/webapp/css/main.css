@@ -107,6 +107,15 @@ body#LoginForm{
   font-size: 15px;
   margin: auto;
 }
+
+.btn-template-yyw{
+  background: #e75871;
+  color: #fff !important;
+  border: 1px solid #fff !important;
+  border-radius: 0 !important;
+  text-decoration: none;
+}
+
 .login-form .btn.btn-primary.reset {
   background: #2ca069 none repeat scroll 0 0;
 }
