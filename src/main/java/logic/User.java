@@ -19,6 +19,16 @@ public class User {
 	private String nickname;
 	private String card1;
 	private String card2;
+	private String year;
+	
+	
+	
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
 	public String getUserid() {
 		return userid;
 	}
@@ -95,8 +105,9 @@ public class User {
 	public String toString() {
 		return "User [userid=" + userid + ", pass=" + pass + ", name=" + name + ", tel=" + tel + ", age=" + age
 				+ ", address=" + address + ", profile=" + profile + ", profileUrl=" + profileUrl + ", email=" + email
-				+ ", nickname=" + nickname + ", card1=" + card1 + ", card2=" + card2 + "]";
+				+ ", nickname=" + nickname + ", card1=" + card1 + ", card2=" + card2 + ", year=" + year + "]";
 	}
-
+	
+	
 
 }

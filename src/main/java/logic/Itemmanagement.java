@@ -12,6 +12,7 @@ public class Itemmanagement {
 	private String return1;
 	private String subject;
 	private String itemname;
+	private int quantity;
 	private String price;
 	private String delivery;
 	private String deliverycost;
@@ -66,6 +67,12 @@ public class Itemmanagement {
 	public void setItemname(String itemname) {
 		this.itemname = itemname;
 	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	public String getPrice() {
 		return price;
 	}
@@ -106,8 +113,10 @@ public class Itemmanagement {
 	public String toString() {
 		return "Itemmanagement [saleid=" + saleid + ", userid=" + userid + ", buyerid=" + buyerid + ", itemid=" + itemid
 				+ ", code=" + code + ", return1=" + return1 + ", subject=" + subject + ", itemname=" + itemname
-				+ ", price=" + price + ", delivery=" + delivery + ", deliverycost=" + deliverycost
-				+ ", deliverymessage=" + deliverymessage + ", payment=" + payment + ", date=" + date + "]";
+				+ ", quantity=" + quantity + ", price=" + price + ", delivery=" + delivery + ", deliverycost="
+				+ deliverycost + ", deliverymessage=" + deliverymessage + ", payment=" + payment + ", date=" + date
+				+ "]";
 	}
+
 	
 }

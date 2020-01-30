@@ -14,6 +14,7 @@ import logic.Item;
 import logic.Itemmanagement;
 import logic.Shopbasket;
 import logic.User;
+import logic.sold;
 
 @Repository
 public class ItemDao {
@@ -111,6 +112,41 @@ public class ItemDao {
 	public void buying(Itemmanagement im) {
 		sqlSession.getMapper(ItemmanagementMapper.class).buying(im);
 	}
+
+	public String maxyear(String userid) {
+		param.clear();
+	    param.put("userid", userid);
+	    return sqlSession.getMapper(ItemMapper.class).maxyear(param);
+	}
+
+	public String minyear(String userid) {
+		param.clear();
+		param.put("userid", userid);
+		return sqlSession.getMapper(ItemMapper.class).minyear(param);
+	}
+
+	public List<sold> soldList(String userid, String year) {
+		param.clear();
+		param.put("userid", userid);
+		param.put("year", year);
+		return sqlSession.getMapper(ItemMapper.class).soldlist(param);
+	}
+
+	public List<sold> takeList(String userid, int year) {
+		param.clear();
+		param.put("userid", userid);
+		param.put("year", year);
+		return sqlSession.getMapper(ItemMapper.class).takeList(param);
+	}
+
+	public Integer maxmonth(String userid, String year) {
+		param.clear();
+		param.put("userid", userid);
+		param.put("year", year);
+		return sqlSession.getMapper(ItemMapper.class).maxmonth(param);
+	}
+
+	
 
 
 

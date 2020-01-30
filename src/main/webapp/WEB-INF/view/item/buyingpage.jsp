@@ -110,6 +110,11 @@
 												value="${item.price}" />원</td>
 											</tr>
 											<tr>
+												<td style="background: #4fbfa8; width: 20%">개수</td>
+												<td style="width: 80%"><fmt:formatNumber type="number" maxFractionDigits="3"
+												value="${quantity}" />개</td>
+											</tr>											
+											<tr>
 												<td style="background: #4fbfa8; width: 20%">할인쿠폰</td>
 												<td style="width: 80%">0건</td>
 											</tr>
@@ -261,7 +266,7 @@
 									<tr>
 										<td>가격</td>
 										<th><fmt:formatNumber type="number" maxFractionDigits="3"
-												value="${item.price}" />원</th>
+												value="${item.price*quantity}" />원</th>
 									</tr>
 									<tr>
 										<td>배송비</td>
@@ -275,7 +280,7 @@
 									<tr class="total">
 										<td>총 금액</td>
 										<th><fmt:formatNumber type="number" maxFractionDigits="3"
-												value="${item.price+item.deliverycost}" />원</th>
+												value="${item.price*quantity+item.deliverycost}" />원</th>
 									</tr>
 								</tbody>
 							</table>

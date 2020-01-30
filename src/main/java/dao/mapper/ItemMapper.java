@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 import logic.Item;
 import logic.Shopbasket;
 import logic.User;
+import logic.sold;
 
 public interface ItemMapper {
 
@@ -81,4 +82,25 @@ public interface ItemMapper {
 	
 	@Delete("delete from shopbasket where userid = #{userid} and itemid = ${itemid}")
 	void jjimdelete(Shopbasket sb);
+
+	@Select("select max(year(date)) from itemmanagement where userid=#{userid}")
+	String maxyear(Map<String, Object> param);
+	
+	@Select("select min(year(date)) from itemmanagement where userid=#{userid}")
+	String minyear(Map<String, Object> param);
+
+	@Select("SELECT b.date,COUNT(a.date) AS cnt,ifnull(SUM(quantity),0) AS quantity" + 
+	         " FROM (SELECT *  from itemmanagement WHERE YEAR(date)=#{year} and userid=#{userid} and code=1) a RIGHT OUTER join mon b ON MONTH(a.date) = b.date" + 
+	         " GROUP BY b.date" + 
+	         " ORDER BY b.date")
+	List<sold> soldlist(Map<String, Object> param);
+
+	@Select("SELECT b.date,COUNT(a.date) AS cnt, ifnull(SUM(quantity*price),0) AS price" + 
+	         " FROM (SELECT *  from itemmanagement WHERE YEAR(date) =#{year} AND userid=#{userid} AND CODE = 1) a RIGHT OUTER join mon b ON MONTH(a.date) = b.date" + 
+	         " GROUP BY b.date" + 
+	         " ORDER BY b.date")
+	   List<sold> takeList(Map<String, Object> param);
+
+	@Select("select max(month(date)) from itemmanagement where userid=#{userid} and year(date)=#{year}")
+	Integer maxmonth(Map<String, Object> param);
 }

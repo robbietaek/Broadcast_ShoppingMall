@@ -82,6 +82,8 @@ public class UserController {
             bresult.reject("error.login.password");
             return mav;
          } else {
+        	String year = service.getmaxYear(user.getUserid());
+            dbUser.setYear(year);
             session.setAttribute("loginUser", dbUser);
             mav.setViewName("redirect:../broadcast/index.shop");
          }
@@ -104,6 +106,8 @@ public class UserController {
             session.setAttribute("nickname", nickname);
             return "userEntry.shop";
          }else {
+        	String year = service.getmaxYear("n*"+id);
+            dbUser.setYear(year); 
             session.setAttribute("loginUser", dbUser);
             
          }
@@ -128,6 +132,8 @@ public class UserController {
             session.setAttribute("nickname", nickname.substring(1,nickname.length()-1));
             return "userEntry.shop";
          }else {
+        	String year = service.getmaxYear(email);
+            dbUser.setYear(year);
             session.setAttribute("loginUser", dbUser);
             
          }

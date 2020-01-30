@@ -173,7 +173,7 @@ public class ShopService {
 
 	public void buying(Itemmanagement im) {
 		int maxsaleid = itemDao.getsalemaxid();
-		im.setItemid(++maxsaleid);
+		im.setSaleid(++maxsaleid);
 		itemDao.buying(im);
 	}
 
@@ -259,6 +259,31 @@ public class ShopService {
 	//리스트 잠시 띄울 예정
 	public List<User> broadcastlist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
 		return userDao.broadcastlist(pageNum, limit, searchtype, searchcontent, tema);
+	}
+
+	public String getmaxYear(String userid) {
+		
+		return itemDao.maxyear(userid);
+	}
+
+	public String getminYear(String userid) {
+		
+		return itemDao.minyear(userid);
+	}
+
+	public List<sold> getsold(String userid, String year) {
+		
+		return itemDao.soldList(userid,year);
+	}
+
+	public List<sold> gettake(String userid, int year) {
+		
+		return itemDao.takeList(userid, year);
+	}
+
+	public Integer getmaxMonth(String userid, String year) {
+	
+		return itemDao.maxmonth(userid, year);
 	}
 	
 }

@@ -28,6 +28,7 @@ import logic.Itemmanagement;
 import logic.ShopService;
 import logic.Shopbasket;
 import logic.User;
+import logic.sold;
 
 @Controller // @Component+Controller 기능
 @RequestMapping("item") // shop/xxx.shop
@@ -211,12 +212,13 @@ public class ItemController {
     
     
     @RequestMapping("buyingpage")
-    public ModelAndView buyingpage(String itemid, HttpSession session) {
+    public ModelAndView buyingpage(String itemid, String quantity, HttpSession session) {
     	ModelAndView mav = new ModelAndView();
     	Item item = service.getItem(itemid);
     	User user = (User)session.getAttribute("loginUser");
     	mav.addObject("item",item);
     	mav.addObject("user",user);
+    	mav.addObject("quantity",quantity);
     	mav.addObject(new Itemmanagement());
     	return mav;
     }
@@ -230,8 +232,6 @@ public class ItemController {
     		im.setPayment(payment[0]+payment[1]);
     	}else if (payment[0]=="" && payment[1] == "" && payment[2]!=null){
     		im.setPayment(payment[2]);
-    	}else {
-    		throw new BoardException("결제를 선택하세요","buyingpage.shop");
     	}
     	im.setUserid(item.getUserid());
     	im.setCode(1);
@@ -279,5 +279,58 @@ public class ItemController {
 		model.addAttribute("CKEditorFuncNum", CKEditorFuncNum);
 		return "ckedit";
 	}
+	
+	@RequestMapping(value="state")
+    public ModelAndView state(String userid, String year) {
+       ModelAndView mav = new ModelAndView();
+       System.out.println("판매통계로 이동!!");
+       System.out.println(userid);
+       System.out.println(year);
+       String maxyear = service.getmaxYear(userid);
+       String minyear = service.getminYear(userid);
+       int year1 = Integer.parseInt(year)-1;
+       System.out.println(year1);
+       int year2 = Integer.parseInt(year);
+       List<sold> soldList = service.getsold(userid, year);
+       List<sold> takeList1 = service.gettake(userid, year1);
+       List<sold> takeList2 = service.gettake(userid, year2);
+       System.out.println(takeList2);
+       int maxmonth = service.getmaxMonth(userid, year);
+       String[] month = {"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"};
+
+       //이번년도
+       mav.addObject("year1", year);
+       mav.addObject("maxmonth", maxmonth);
+       mav.addObject("maxyear", maxyear);
+       mav.addObject("year",maxyear);
+       mav.addObject("minyear",minyear);
+       mav.addObject("month", month);
+       mav.addObject("soldlist", soldList);
+       mav.addObject("takeList1", takeList1);
+       mav.addObject("takeList2", takeList2);
+       return mav;
+       
+   }
+  
+  @RequestMapping(value="state1")
+  @ResponseBody
+  public ModelAndView state1(String userid, String year) {
+     System.out.println("state1입니다.");
+     String[] month = {"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"};
+     ModelAndView mav = new ModelAndView();
+     String maxyear = service.getmaxYear(userid);
+     String minyear = service.getminYear(userid);
+     List<sold> soldList = service.getsold(userid, year);
+     int maxmonth = service.getmaxMonth(userid, year);
+      
+      
+       mav.addObject("maxmonth", maxmonth);
+       mav.addObject("maxyear", maxyear);
+       mav.addObject("minyear",minyear);
+       mav.addObject("month", month);
+       mav.addObject("soldlist", soldList);
+     mav.setViewName("redirect:/item/state.shop?userid="+userid+"&year="+year);
+     return mav;
+  }
 
 }

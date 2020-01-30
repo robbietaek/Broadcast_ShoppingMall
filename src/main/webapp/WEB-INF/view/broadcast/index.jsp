@@ -121,7 +121,7 @@
 				<div class="col-md-12">
 					<div class="d-flex justify-content-end">
 						<div class="col-sm-5 text-right">
-							<form action="category.shop?tema=${param.tema}" method="post"
+							<form action="index.shop?tema=${param.tema}" method="post"
 								name="searchform">
 								<div class="input-group">
 									<input type="hidden" name="pageNum" value="1"> <select
