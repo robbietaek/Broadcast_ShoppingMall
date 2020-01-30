@@ -26,8 +26,8 @@ public interface ReplyboardMapper {
 	@Select("select ifnull(max(num),0) from replyboard")
 	int maxnum();
 
-	@Insert("insert into replyboard(no,num,userid,content,grp,grplevel,grpstep,boardnum)"
-			+ " values(#{no},#{num},#{userid},#{content},#{grp},#{grplevel},#{grpstep},#{boardnum})")
+	@Insert("insert into replyboard(no,num,userid,content,grp,grplevel,grpstep)"
+			+ " values(#{no},#{num},#{userid},#{content},#{grp},#{grplevel},#{grpstep})")
 	void insert(Replyboard replyboard);
 
 	@Update("update replyboard set grpstep = grpstep +1 where grp=#{grp} and grpstep > #{grpstep}")
