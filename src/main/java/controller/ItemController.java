@@ -303,33 +303,34 @@ public class ItemController {
 	
 	@RequestMapping(value="state")
     public ModelAndView state(String userid, String year) {
-       ModelAndView mav = new ModelAndView();
-       System.out.println("판매통계로 이동!!");
-       System.out.println(userid);
-       System.out.println(year);
-       String maxyear = service.getmaxYear(userid);
-       String minyear = service.getminYear(userid);
-       int year1 = Integer.parseInt(year)-1;
-       System.out.println(year1);
-       int year2 = Integer.parseInt(year);
-       List<sold> soldList = service.getsold(userid, year);
-       List<sold> takeList1 = service.gettake(userid, year1);
-       List<sold> takeList2 = service.gettake(userid, year2);
-       System.out.println(takeList2);
-       int maxmonth = service.getmaxMonth(userid, year);
-       String[] month = {"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"};
-
-       //이번년도
-       mav.addObject("year1", year);
-       mav.addObject("maxmonth", maxmonth);
-       mav.addObject("maxyear", maxyear);
-       mav.addObject("year",maxyear);
-       mav.addObject("minyear",minyear);
-       mav.addObject("month", month);
-       mav.addObject("soldlist", soldList);
-       mav.addObject("takeList1", takeList1);
-       mav.addObject("takeList2", takeList2);
-       return mav;
+		ModelAndView mav = new ModelAndView();
+        if(year.equals("")) {
+           mav.setViewName("redirect:ENull.shop");
+           return mav;
+        }
+     
+        String maxyear = service.getmaxYear(userid);
+        String minyear = service.getminYear(userid);
+        int year1 = Integer.parseInt(year)-1;
+        int year2 = Integer.parseInt(year);
+        List<sold> soldList = service.getsold(userid, year);
+        List<sold> takeList1 = service.gettake(userid, year1);
+        List<sold> takeList2 = service.gettake(userid, year2);
+        int maxmonth = service.getmaxMonth(userid, year);
+        String[] month = {"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"};
+       
+        //이번년도
+        mav.addObject("year1", year);
+        mav.addObject("maxmonth", maxmonth);
+        mav.addObject("maxyear", maxyear);
+        mav.addObject("year",maxyear);
+        mav.addObject("minyear",minyear);
+        mav.addObject("month", month);
+        mav.addObject("soldlist", soldList);
+        mav.addObject("takeList1", takeList1);
+        mav.addObject("takeList2", takeList2);
+     return mav;
+     
        
    }
   

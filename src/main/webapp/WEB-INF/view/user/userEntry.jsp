@@ -11,7 +11,31 @@
       open("pictureForm.shop", "", op);
    }
 </script>
+<script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript">
 
+      function openDaumZipAddress() {
+
+         new daum.Postcode({
+
+            oncomplete:function(data) {
+
+               jQuery("#zonecode").val(data.zonecode);
+
+               jQuery("#address1").val(data.address);
+
+               jQuery("#address_etc").focus();
+
+               console.log(data);
+
+            }
+
+         }).open();
+
+      }
+
+   </script>
 </head>
 <body>
    <div id="heading-breadcrumbs">
@@ -122,8 +146,19 @@
 
                      <div class="form-group">
                         <label for="email-login">주소</label>
-                        <form:input path="address" class="form-control" />
-                        <font color="red"><form:errors path="address" /></font>
+                  <br/>
+                  <form:input  path="zonecode" type="text" value="" style="width:50px; height:35px;" readonly="true"/>
+               
+                  &nbsp; <B>-</B> &nbsp;
+               
+                  <input type="button" onClick="openDaumZipAddress();" value = "주소 찾기" />
+                  <br/>
+                  <br/>
+                  <form:input  path="address1" value="" style="width:60%; height:35px;" readonly="true"/>
+                  <br/>
+                  <br/>
+                  <form:input  path="address_etc" value="" style="width:60%; height:35px;" placeholder="상세주소"/>
+                        <font color="red"><form:errors path="address1" /></font>
                      </div>
 
                      <div class="row">
