@@ -12,6 +12,7 @@ import dao.mapper.ItemMapper;
 import dao.mapper.ItemmanagementMapper;
 import logic.Item;
 import logic.Itemmanagement;
+import logic.Review;
 import logic.Shopbasket;
 import logic.User;
 import logic.sold;
@@ -145,6 +146,104 @@ public class ItemDao {
 		param.put("year", year);
 		return sqlSession.getMapper(ItemMapper.class).maxmonth(param);
 	}
+	
+	public int getItemmanagementcount(String searchtype, String searchcontent, String sessionid) {
+		param.clear();
+		param.put("searchtype", searchtype);
+		param.put("searchcontent", searchcontent);
+		param.put("sessionid", sessionid);
+		return sqlSession.getMapper(ItemmanagementMapper.class).getItemmanagementcount(param);
+	}
+
+	public List<Itemmanagement> getItemmangement(Integer pageNum, int limit, String searchtype, String searchcontent, String sessionid) {
+		param.clear();
+		param.put("startrow", (pageNum - 1) * limit);
+		param.put("limit", limit);
+		param.put("searchtype", searchtype);
+		param.put("searchcontent", searchcontent);
+		param.put("sessionid",sessionid);
+		return sqlSession.getMapper(ItemmanagementMapper.class).getItemmangement(param);
+	}
+
+	public int getTakebackcount(String searchtype, String searchcontent, String sessionid) {
+		param.clear();
+		param.put("searchtype", searchtype);
+		param.put("searchcontent", searchcontent);
+		param.put("sessionid", sessionid);
+		return sqlSession.getMapper(ItemmanagementMapper.class).getTakebackcount(param);
+	}
+
+	public List<Itemmanagement> getTakeback(Integer pageNum, int limit, String searchtype, String searchcontent,
+			String sessionid) {
+		param.clear();
+		param.put("startrow", (pageNum - 1) * limit);
+		param.put("limit", limit);
+		param.put("searchtype", searchtype);
+		param.put("searchcontent", searchcontent);
+		param.put("sessionid",sessionid);
+		return sqlSession.getMapper(ItemmanagementMapper.class).getTakeback(param);
+	}
+
+	public int getsellingcompletecount(String searchtype, String searchcontent, String sessionid) {
+		param.clear();
+		param.put("searchtype", searchtype);
+		param.put("searchcontent", searchcontent);
+		param.put("sessionid", sessionid);
+		return sqlSession.getMapper(ItemmanagementMapper.class).getsellingcompletecount(param);
+	}
+
+	public List<Itemmanagement> getsellingcomplete(Integer pageNum, int limit, String searchtype, String searchcontent,
+			String sessionid) {
+		param.clear();
+		param.put("startrow", (pageNum - 1) * limit);
+		param.put("limit", limit);
+		param.put("searchtype", searchtype);
+		param.put("searchcontent", searchcontent);
+		param.put("sessionid",sessionid);
+		return sqlSession.getMapper(ItemmanagementMapper.class).getsellingcomplete(param);
+	}
+
+	
+	public void review(Review review) {
+	      sqlSession.getMapper(ItemMapper.class).create(review);
+	   }
+
+	   public int reviewcount(String itemid) {
+	      param.clear();
+	      param.put("itemid", itemid);
+	      return sqlSession.getMapper(ItemMapper.class).reviewcount(param);
+	   }
+
+	   public List<Review> reviewlist(Integer pageNum, int limit, String itemid) {
+	      param.clear();
+	      param.put("startrow", (pageNum - 1) * limit);
+	      param.put("limit", limit);
+	      param.put("itemid", itemid);
+	      return sqlSession.getMapper(ItemMapper.class).reviewlist(param);
+	   }
+
+	   public int orderitem(String searchtype, String searchcontent, String buyerid) {
+		      param.clear();
+		      param.put("searchtype", searchtype);
+		      param.put("searchcontent", searchcontent);
+		      param.put("buyerid", buyerid);
+		      return sqlSession.getMapper(ItemMapper.class).orderitem(param);
+		   }
+
+	   public List<Itemmanagement> orderlist(Integer pageNum, int limit, String searchtype, String searchcontent,
+		         String buyerid) {
+		      param.clear();
+		      param.put("startrow", (pageNum - 1) * limit);
+		      param.put("pageNum", pageNum);
+		      param.put("limit", limit);
+		      param.put("searchtype", searchtype);
+		      param.put("searchcontent", searchcontent);
+		      param.put("buyerid", buyerid);
+		      return sqlSession.getMapper(ItemMapper.class).orderlist(param);
+		   }
+	
+	
+
 
 	
 

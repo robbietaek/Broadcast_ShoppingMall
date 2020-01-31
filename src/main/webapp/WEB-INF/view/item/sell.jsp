@@ -52,7 +52,7 @@
 									href="qna.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">Q&A 관리</a></li>
 								<li class="nav-item"><a
-									href=".shop?userid=${sessionScope.loginUser.userid}"
+									href="sellingcomplete.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">판매된 목록</a></li>
 								<li class="nav-item"><a
 									href=".shop?userid=${sessionScope.loginUser.userid}"

@@ -176,6 +176,31 @@ public class ShopService {
 		im.setSaleid(++maxsaleid);
 		itemDao.buying(im);
 	}
+	
+	public int getItemmanagementcount(String searchtype, String searchcontent, String sessionid) {
+		return itemDao.getItemmanagementcount(searchtype, searchcontent, sessionid);
+	}
+
+	public List<Itemmanagement> getItemmangement(Integer pageNum, int limit, String searchtype, String searchcontent, String sessionid){
+		return itemDao.getItemmangement(pageNum, limit, searchtype, searchcontent,sessionid);
+	}
+
+	public int getTakebackcount(String searchtype, String searchcontent, String sessionid) {
+		return itemDao.getTakebackcount(searchtype, searchcontent, sessionid);
+	}
+
+	public List<Itemmanagement> getTakeback(Integer pageNum, int limit, String searchtype, String searchcontent, String sessionid) {
+		return itemDao.getTakeback(pageNum, limit, searchtype, searchcontent,sessionid);
+	}
+
+	public int getsellingcompletecount(String searchtype, String searchcontent, String sessionid) {
+		return itemDao.getsellingcompletecount(searchtype, searchcontent, sessionid);
+	}
+
+	public List<Itemmanagement> getsellingcomplete(Integer pageNum, int limit, String searchtype, String searchcontent,
+			String sessionid) {
+		return itemDao.getsellingcomplete(pageNum, limit, searchtype, searchcontent,sessionid);
+	}
 
 	////////////////////////////////////////// Boarder	////////////////////////////////////////////////////////
 
@@ -285,5 +310,34 @@ public class ShopService {
 	
 		return itemDao.maxmonth(userid, year);
 	}
+	
+	
+	///////////////////////////////////////리뷰
+	//리뷰//
+	   public void review(Review review) {
+	      itemDao.review(review);
+	   }
+
+	   public int reviewcount(String itemid) {
+	      return itemDao.reviewcount(itemid);
+	   }
+	   public List<Review> reviewlist(Integer pageNum, int limit, String itemid) {
+	      return itemDao.reviewlist(pageNum, limit, itemid);
+	   }
+
+	////////////////////////////////////주문 내역
+	// 주문내역 //
+	   public int getorderitem(String searchtype, String searchcontent, String buyerid) {
+		      
+		      return itemDao.orderitem(searchtype, searchcontent, buyerid);
+		   }
+
+	// 주문 리스트
+	   public List<Itemmanagement> orderlist(Integer pageNum, int limit, String searchtype, String searchcontent,
+	         String buyerid) {
+	      
+	      return itemDao.orderlist(pageNum, limit, searchtype,searchcontent,buyerid);
+	   }
+
 	
 }
