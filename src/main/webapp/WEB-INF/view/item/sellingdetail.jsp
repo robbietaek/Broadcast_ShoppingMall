@@ -93,19 +93,17 @@
 </script>
 
 <script>
+	function countup() {
+		var cnt = $('#quantity').val()
+		result = (Number(cnt) + 1);
+		$('#quantity').val(result)
+	}
 
-function countup(){
-	var cnt = $('#quantity').val()
-	result = (Number(cnt)+1);
-	$('#quantity').val(result)
-}
-
-function countdown(){
-	var cnt = $('#quantity').val()
-	result = (Number(cnt)-1);
-	$('#quantity').val(result)
-}
-
+	function countdown() {
+		var cnt = $('#quantity').val()
+		result = (Number(cnt) - 1);
+		$('#quantity').val(result)
+	}
 </script>
 </head>
 <body>
@@ -265,9 +263,9 @@ function countdown(){
 																class="fa fa-minus" aria-hidden="true"></i> <span
 																class="sr-only">minus</span>
 															</a> <input type="text" title="number" value="1"
-																id ="quantity" name="quantity" class="form-control _order_count_mobile">
-
-															<a href="javascript:countup();"> <i class="fa fa-plus"
+																id="quantity" name="quantity"
+																class="form-control _order_count_mobile"> <a
+																href="javascript:countup();"> <i class="fa fa-plus"
 																aria-hidden="true"></i> <span class="sr-only">plus</span>
 															</a>
 														</div>
@@ -314,15 +312,17 @@ function countdown(){
 									style="z-index: auto; position: static; top: auto;">
 									<ul class="site_nav site_prod_nav" style="border:;">
 
-										<li class="after_line holder table-cell" id="detail"><a class="_detail" id="detailactive">상세정보</a></li>
+										<li class="after_line holder table-cell" id="detail"><a
+											class="_detail" id="detailactive">상세정보</a></li>
 
 										<li class="after_line holder right_margin table-cell"
-											id="review"><a class="_review"  id="reviewactive" style="color: #212121">구매평
-												<span class="badge _review_count_text">12</span>
+											id="review"><a class="_review" id="reviewactive"
+											style="color: #212121">구매평 <span
+												class="badge _review_count_text">12</span>
 										</a></li>
 
-										<li class="table-cell" id="QA"><a class="_qna"  id="QAactive">Q&A <span
-												class="badge _qna_count_text">2</span>
+										<li class="table-cell" id="QA"><a class="_qna"
+											id="QAactive">Q&A <span class="badge _qna_count_text">2</span>
 										</a></li>
 									</ul>
 								</div>
@@ -339,7 +339,102 @@ function countdown(){
 
 
 
-						<div id="reviewview" class="box mb-4 mt-4">리뷰칸</div>
+						<div id="reviewview" class="box mb-4 mt-4">
+							<div class="d-flex justify-content-end">
+								<div class="col-sm-5 text-right">
+									<form action="sellingdetail.shop" method="post"
+										name="searchform">
+										<div class="input-group">
+											<input type="hidden" name="pageNum" value="1">
+										</div>
+									</form>
+								</div>
+							</div>
+
+
+							리뷰칸
+							<form:form modelAttribute="review" action="review.shop" name="f">
+								<c:forEach var="error" items="${ fieldErrors }">
+									<div class="alert alert-warning">
+										<strong>${ error.getField() }</strong>: ${ error.getDefaultMessage() }
+									</div>
+								</c:forEach>
+								<form:textarea path="rev_content" cssClass="form-control"
+									rows="5" />
+								<!-- 평점 선택창 -->
+								<form:label path="rating">평점: </form:label>
+								<form:select path="rating">
+									<form:options items="${ ratingOptions }" />
+								</form:select>
+								<form:hidden path="itemid" />
+								<form:hidden path="userid" />
+								<button class="btn btn-block btn-primary" type="submit">리뷰
+									등록</button>
+							</form:form>
+						</div>
+
+
+
+						<table class="table table-stripped" id="reviews">
+							<thead>
+								<tr>
+									<th>Rating</th>
+									<!-- 평점 -->
+									<th>User</th>
+									<th>Text</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="r" items="${review}" varStatus="status">
+									<!-- 평점 기준 별표시 출력 -->
+									<tr>
+										<td><c:forEach var="rating" items="${ratingOptions}"
+												varStatus="status" begin="1" end="${ r.rating }">★</c:forEach></td>
+										<td>${r.userid}</td>
+										<td>${r.rev_content}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<div class="d-flex justify-content-center">
+							<nav aria-label="Page navigation example">
+								<ul class="pagination">
+
+
+									<c:if test="${pageNum >1 }">
+										<li class="page-item"><a
+											href="sellingdetail.shop?userid=${param.userid}&tema=${item.tema}&itemid=${item.itemid}&pageNum=${pageNum-1}"
+											class="page-link">«</a></li>
+									</c:if>
+
+									<c:if test="${pageNum <= 1 }">
+										<li class="page-item"><a href="#" class="page-link">«</a></li>
+									</c:if>
+
+									<c:forEach var="a" begin="${startpage}" end="${endpage }">
+
+										<c:if test="${a==pageNum }">
+											<li class="page-item"><a href="#" class="page-link">${a}</a></li>
+										</c:if>
+										<c:if test="${a!= pageNum }">
+											<li class="page-item"><a
+												href="sellingdetail.shop?userid=${param.userid}&tema=${item.tema}&itemid=${item.itemid}&pageNum=${a}"
+												class="page-link">${a}</a></li>
+										</c:if>
+									</c:forEach>
+
+									<c:if test="${pageNum<maxpage }">
+										<li class="page-item"><a
+											href="sellingdetail.shop?userid=${param.userid}&tema=${item.tema}&itemid=${item.itemid}&pageNum=${pageNum+1}"
+											class="page-link">»</a></li>
+									</c:if>
+
+									<c:if test="${pageNum >= maxpage }">
+										<li class="page-item"><a href="#" class="page-link">»</a></li>
+									</c:if>
+								</ul>
+							</nav>
+						</div>
 
 						<div id="QAview" class="box mb-4 mt-4">Q&A칸</div>
 

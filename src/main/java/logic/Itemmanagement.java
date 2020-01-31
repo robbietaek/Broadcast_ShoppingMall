@@ -1,6 +1,8 @@
 package logic;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -14,6 +16,7 @@ public class Itemmanagement {
 	private int code;
 	private String subject;
 	private String itemname;
+	private String tema;
 	
 	@Min(value = 1, message = "1개 이상부터 가능합니다.")
 	@Max(value = 10, message = "10개 이하만 가능합니다.")	
@@ -68,6 +71,12 @@ public class Itemmanagement {
 	public void setItemname(String itemname) {
 		this.itemname = itemname;
 	}
+	public String getTema() {
+		return tema;
+	}
+	public void setTema(String tema) {
+		this.tema = tema;
+	}
 	public int getQuantity() {
 		return quantity;
 	}
@@ -119,16 +128,9 @@ public class Itemmanagement {
 	@Override
 	public String toString() {
 		return "Itemmanagement [saleid=" + saleid + ", userid=" + userid + ", buyerid=" + buyerid + ", itemid=" + itemid
-				+ ", code=" + code + ", subject=" + subject + ", itemname=" + itemname + ", quantity=" + quantity
-				+ ", price=" + price + ", delivery=" + delivery + ", deliverycost=" + deliverycost
-				+ ", deliverymessage=" + deliverymessage + ", payment=" + payment + ", reason=" + reason + ", date="
-				+ date + ", getSaleid()=" + getSaleid() + ", getUserid()=" + getUserid() + ", getBuyerid()="
-				+ getBuyerid() + ", getItemid()=" + getItemid() + ", getCode()=" + getCode() + ", getSubject()="
-				+ getSubject() + ", getItemname()=" + getItemname() + ", getQuantity()=" + getQuantity()
-				+ ", getPrice()=" + getPrice() + ", getDelivery()=" + getDelivery() + ", getDeliverycost()="
-				+ getDeliverycost() + ", getDeliverymessage()=" + getDeliverymessage() + ", getPayment()="
-				+ getPayment() + ", getReason()=" + getReason() + ", getDate()=" + getDate() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-	}
-	
+				+ ", code=" + code + ", subject=" + subject + ", itemname=" + itemname + ", tema=" + tema
+				+ ", quantity=" + quantity + ", price=" + price + ", delivery=" + delivery + ", deliverycost="
+				+ deliverycost + ", deliverymessage=" + deliverymessage + ", payment=" + payment + ", reason=" + reason
+				+ ", date=" + date + "]";
+	}	
 }
