@@ -18,7 +18,7 @@ public interface ItemmanagementMapper {
 			+ "(saleid,userid,buyerid,itemid,code,subject,itemname, quantity, price, "
 			+ "delivery, deliverycost, deliverymessage, payment, date, tema) values "
 			+ "(#{saleid},#{userid},#{buyerid},#{itemid},#{code},#{subject},#{itemname},#{quantity}, #{price}, "
-			+ "#{delivery}, #{deliverycost}, #{deliverymessage}, #{payment}, now(), ${tema})")
+			+ "#{delivery}, #{deliverycost}, #{deliverymessage}, #{payment}, now(), #{tema})")
 	void buying(Itemmanagement im);
 
 	

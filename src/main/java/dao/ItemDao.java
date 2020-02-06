@@ -224,7 +224,11 @@ public class ItemDao {
 	      param.put("itemid", itemid);
 	      return sqlSession.getMapper(ItemMapper.class).reviewlist(param);
 	   }
-
+	   
+	   public int maxnum() {
+			param.clear();
+			return sqlSession.getMapper(ItemMapper.class).maxnum();
+	   }
 	   public int orderitem(String searchtype, String searchcontent, String buyerid) {
 		      param.clear();
 		      param.put("searchtype", searchtype);
@@ -233,7 +237,7 @@ public class ItemDao {
 		      return sqlSession.getMapper(ItemMapper.class).orderitem(param);
 		   }
 
-	   public List<Itemmanagement> orderlist(Integer pageNum, int limit, String searchtype, String searchcontent,
+		   public List<Itemmanagement> orderlist(Integer pageNum, int limit, String searchtype, String searchcontent,
 		         String buyerid) {
 		      param.clear();
 		      param.put("startrow", (pageNum - 1) * limit);
@@ -245,10 +249,102 @@ public class ItemDao {
 		      return sqlSession.getMapper(ItemMapper.class).orderlist(param);
 		   }
 
-		public int maxnum() {
-			param.clear();
-			return sqlSession.getMapper(ItemMapper.class).maxnum();
-	}
+		   public User saleUser(String saleid) {
+		      param.clear();
+		      param.put("saleid", saleid);
+		      
+		      return sqlSession.getMapper(ItemMapper.class).saleUser(param).get(0);
+		   }
+
+		   public Itemmanagement Itemmanagement(String itemid, String saleid) {
+		      param.clear();
+		      param.put("itemid", itemid);
+		      param.put("saleid", saleid);
+		      return sqlSession.getMapper(ItemMapper.class).itemmanagement(param);
+		   }
+
+		   public int returndel(String saleid) {
+		      param.clear();
+		      param.put("saleid", saleid);
+		      return sqlSession.getMapper(ItemMapper.class).returndel(param);
+		   }
+
+		   public void returnUpdate(String saleid,String text) {
+		      param.clear();
+		      param.put("text", text);
+		      param.put("saleid", saleid);
+		      sqlSession.getMapper(ItemMapper.class).retrunUpdate(param);
+		   }
+
+		   public int takecount(String searchtype, String searchcontent, String userid) {
+		      param.clear();
+		      param.put("searchtype", searchtype);
+		      param.put("searchcontent", searchcontent);
+		      param.put("userid", userid);
+		      return sqlSession.getMapper(ItemMapper.class).takecount(param);
+		   }
+
+		   public List<logic.Itemmanagement> takelist(Integer pageNum, int limit, String searchtype, String searchcontent,
+		         String userid) {
+		      param.clear();
+		      param.put("startrow", (pageNum - 1) * limit);
+		      param.put("pageNum", pageNum);
+		      param.put("limit", limit);
+		      param.put("searchtype", searchtype);
+		      param.put("searchcontent", searchcontent);
+		      param.put("userid", userid);
+		      return sqlSession.getMapper(ItemMapper.class).takelist(param);
+		   }
+
+		   public void ordercancle(String buyerid, String saleid) {
+		      param.clear();
+		      param.put("buyerid", buyerid);
+		      param.put("saleid", saleid);
+		      sqlSession.getMapper(ItemMapper.class).ordercancle(param);
+		   }
+
+		   public int paymentcnt(String searchtype, String searchcontent, String userid) {
+		      param.clear();
+		      param.put("searchtype", searchtype);
+		      param.put("searchcontent", searchcontent);
+		      param.put("userid", userid);
+		      return sqlSession.getMapper(ItemMapper.class).paymentcnt(param);
+		   }
+
+		   public List<logic.Itemmanagement> paymentlist(Integer pageNum, int limit, String searchtype, String searchcontent,
+		         String userid) {
+		      param.clear();
+		      param.put("startrow", (pageNum - 1) * limit);
+		      param.put("pageNum", pageNum);
+		      param.put("limit", limit);
+		      param.put("searchtype", searchtype);
+		      param.put("searchcontent", searchcontent);
+		      param.put("userid", userid);
+		      return sqlSession.getMapper(ItemMapper.class).paymentlist(param);
+		   }
+
+		   public int itemcnt(String searchtype, String searchcontent, String userid) {
+		      param.clear();
+		      param.put("searchtype", searchtype);
+		      param.put("searchcontent", searchcontent);
+		      param.put("userid", userid);
+		      return sqlSession.getMapper(ItemMapper.class).itemcnt(param);
+		   }
+
+		   public List<logic.Shopbasket> dipslist(Integer pageNum, int limit, String searchtype, String searchcontent,
+		         String userid) {
+		      param.clear();
+		      param.put("startrow", (pageNum - 1) * limit);
+		      param.put("pageNum", pageNum);
+		      param.put("limit", limit);
+		      param.put("searchtype", searchtype);
+		      param.put("searchcontent", searchcontent);
+		      param.put("userid", userid);
+		      return sqlSession.getMapper(ItemMapper.class).dipslist(param);
+		   }
+
+		
+	
 	
 	
 
