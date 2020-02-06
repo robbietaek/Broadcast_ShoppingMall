@@ -607,8 +607,6 @@ public class ItemController {
 	        mav.addObject("payment3", payment[3]);
 	       
 	     }else {
-	        System.out.println(payment[0]);
-	        System.out.println(payment[1]);
 	        mav.addObject("code", payment[0]);
 	        mav.addObject("payment1", payment[1]);
 	        mav.addObject("payment2", payment[2]);

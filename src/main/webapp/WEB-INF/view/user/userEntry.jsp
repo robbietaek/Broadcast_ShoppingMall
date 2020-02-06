@@ -140,7 +140,7 @@
                      <div class="form-group">
                         <label for="email-login">전화번호</label>
                         <form:input path="tel" class="form-control"
-                           placeholder="010-1234-5678" />
+                           placeholder="ex)010-1234-5678" />
                         <font color="red"><form:errors path="tel" /></font>
                      </div>
 
