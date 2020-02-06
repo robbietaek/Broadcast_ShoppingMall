@@ -6,7 +6,7 @@
     <title>HOME</title>
   </head>
   <body>      
-      <section style="background: url('../shop/img/photogrid.jpg') center center repeat; background-size: cover;" class="relative-positioned">
+      <section style="background:center center repeat; background-size: cover;" class="relative-positioned">
         <!-- Carousel Start-->
         <div class="home-carousel">
           <div class="dark-mask mask-primary"></div>
@@ -15,23 +15,24 @@
               <div class="item">
                 <div class="row">
                   <div class="col-md-5 text-right">
-                    <p><img src="../shop/img/logo.png" alt="" class="ml-auto"></p>
-                    <h1>NIKE</h1>
-                    <p>Newer 신상품<br>가벼운 착용감. 세련된 디자인.<br> 다양한 색상. 합리적인 가격.</p>
+                    <h1>TOY</h1>
+                    <p>귀여운 양 친구
+                    <br>친환경 소재로 만들어서 아이들에게 부담이 없어요!
+                    <br>합리적인 가격으로 만나보세요.</p>
                   </div>
-                  <div class="col-md-7"><img src="https://cdn.pixabay.com/photo/2015/07/27/18/53/jump-863058_1280.jpg" alt="" class="img-fluid"></div>
+                  <div class="col-md-7"><img src="../shop/img/sheep.jpg" alt="" class="img-fluid"></div>
                 </div>
               </div>
               <div class="item">
                 <div class="row">
-                  <div class="col-md-7 text-center"><img src="https://cdn.pixabay.com/photo/2018/03/26/19/49/food-3263812_1280.jpg" alt="" class="img-fluid"></div>
+                  <div class="col-md-7 text-center"><img src="../shop/img/manicure.jpg" alt="" class="img-fluid"></div>
                   <div class="col-md-5">
-                    <h2>ADIDAS</h2>
+                    <h2>BEAUTY</h2>
                     <ul class="list-unstyled">
-                      <li>We love soccer!</li>
-                      <li>Together for a long time!</li>
-                      <li>Google maps, Forms, Megamenu, CSS3 Animations and much more</li>
-                      <li>+ 11 extra pages showing template features</li>
+                      <li>다양한 색상</li>
+                      <li>지속력이 좋아요</li>
+                      <li>발림성이 좋아서 초보자분들도 어렵지 않게 바를 수 있어요</li>
+                      <li>color : red, hotpink, babypink, beige, yellow, silver, wine</li>
                     </ul>
                   </div>
                 </div>
@@ -39,20 +40,20 @@
               <div class="item">
                 <div class="row">
                   <div class="col-md-5 text-right">
-                    <h1>CONVERSE</h1>
+                    <h1>FOOD</h1>
                     <ul class="list-unstyled">
-                      <li>Clean and elegant design</li>
+                      <li></li>
                       <li>Easily matched with all clothing!</li>
                       <li>Easily readable Roboto font and awesome icons</li>
                       <li>7 preprepared colour variations</li>
                     </ul>
                   </div>
-                  <div class="col-md-7"><img src="https://cdn.pixabay.com/photo/2015/09/05/22/28/converse-925773_1280.jpg" alt="" class="img-fluid"></div>
+                  <div class="col-md-7"><img src="../shop/img/pizza.jpg" alt="" class="img-fluid"></div>
                 </div>
               </div>
               <div class="item">
                 <div class="row">
-                  <div class="col-md-7"><img src="https://cdn.pixabay.com/photo/2016/11/03/18/19/social-media-1795578_1280.jpg" alt="" class="img-fluid"></div>
+                  <div class="col-md-7"><img src="../shop/img/cat2.jpg" alt="" class="img-fluid"></div>
                   <div class="col-md-5">
                     <h1>Let's share!</h1>
                     <ul class="list-unstyled">
@@ -72,12 +73,12 @@
           <div class="row">
             <div class="col-md-12">
               <div class="heading text-center">
-                <h3>Latest from our workshop</h3>
+                <h3>PRODUCTS</h3>
               </div>
               <div class="row portfolio text-center no-space">
                 <div class="col-md-4">
                   <div class="box-image">
-                    <div class="image"><img src="../shop/img/portfolio-1.jpg" alt="" class="img-fluid">
+                    <div class="image"><img src="img/${item.pictureUrl1}" alt="" class="img-fluid">
                       <div class="overlay d-flex align-items-center justify-content-center">
                         <div class="content">
                           <div class="name">
@@ -229,7 +230,7 @@
                   </div>
                 </div>
               </div>
-              <div class="see-more text-center"><a href="../item/shop-category-left.shop" class="btn btn-template-outlined">상품 더보기</a></div>
+              <div class="see-more text-center"><a href="../item/category.shop?userid=${sessionScope.loginUser.userid}" class="btn btn-template-outlined">상품 더보기</a></div>
             </div>
           </div>
         </div>

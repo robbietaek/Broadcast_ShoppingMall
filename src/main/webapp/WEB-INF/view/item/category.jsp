@@ -10,46 +10,10 @@
 	<div id="heading-breadcrumbs">
 		<div class="container">
 			<div class="row d-flex align-items-center flex-wrap">
-				<c:if test="${param.tema == clothes}">
-					<div class="col-md-7">
-						<h1 class="h2">카테고리</h1>
-						<h4>Clothes</h4>
-					</div>
-				</c:if>
-				<c:if test="${param.tema == food}">
-					<div class="col-md-7">
-						<h1 class="h2">카테고리</h1>
-						<h4>Food</h4>
-					</div>
-				</c:if>
-				<c:if test="${param.tema == toy}">
-					<div class="col-md-7">
-						<h1 class="h2">카테고리</h1>
-						<h4>Toy</h4>
-					</div>
-				</c:if>
-				<c:if test="${param.tema == music}">
-					<div class="col-md-7">
-						<h1 class="h2">카테고리</h1>
-						<h4>Music</h4>
-					</div>
-				</c:if>
-				<c:if test="${param.tema == beauty}">
-					<div class="col-md-7">
-						<h1 class="h2">카테고리</h1>
-						<h4>Beauty</h4>
-					</div>
-				</c:if>
-				<c:if test="${param.tema == sports}">
-					<div class="col-md-7">
-						<h1 class="h2">카테고리</h1>
-						<h4>Sports</h4>
-					</div>
-				</c:if>
 				<div class="col-md-5">
 					<ul class="breadcrumb d-flex justify-content-end">
 						<li class="breadcrumb-item"><a href="../shop/index.shop?userid=${sessionScope.loginUser.userid }">Home</a></li>
-						<li class="breadcrumb-item active">Category</li>
+						<li class="breadcrumb-item active"><a href="../item/category.shop?userid=${sessionScope.loginUser.userid}">Category</a></li>
 					</ul>
 				</div>
 			</div>
