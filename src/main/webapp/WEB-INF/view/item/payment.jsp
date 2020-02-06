@@ -114,7 +114,7 @@
                                  <td>${fn:substring(i.itemname,0,10)}</td>
                                  <td><fmt:formatDate value="${i.date}"
                                        pattern="yyyy년MM월dd일 HH시mm분ss초" /></td>
-                                 <td><a href="orderdetail.shop?buyerid=${sessionScope.loginUser.userid}&userid=${i.userid}&itemid=${i.itemid}"
+                                 <td><a href="orderdetail.shop?buyerid=${sessionScope.loginUser.userid}&userid=${i.userid}&itemid=${i.itemid}&saleid=${saleid}"
                                     class="btn btn-template-outlined btn-sm">View</a> 
                                     <a href="#" onclick="openerReturn(${i.saleid},'${i.itemname}')"
                                        class="btn btn-template-outlined btn-sm">return</a>
