@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript"
+	src="http://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <link rel="stylesheet"
 	href="../shop/vendor/bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome CSS-->
@@ -36,45 +38,39 @@
 </script>
 </head>
 <body>
-	<form action="approvetakeback.shop" method="post">
-		<input type="hidden" name="saleid" value="${im.saleid }" />
+	<form id="f" method="post" action="denytakeback.shop">
+		<input type="hidden" name="saleid" value="${im.saleid}" />
 		<table class="table" style="width: 100%">
-			<tr>
-				<td style="width: 40%; text-align: center;">유저 아이디</td>
-				<td style="width: 60%; text-align: center;">${im.userid }</td>
-			</tr>
-			<tr>
-				<td style="width: 40%; text-align: center;">물품명</td>
-				<td style="width: 60%; text-align: center;">${im.itemname }</td>
-			</tr>
-			<tr>
-				<td style="width: 40%; text-align: center;">가격</td>
-				<td style="width: 60%; text-align: center;"><fmt:formatNumber
-						type="number" maxFractionDigits="3" value="${im.price }" /></td>
-			</tr>
-			<tr>
-				<td style="width: 40%; text-align: center;">수량</td>
-				<td style="width: 60%; text-align: center;">${im.quantity }</td>
-			</tr>
 
 			<tr>
-				<td style="width: 40%; text-align: center;">총 금액</td>
-				<td style="width: 60%; text-align: center;"><fmt:formatNumber
-						type="number" maxFractionDigits="3"
-						value="${im.quantity*im.price }" /></td>
+
+
+				<td style="width: 40%; text-align: center;">품명</td>
+				<td style="width: 60%; text-align: center;">${im.itemname}</td>
 			</tr>
 			<tr>
-				<td style="width: 20%; text-align: center;">반품사유:</td>
-				<td style="width: 80%;">${im.reason}</td>
+				<td style="width: 40%; text-align: center;">반품 신청사유</td>
+				<td style="width: 60%; text-align: center;">${im.reason}</td>
+			</tr>
+			<tr>
+				<td style="width: 40%; text-align: center;">반려사유:</td>
+				<td style="width: 60%;"><textarea name="text"
+						style="outline-color: #4fbfa8;" cols="30" rows="14" id="comment"></textarea>
+					<script>
+						CKEDITOR.replace("comment", {
+							filebrowserImageUploadUrl : "imgupload.shop"
+						});
+					</script></td>
 			</tr>
 			<tr>
 				<td><input class="btn btn-template-outlined btn-sm"
-					style="width: 100%; margin: auto;" type="submit" value="승인" /></td>
-
+					style="width: 100%; margin: auto;" type="button" onclick="cancle()"
+					value="취소" /></td>
 				<td><input class="btn btn-template-outlined btn-sm"
-					style="width: 100%; margin: auto;" type="button" onclick = "location.href = 'denytakeback.shop?saleid=${im.saleid}'" value="반려" /></td>
+					style="width: 100%; margin: auto;" type="submit" value="반려" /></td>
 			</tr>
 		</table>
 	</form>
+
 </body>
 </html>

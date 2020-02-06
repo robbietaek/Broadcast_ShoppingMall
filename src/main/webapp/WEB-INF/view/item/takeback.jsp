@@ -11,24 +11,10 @@
    function openerReturn0(saleid,itemname){
 	      var opleft = (window.screen.width / 2) - (400 / 2);
 	      var optop = (window.screen.height / 2) - (450 / 2);
-	      newWindow = window.open("return0.shop?saleid="+saleid+"&itemname="+itemname,"return0","height=500, width=400, left="+ opleft +",top="+ optop +", resizable=yes"); 
+	      newWindow = window.open("return0.shop?saleid="+saleid+"&itemname="+itemname,"return0","height=500, width=800, left="+ opleft +",top="+ optop +", resizable=yes"); 
 	      
 	   }
-   
-   
-   function openerReturn2(saleid,itemname){
-      var opleft = (window.screen.width / 2) - (400 / 2);
-      var optop = (window.screen.height / 2) - (450 / 2);
-      newWindow = window.open("return2.shop?saleid="+saleid+"&itemname="+itemname,"return2","height=500, width=400, left="+ opleft +",top="+ optop +", resizable=yes"); 
-      
-   }
-   
-   function openerReturn4(saleid,itemname){
-	      var opleft = (window.screen.width / 2) - (400 / 2);
-	      var optop = (window.screen.height / 2) - (450 / 2);
-	      newWindow = window.open("return2.shop?saleid="+saleid+"&itemname="+itemname,"return2","height=500, width=400, left="+ opleft +",top="+ optop +", resizable=yes"); 
-	      
-	}
+
 </script>
 </head>
 <body>
@@ -134,7 +120,7 @@
 										<th>카테고리</th>
 										<th>물품명</th>
 										<th>구매일자</th>
-										<th>사유조회/승인/반려</th>
+										<th>사유조회</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -151,15 +137,6 @@
 													href="#"
 													onclick="openerReturn0(${i.saleid},'${i.itemname}')"
 													class="btn btn-template-outlined btn-sm">사유조회</a>
-											
-											<a
-													href="#"
-													onclick="openerReturn4(${i.saleid},'${i.itemname}')"
-													class="btn btn-template-outlined btn-sm">승인</a>
-												<a
-													href="#"
-													onclick="openerReturn2(${i.saleid},'${i.itemname}')"
-													class="btn btn-template-outlined btn-sm">반려</a>
 										</tr>
 									</c:forEach>
 								</tbody>

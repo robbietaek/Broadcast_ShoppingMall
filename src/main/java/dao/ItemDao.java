@@ -347,6 +347,15 @@ public class ItemDao {
 			return sqlSession.getMapper(ItemMapper.class).getreturninformation(saleid);
 		}
 
+		public void approvetakeback(String saleid) {
+			sqlSession.getMapper(ItemMapper.class).approvetakeback(saleid);
+		}
+
+		public void denytakeback(String saleid) {
+			sqlSession.getMapper(ItemMapper.class).denytakeback(saleid);
+			
+		}
+
 		
 	
 	
