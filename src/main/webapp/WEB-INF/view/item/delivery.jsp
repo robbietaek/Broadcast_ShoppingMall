@@ -44,7 +44,7 @@
 									class="nav-link">반품 신청 목록 관리</a></li>
 								<li class="nav-item"><a
 									href="delivery.shop?userid=${sessionScope.loginUser.userid}"
-									class="nav-link">배송 관리</a></li>
+									class="nav-link active">배송 관리</a></li>
 								<li class="nav-item"><a
 									href="state.shop?userid=${sessionScope.loginUser.userid}&year=${sessionScope.loginUser.year}"
 									class="nav-link">판매 통계</a></li>

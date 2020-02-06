@@ -195,6 +195,9 @@ public interface ItemMapper {
 	       "</script>"})
 	   List<Shopbasket> dipslist(Map<String, Object> param);
 
+	   @Select("select * from itemmanagement where saleid = #{saleid}")
+	   Itemmanagement getreturninformation(String saleid);
+
 	
 
 	

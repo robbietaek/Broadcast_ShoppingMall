@@ -28,7 +28,8 @@
 							</tr>
 							<tr>
 								<td style="background: #4fbfa8; width: 20%">가격</td>
-								<td style="background: white; width: 80%">${item.price}</td>
+								<td style="background: white; width: 80%"><fmt:formatNumber type="number" maxFractionDigits="3"
+										value="${item.price*quantity}"/></td>
 							</tr>
 							<tr>
 								<td style="background: #4fbfa8; width: 20%">택배정보</td>

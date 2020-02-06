@@ -132,5 +132,5 @@ public class Itemmanagement {
 				+ ", quantity=" + quantity + ", price=" + price + ", delivery=" + delivery + ", deliverycost="
 				+ deliverycost + ", deliverymessage=" + deliverymessage + ", payment=" + payment + ", reason=" + reason
 				+ ", date=" + date + "]";
-	}	
+	}
 }

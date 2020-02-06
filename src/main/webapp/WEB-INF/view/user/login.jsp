@@ -33,7 +33,12 @@
                   <h2 class="text-uppercase">로그인</h2>
                   <form:form modelAttribute="user" method="post"
                      action="login.shop">
-                     <form:hidden path="name" class="form-control" value = ""/>
+                     <form:hidden path="name" class="form-control" value = "12345"/>
+                     <form:hidden path="age" class="form-control" value = "12345"/>
+                     <form:hidden path="nickname" class="form-control" value = "12345"/>
+                     <form:hidden path="email" class="form-control" value = "12345"/>
+                     <form:hidden path="zonecode" class="form-control" value = "12345"/>
+                     <form:hidden path="tel" class="form-control" value = "12345"/>
                      <spring:hasBindErrors name="user">
                         <font color="red"> <c:forEach
                               items="${errors.globalErrors}" var="error">

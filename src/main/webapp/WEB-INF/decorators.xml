@@ -7,6 +7,7 @@
 	   <pattern>/broadcast/view*</pattern>
 	   <pattern>/broadcast/vodview*</pattern>
 	   <pattern>/user/picture*</pattern>
+	   <pattern>/item/return*</pattern>
 	</excludes>
 	<decorator name = "main2" page = "shopdecorator.jsp">
 		<pattern>/shop/*.shop </pattern>
@@ -14,8 +15,9 @@
 		<pattern>/sellerpage/*.shop </pattern>
 		<pattern>/buyerpage/*.shop </pattern>
 		<pattern>/user/*.shop </pattern>
-		<pattern>/border/*.shop</pattern>		
+		<pattern>/border/*.shop</pattern>	
 	</decorator>
 	<excludes>
+			<pattern>/item/return*</pattern>	
 	</excludes>
 </decorators>

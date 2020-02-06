@@ -5,6 +5,31 @@
 <html>
 <head>
 <title>반품 신청 목록 관리</title>
+<script type="text/javascript">
+   var newWindow
+   
+   function openerReturn0(saleid,itemname){
+	      var opleft = (window.screen.width / 2) - (400 / 2);
+	      var optop = (window.screen.height / 2) - (450 / 2);
+	      newWindow = window.open("return0.shop?saleid="+saleid+"&itemname="+itemname,"return0","height=500, width=400, left="+ opleft +",top="+ optop +", resizable=yes"); 
+	      
+	   }
+   
+   
+   function openerReturn2(saleid,itemname){
+      var opleft = (window.screen.width / 2) - (400 / 2);
+      var optop = (window.screen.height / 2) - (450 / 2);
+      newWindow = window.open("return2.shop?saleid="+saleid+"&itemname="+itemname,"return2","height=500, width=400, left="+ opleft +",top="+ optop +", resizable=yes"); 
+      
+   }
+   
+   function openerReturn4(saleid,itemname){
+	      var opleft = (window.screen.width / 2) - (400 / 2);
+	      var optop = (window.screen.height / 2) - (450 / 2);
+	      newWindow = window.open("return2.shop?saleid="+saleid+"&itemname="+itemname,"return2","height=500, width=400, left="+ opleft +",top="+ optop +", resizable=yes"); 
+	      
+	}
+</script>
 </head>
 <body>
 	<div id="heading-breadcrumbs">
@@ -41,7 +66,7 @@
 									class="nav-link">판매 등록 물품 관리</a></li>
 								<li class="nav-item"><a
 									href="takeback.shop?userid=${sessionScope.loginUser.userid}"
-									class="nav-link">반품 신청 목록 관리</a></li>
+									class="nav-link active">반품 신청 목록 관리</a></li>
 								<li class="nav-item"><a
 									href="delivery.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">배송 관리</a></li>
@@ -109,7 +134,7 @@
 										<th>카테고리</th>
 										<th>물품명</th>
 										<th>구매일자</th>
-										<th>조회/변경</th>
+										<th>사유조회/승인/반려</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -121,10 +146,20 @@
 											<td>${fn:substring(i.itemname,0,10)}</td>
 											<td><fmt:formatDate value="${i.date}"
 													pattern="yyyy년MM월dd일 HH시mm분ss초" /></td>
-											<td><a href="sellingdetail.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
-												class="btn btn-template-outlined btn-sm">승인</a> 
-												<a href="sellingedit.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
-												class="btn btn-template-outlined btn-sm">반려</a> 
+											<td>
+											<a
+													href="#"
+													onclick="openerReturn0(${i.saleid},'${i.itemname}')"
+													class="btn btn-template-outlined btn-sm">사유조회</a>
+											
+											<a
+													href="#"
+													onclick="openerReturn4(${i.saleid},'${i.itemname}')"
+													class="btn btn-template-outlined btn-sm">승인</a>
+												<a
+													href="#"
+													onclick="openerReturn2(${i.saleid},'${i.itemname}')"
+													class="btn btn-template-outlined btn-sm">반려</a>
 										</tr>
 									</c:forEach>
 								</tbody>

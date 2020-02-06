@@ -31,7 +31,7 @@
                            class="nav-link">배송 관리</a></li>
                         <li class="nav-item"><a
                            href="state.shop?userid=${sessionScope.loginUser.userid}&year=${sessionScope.loginUser.year}"
-                           class="nav-link">판매 통계</a></li>
+                           class="nav-link active">판매 통계</a></li>
                         <li class="nav-item"><a
                            href="qna.shop?userid=${sessionScope.loginUser.userid}"
                            class="nav-link">Q&A 관리</a></li>
