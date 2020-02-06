@@ -40,7 +40,10 @@
                 <div class="box-simple">
                   <div class="icon-outlined"><i class="fa fa-map-marker"></i></div>
                   <h3 class="h4">주소</h3>
-                  <p>13/25 New Avenue<br>                                        New Heaven, 45Y 73J<br>                                        England,  <strong>Great Britain</strong></p>
+                  <p>GOODEE
+                  <br>115 Gasan digital 2-ro
+                  <br>Geumcheon-gu, Seoul
+                  <br><strong>Republic of Korea</strong></p>
                 </div>
               </div>
               <div class="col-md-4">
