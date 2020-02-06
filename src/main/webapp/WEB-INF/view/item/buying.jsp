@@ -134,8 +134,8 @@
 												<td style="width: 80%">
 													<p>
 														<input type="radio" id="payment1" name="paytype"
-															checked="checked" />계좌이체 <input type="radio"
-															id="payment2" name="paytype" />신용/체크카드
+															value="1" checked="checked" />계좌이체 <input type="radio"
+															id="payment2" name="paytype" value="2"/>신용/체크카드
 													</p>
 													<div id="transfer">
 														<table class="table">

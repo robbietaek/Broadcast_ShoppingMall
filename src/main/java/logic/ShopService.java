@@ -329,18 +329,76 @@ public class ShopService {
 	   }
 
 	////////////////////////////////////주문 내역
-	// 주문내역 //
+	// 주문 내역
 	   public int getorderitem(String searchtype, String searchcontent, String buyerid) {
-		      
-		      return itemDao.orderitem(searchtype, searchcontent, buyerid);
-		   }
-
-	// 주문 리스트
+	      
+	      return itemDao.orderitem(searchtype, searchcontent, buyerid);
+	   }
+	   
+	   // 주문 리스트
 	   public List<Itemmanagement> orderlist(Integer pageNum, int limit, String searchtype, String searchcontent,
 	         String buyerid) {
 	      
 	      return itemDao.orderlist(pageNum, limit, searchtype,searchcontent,buyerid);
 	   }
 
+	   // 판매자 User
+	   public User getsaleUser(String saleid) {
+	      
+	      return itemDao.saleUser(saleid);
+	   }
+
+	   public Itemmanagement getItemmangement(String itemid, String saleid) {
+	      
+	      return itemDao.Itemmanagement(itemid, saleid);
+	   }
+
+	   public int getreturndel(String saleid) {
+	      
+	      return itemDao.returndel(saleid);
+	   }
+
+	   public void getreturnUpdate(String saleid,String text) {
+	      
+	      itemDao.returnUpdate(saleid, text);
+	   }
+
+	   public int gettakecount(String searchtype, String searchcontent, String userid) {
+	      
+	      return itemDao.takecount(searchtype, searchcontent, userid);
+	   }
+
+	   public List<Itemmanagement> takelist(Integer pageNum, int limit, String searchtype, String searchcontent,
+	         String userid) {
+	      
+	      return itemDao.takelist(pageNum, limit, searchtype, searchcontent, userid);
+	   }
+
+	   public void getordercancle(String buyerid, String saleid) {
+	      
+	      itemDao.ordercancle(buyerid,saleid);
+	   }
+
+	   public int getpaymentcnt(String searchtype, String searchcontent, String userid) {
+	      
+	      return itemDao.paymentcnt(searchtype, searchcontent, userid);
+	   }
+
+	   public List<Itemmanagement> paymentlist(Integer pageNum, int limit, String searchtype, String searchcontent,
+	         String userid) {
+	      
+	      return itemDao.paymentlist(pageNum,limit,searchtype,searchcontent,userid);
+	   }
+
+	   public int getitemcnt(String searchtype, String searchcontent, String userid) {
+	      
+	      return itemDao.itemcnt(searchtype,searchcontent,userid);
+	   }
+
+	   public List<Shopbasket> dipslist(Integer pageNum, int limit, String searchtype, String searchcontent,
+	         String userid) {
+	      
+	      return itemDao.dipslist(pageNum,limit,searchtype,searchcontent,userid);
+	   }
 	
 }

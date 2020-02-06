@@ -6,6 +6,16 @@ public class Shopbasket {
 	private String userid;
 	private int itemid;
 	private Date date;
+	private Item item;
+	
+	
+	
+	public Item getItem() {
+		return item;
+	}
+	public void setItem(Item item) {
+		this.item = item;
+	}
 	public String getUserid() {
 		return userid;
 	}
@@ -26,7 +36,7 @@ public class Shopbasket {
 	}
 	@Override
 	public String toString() {
-		return "Shopbasket [userid=" + userid + ", itemid=" + itemid + ", date=" + date + "]";
+		return "Shopbasket [userid=" + userid + ", itemid=" + itemid + ", date=" + date + ", item=" + item + "]";
 	}
 	
 }

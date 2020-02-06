@@ -253,6 +253,7 @@ public class ItemController {
 	public ModelAndView buyingForm(String itemid, String quantity, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		Item item = service.getItem(itemid);
+		
 		User user = (User) session.getAttribute("loginUser");
 		mav.addObject("item", item);
 		mav.addObject("user", user);
@@ -262,14 +263,16 @@ public class ItemController {
 	}
 
 	@PostMapping("buying")
-	public ModelAndView buying(Itemmanagement im, String payment[]) {
+	public ModelAndView buying(Itemmanagement im, String paytype) {
 		ModelAndView mav = new ModelAndView();
 		int itemid = im.getItemid();
+		System.out.println(paytype);
+		System.out.println(im.getPayment());
 		Item item = service.getItem(itemid + "");
-		if (payment[0] != "" && payment[1] != "") {
-			im.setPayment(payment[0] + payment[1]);
-		} else if (payment[0] == "" && payment[1] == "" && payment[2] != null) {
-			im.setPayment(payment[2]);
+		if (paytype.equals("1")) {
+			im.setPayment("1,계좌이체,"+im.getPayment());
+		}else {
+			im.setPayment("2,신용/체크카트"+im.getPayment());
 		}
 		im.setUserid(item.getUserid());
 		im.setCode(1);
@@ -533,7 +536,7 @@ public class ItemController {
       }
 ///////////////////////////////////////////////////////////
 	@RequestMapping(value="customer-order")
-	  ModelAndView customer_order(Integer pageNum, String searchtype, String searchcontent, HttpSession session) {
+	  public ModelAndView customer_order(Integer pageNum, String searchtype, String searchcontent, HttpSession session) {
 	     ModelAndView mav = new ModelAndView();
 	     User user = (User)session.getAttribute("loginUser");
 	     String buyerid = user.getUserid();
@@ -561,7 +564,7 @@ public class ItemController {
 	     if (endpage > maxpage) { // end 페이지가 max 페이지를 넘지 못하도록
 	         endpage = maxpage;
 	      }
-	     System.out.println(listcount);
+	   
 	        mav.addObject("pageNum", pageNum);
 	      mav.addObject("maxpage", maxpage);
 	      mav.addObject("startpage", startpage);
@@ -572,5 +575,157 @@ public class ItemController {
 	      return mav;
 	  
 
+	  }
+	  
+	  //////////////////////////// 주문 내역 자세히 //////////////////////////////////////////////
+	  @RequestMapping(value="orderdetail")
+	  public ModelAndView orderdetail(String userid, String buyerid, String itemid, String saleid) {
+	     ModelAndView mav = new ModelAndView();
+	    
+	     //판매자 정보
+	     User saleUser = service.getsaleUser(userid);
+	   
+	     //내 정보
+	     User myUser = service.getUser(buyerid);
+	    
+	     //주소 설정 
+	     String address[] = myUser.getAddress().split(",");
+	     String address1 = address[0]+address[1]+address[2];
+	    
+	     //주문된 아이템
+	     Item item = service.getItem(itemid);
+	     
+	     //주문된 아이템 정보
+	     Itemmanagement imt = service.getItemmangement(itemid, saleid);
+	     System.out.println(imt);
+	     String payment[] = imt.getPayment().split(",");
+	     
+	     if(payment[0].equals("1")) {
+	        mav.addObject("code", payment[0]);
+	        mav.addObject("payment1", payment[1]);
+	        mav.addObject("payment2", payment[2]);
+	        mav.addObject("payment3", payment[3]);
+	       
+	     }else {
+	        System.out.println(payment[0]);
+	        System.out.println(payment[1]);
+	        mav.addObject("code", payment[0]);
+	        mav.addObject("payment1", payment[1]);
+	        mav.addObject("payment2", payment[2]);
+	     }
+	     mav.addObject("address1",address1);
+	     mav.addObject("imt", imt);
+	     mav.addObject("item", item);
+	     mav.addObject("myUser", myUser);
+	     mav.addObject("saleUser", saleUser);
+	     return mav;
+	  }
+	  @RequestMapping(value="ordercancle")
+	  public ModelAndView orderCancle(String buyerid, String saleid) {
+	     ModelAndView mav = new ModelAndView();
+	     System.out.println(buyerid+","+saleid);
+	     service.getordercancle(buyerid, saleid);
+	     System.out.println("111111");
+	     mav.setViewName("redirect:/item/customer-order.shop?userid="+buyerid);
+	     return mav;
+	  }
+	  @RequestMapping(value="return2")
+	  public ModelAndView return1(String saleid, String text) {
+	     ModelAndView mav = new ModelAndView();
+	     service.getreturnUpdate(saleid, text);
+	     mav.setViewName("redirect:/item/return3.shop");
+	     return mav;
+	  }
+	  
+	  
+	  
+	  
+	  ////////////////////////// 결제 내역 /////////////////////////
+	  @RequestMapping(value="payment")
+	  public ModelAndView payment(Integer pageNum, String searchtype, String searchcontent, HttpSession session) {
+	     ModelAndView mav = new ModelAndView();
+	     User user = (User)session.getAttribute("loginUser");
+	     String userid = user.getUserid();
+	    
+	     if (pageNum == null || pageNum.toString().equals("")) {
+	         pageNum = 1;
+	        }
+	     if (searchtype != null && searchtype.trim().equals("")) { // 입력내용 띄어쓰기?
+	         searchtype = null;
+	      }
+	     if (searchcontent != null && searchcontent.trim().equals("")) {
+	         searchcontent = null;
+	      }
+	     if (searchtype == null || searchcontent == null) { // 두개다 있어야지 검색되게
+	         searchtype = null;
+	         searchcontent = null;
+	      }
+	     
+	     int limit = 10;
+	     int paymentcount = service.getpaymentcnt(searchtype, searchcontent, userid);
+	     List<Itemmanagement> paymentlist = service.paymentlist(pageNum, limit, searchtype, searchcontent, userid);
+	     int itemno = paymentcount - (pageNum - 1) * limit; // 화면에 출력되는 게시물 번호 (가짜번호)
+	     int maxpage = (int) ((double) paymentcount / limit + 0.95); // 마지막페이지, 최대페이지
+	     int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 보여지는 첫번째 페이지
+	     int endpage = startpage + 9; // 보여지는 마지막 페이지
+	     if (endpage > maxpage) { // end 페이지가 max 페이지를 넘지 못하도록
+	         endpage = maxpage;
+	      }
+	     mav.addObject("pageNum", pageNum);
+	     mav.addObject("maxpage", maxpage);
+	     mav.addObject("startpage", startpage);
+	     mav.addObject("endpage", endpage);
+	     mav.addObject("paymentcount", paymentcount);
+	     mav.addObject("paymentlist", paymentlist);
+	     mav.addObject("itemno", itemno);
+	     return mav;
+	  }
+	  
+	  @RequestMapping(value="customer-wishlist")
+	  public ModelAndView item(Integer pageNum, String searchtype, String searchcontent, HttpSession session) {
+	     ModelAndView mav = new ModelAndView();
+	     User user = (User)session.getAttribute("loginUser");
+	     String userid = user.getUserid();
+	    
+	     if (pageNum == null || pageNum.toString().equals("")) {
+	         pageNum = 1;
+	        }
+	     if (searchtype != null && searchtype.trim().equals("")) { // 입력내용 띄어쓰기?
+	         searchtype = null;
+	      }
+	     if (searchcontent != null && searchcontent.trim().equals("")) {
+	         searchcontent = null;
+	      }
+	     if (searchtype == null || searchcontent == null) { // 두개다 있어야지 검색되게
+	         searchtype = null;
+	         searchcontent = null;
+	      }
+	     
+	     int limit = 8;
+	     int dipscnt = service.getitemcnt(searchtype, searchcontent, userid);
+	     List<Shopbasket> dipslist = service.dipslist(pageNum, limit, searchtype, searchcontent, userid);
+	     
+	     for(Shopbasket s : dipslist) {
+	       s.setItem(service.getItem(Integer.toString(s.getItemid())));
+	     }
+	     
+	     for(Shopbasket s : dipslist) {
+	        System.out.println(s);
+	     }
+	     int itemno = dipscnt - (pageNum - 1) * limit; // 화면에 출력되는 게시물 번호 (가짜번호)
+	     int maxpage = (int) ((double) dipscnt / limit + 0.95); // 마지막페이지, 최대페이지
+	     int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 보여지는 첫번째 페이지
+	     int endpage = startpage + 9; // 보여지는 마지막 페이지
+	     if (endpage > maxpage) { // end 페이지가 max 페이지를 넘지 못하도록
+	         endpage = maxpage;
+	      }
+	     mav.addObject("pageNum", pageNum);
+	     mav.addObject("maxpage", maxpage);
+	     mav.addObject("startpage", startpage);
+	     mav.addObject("endpage", endpage);
+	     mav.addObject("dipscnt", dipscnt);
+	     mav.addObject("dipslist", dipslist);
+	     mav.addObject("itemno", itemno);
+	     return mav;
 	  }
 }

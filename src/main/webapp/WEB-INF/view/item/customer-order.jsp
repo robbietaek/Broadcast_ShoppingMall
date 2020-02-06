@@ -5,6 +5,15 @@
 <html>
   <head>
     <title>구매자 페이지</title>
+<script type="text/javascript">
+   var newWindow
+   function openerReturn(saleid,itemname){
+      var opleft = (window.screen.width / 2) - (400 / 2);
+      var optop = (window.screen.height / 2) - (450 / 2);
+      newWindow = window.open("return1.shop?saleid="+saleid+"&itemname="+itemname,"return1","height=450, width=400, left="+ opleft +",top="+ optop +", resizable=yes"); 
+      
+   }
+</script>
   </head>
   <body>
       <div id="heading-breadcrumbs">
@@ -26,7 +35,7 @@
       <div id="content">
         <div class="container">
           <div class="row bar">
-                      <div class="col-lg-3 mt-4 mt-lg-0">
+             <div class="col-lg-3 mt-4 mt-lg-0">
               <!-- CUSTOMER MENU -->
               <div class="panel panel-default sidebar-menu">
                 <div class="panel-heading">
@@ -43,11 +52,11 @@
                           class="nav-link">
                           <i class="fa fa-heart"></i> 찜한 상품</a></li>
                     <li class="nav-item">
-                       <a href=".shop" class="nav-link">
+                       <a href="payment.shop" class="nav-link">
                           <i class="fa fa-user"></i> 결제 내역</a></li>
                     <li class="nav-item">
-                       <a href="../shop/index.shop" class="nav-link">
-                          <i class="fa fa-sign-out"></i> Logout</a></li>
+                       <a href="deliverysearch.shop" class="nav-link">
+                          <i class="fa fa-sign-out"></i>배송조회</a></li>
                   </ul>
                 </div>
               </div>
@@ -91,7 +100,7 @@
                               <th>카테고리</th>
                               <th>물품명</th>
                               <th>등록 날짜</th>
-                              <th>상세/수정/삭제</th>
+                              <th>상세/취소</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -104,16 +113,14 @@
                                  <td>${fn:substring(i.itemname,0,10)}</td>
                                  <td><fmt:formatDate value="${i.date}"
                                        pattern="yyyy년MM월dd일 HH시mm분ss초" /></td>
-                                 <td><a href="sellingdetail.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
+                                 <td><a href="orderdetail.shop?buyerid=${sessionScope.loginUser.userid}&userid=${i.userid}&itemid=${i.itemid}&saleid=${i.saleid}"
                                     class="btn btn-template-outlined btn-sm">View</a> 
-                                    <a href="sellingeditForm.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
-                                    class="btn btn-template-outlined btn-sm">Edit</a> 
-                                    <a href="sellingdelete.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
-                                    class="btn btn-template-outlined btn-sm">Delete</a>
+                                    <a href="ordercancle.shop?buyerid=${i.buyerid}&saleid=${i.saleid}"
+                                    class="btn btn-template-outlined btn-sm">cancle</a>
                               </tr>
                            </c:forEach>
                         </c:if>
-                        <c:if test="${listcount == 0}">
+                        <c:if test="${listcount eq '0'}">
                            <tr><td colspan="5" style="text-align:center;">주문한 내역이 없습니다.<td><tr>
                         </c:if>
                         </tbody>
