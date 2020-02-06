@@ -160,7 +160,7 @@
 											</c:if>
 
 											<c:if test="${replycount > 0 }">
-											<c:forEach var="r" items="${replylist}">
+											<c:forEach var="r" items="${replylist}" varStatus="stat">
 											    <input type="hidden" name="no" value="${r.no}">
 			                                    <input type="hidden" name="num" value="${r.num}">
 												<input type="hidden" name="userid" value="${r.userid}">
@@ -187,12 +187,12 @@
 															<a
 																href="javascript:up('${r.no}','${r.num}','${r.userid}','${r.content}')">[수정]</a>
 																
-														<form:form modelAttribute="replyboard" action="deletereply.shop" enctype="multipart/form-data" name="f">
+														<form:form modelAttribute="replyboard" action="deletereply.shop" name="deleteform${stat.index}">
 														<input type="hidden" name="num" value="${r.num}" />
 														<input type="hidden" name="boardnum" value="${border.no}"/>
 														<input type="hidden" name="userid" value="${r.userid}"/>
 														<input type="hidden" name="tema" value="${border.tema}"/>													
-														<input type="submit" value="[삭제]">
+														<a href="#" onclick="document.deleteform${stat.index}.submit()">[삭제]</a>
 														</form:form>									
 														</c:if></td>
 												</tr>

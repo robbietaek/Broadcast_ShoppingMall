@@ -330,15 +330,9 @@
 									style="display: none; width: 1221px; height: 42px; float: none;"></div>
 							</div>
 						</div>
-
-
-
 						<div id="detailview" class="box mb-4 mt-4">
 							${item.description}</div>
-
-
-
-
+							
 						<div id="reviewview" class="box mb-4 mt-4">
 							<div class="d-flex justify-content-end">
 								<div class="col-sm-5 text-right">
@@ -350,32 +344,22 @@
 									</form>
 								</div>
 							</div>
-
-
 							리뷰칸
 							<form:form modelAttribute="review" action="review.shop" name="f">
-								<c:forEach var="error" items="${ fieldErrors }">
-									<div class="alert alert-warning">
-										<strong>${ error.getField() }</strong>: ${ error.getDefaultMessage() }
-									</div>
-								</c:forEach>
-								<form:textarea path="rev_content" cssClass="form-control"
-									rows="5" />
+							<div class="form-group">
+								<form:input path="rev_content" class="form-control"/>
+							</div>
 								<!-- 평점 선택창 -->
 								<form:label path="rating">평점: </form:label>
 								<form:select path="rating">
-									<form:options items="${ ratingOptions }" />
+									<form:options items="${ratingOptions}" />
 								</form:select>
-								<form:hidden path="itemid" />
-								<form:hidden path="userid" />
+								<form:hidden path="itemid" value="${param.itemid}"/>
+								<form:hidden path="userid" value="${param.userid}"/>
 								<button class="btn btn-block btn-primary" type="submit">리뷰
 									등록</button>
 							</form:form>
-						</div>
-
-
-
-						<table class="table table-stripped" id="reviews">
+							<table class="table table-stripped" id="reviewlist">
 							<thead>
 								<tr>
 									<th>Rating</th>
@@ -385,7 +369,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="r" items="${review}" varStatus="status">
+								<c:forEach var="r" items="${reviewlist}" varStatus="status">
 									<!-- 평점 기준 별표시 출력 -->
 									<tr>
 										<td><c:forEach var="rating" items="${ratingOptions}"
@@ -396,11 +380,9 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<div class="d-flex justify-content-center">
+							<div class="d-flex justify-content-center">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination">
-
-
 									<c:if test="${pageNum >1 }">
 										<li class="page-item"><a
 											href="sellingdetail.shop?userid=${param.userid}&tema=${item.tema}&itemid=${item.itemid}&pageNum=${pageNum-1}"
@@ -434,11 +416,12 @@
 									</c:if>
 								</ul>
 							</nav>
-						</div>
+						</div>							
+							
+						</div>					
+						
 
 						<div id="QAview" class="box mb-4 mt-4">Q&A칸</div>
-
-
 					</div>
 
 

@@ -216,7 +216,7 @@ public class ItemController {
 		}
 		int limit = 10; // 페이지당 보여지는 게시물 건수
 		int listcount = service.reviewcount(itemid); // 전체 등록된 게시물 건수
-		List<Review> itemList = service.reviewlist(pageNum, limit, itemid); // 건수만큼 보드 객체를 가져와
+		List<Review> reviewlist = service.reviewlist(pageNum, limit, itemid); // 건수만큼 보드 객체를 가져와
 		int maxpage = (int) ((double) listcount / limit + 0.95); // 마지막페이지, 최대페이지
 		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 보여지는 첫번째 페이지
 		int endpage = startpage + 9; // 보여지는 마지막 페이지
@@ -229,7 +229,7 @@ public class ItemController {
 		mav.addObject("startpage", startpage);
 		mav.addObject("endpage", endpage);
 		mav.addObject("listcount", listcount);
-		mav.addObject("review", itemList);
+		mav.addObject("reviewlist", reviewlist);
 
 		return mav;
 	}
@@ -515,14 +515,23 @@ public class ItemController {
 		return mav;
 	}
 
-	//리뷰//
+///////////////////////////////////	//리뷰///////////////////////////////////
 	@PostMapping("review")
-	public ModelAndView review(Review review) {
+	public ModelAndView review(Review review, HttpServletRequest request, Item item) {
 		ModelAndView mav = new ModelAndView();
-		service.review(review);
-		return null;
-	}
-
+		String visitid = (request.getParameter("userid"));
+		System.out.println(review);
+		try {
+            service.review(review,request);
+            mav.setViewName("redirect:sellingdetail.shop?userid="+visitid+"&tema="+item.getTema()+"&itemid="+item.getItemid());
+         }catch (Exception e) {
+            e.printStackTrace();
+            throw new BoardException
+               ("게시물 등록에 실패했습니다.","sellingdetail.shop?userid="+visitid+"&tema="+item.getTema()+"&itemid="+item.getItemid());
+         }
+            return mav;
+      }
+///////////////////////////////////////////////////////////
 	@RequestMapping(value="customer-order")
 	  ModelAndView customer_order(Integer pageNum, String searchtype, String searchcontent, HttpSession session) {
 	     ModelAndView mav = new ModelAndView();

@@ -14,7 +14,7 @@ public class Review {
    private Date rev_date;
    private int num;
    @NotNull
-    Integer rating; // 평점을 위한 필드추가
+   Integer rating; // 평점을 위한 필드추가
    public int getRev_id() {
       return rev_id;
    }
@@ -75,9 +75,4 @@ public class Review {
             + ", rev_content=" + rev_content + ", rev_score=" + rev_score + ", rev_date=" + rev_date + ", num="
             + num + ", rating=" + rating + "]";
    }
-   
-   
-   
-   
-   
 }

@@ -262,9 +262,10 @@ public class ShopService {
 	public void replyboardwrite(Replyboard replyboard, HttpServletRequest request) {
 		replyboardDao.grpstepadd(replyboard.getGrp(), replyboard.getGrpstep());
 		int max = replyboardDao.maxnum();
+		replyboard.setGrp(++max);
 //		replyboard.setGrplevel(replyboard.getGrplevel()+1);
 //		replyboard.setGrpstep(replyboard.getGrpstep()+1);
-		replyboard.setNum(++max);
+		replyboard.setNum(max);
 		replyboardDao.insert(replyboard);
 	}
     public void replyboardDelete(int num) {
@@ -314,8 +315,10 @@ public class ShopService {
 	
 	///////////////////////////////////////리뷰
 	//리뷰//
-	   public void review(Review review) {
-	      itemDao.review(review);
+	   public void review(Review review, HttpServletRequest request) {
+		  int max = itemDao.maxnum();
+		  ++max;
+	      itemDao.review(review,max);
 	   }
 
 	   public int reviewcount(String itemid) {
