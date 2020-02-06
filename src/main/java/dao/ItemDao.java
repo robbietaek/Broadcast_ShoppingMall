@@ -204,8 +204,11 @@ public class ItemDao {
 	}
 
 	
-	public void review(Review review) {
-	      sqlSession.getMapper(ItemMapper.class).create(review);
+	public void review(Review review, int max) {
+	    param.clear();
+	    param.put("rev_id", max);
+	    param.put("review", review);
+		sqlSession.getMapper(ItemMapper.class).create(param);
 	   }
 
 	   public int reviewcount(String itemid) {
@@ -241,6 +244,11 @@ public class ItemDao {
 		      param.put("buyerid", buyerid);
 		      return sqlSession.getMapper(ItemMapper.class).orderlist(param);
 		   }
+
+		public int maxnum() {
+			param.clear();
+			return sqlSession.getMapper(ItemMapper.class).maxnum();
+	}
 	
 	
 

@@ -150,7 +150,6 @@ public class BorderController {
    	   Border dbBorder = service.getBorder(border.getNo());
    	   String tema = request.getParameter("tema");
        String visitid = (request.getParameter("userid"));
-       System.out.println(visitid);
    	   try {
    		   service.borderDelete(border,request);
    		   mav.setViewName("redirect:list.shop?userid="+visitid+"&tema="+tema+"&no="+border.getNo());
@@ -167,6 +166,7 @@ public class BorderController {
       public ModelAndView replyboardwrite(Replyboard replyboard, HttpServletRequest request, BindingResult bresult, Border border) {
     	  ModelAndView mav = new ModelAndView();
           try {
+        	  
               service.replyboardwrite(replyboard,request);
               mav.setViewName("redirect:detail.shop?no="+border.getNo());
            }catch (Exception e) {

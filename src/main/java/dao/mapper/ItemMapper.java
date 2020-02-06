@@ -93,8 +93,8 @@ public interface ItemMapper {
 	Integer maxmonth(Map<String, Object> param);
 
 /////////////////////////////////////////리뷰///////////////////////////////////////
-	@Insert("INSERT INTO review (rev_content, itemid, userid, rating) VALUES (#{rev_content}, #{itemid}, #{userid}, #{rating})")
-	void create(Review review);
+	@Insert("INSERT INTO review (rev_content, itemid, userid, rating, rev_id) VALUES (#{review.rev_content}, #{review.itemid}, #{review.userid}, #{review.rating}, #{rev_id})")
+	void create(Map<String, Object> param);
 
 	@Select("select * from review where num=#{num}")
 	Review selectOne(Map<String, Object> param);
@@ -106,6 +106,9 @@ public interface ItemMapper {
 	@Select({ "<script>", "select count(*) from review ", "<if test = 'itemid!=null'> where itemid = #{itemid} </if>",
 			"</script>" })
 	int reviewcount(Map<String, Object> param);
+	
+	@Select("select ifnull(max(rev_id),0) from review")
+	int maxnum();
 
 	// 주문내역 갯수
 	@Select({"<script>",
@@ -122,4 +125,8 @@ public interface ItemMapper {
 	       " order by date desc limit #{startrow},#{limit} ",
 	       "</script>"})
 	   List<Itemmanagement> orderlist(Map<String, Object> param);
+
+	
+
+	
 }
