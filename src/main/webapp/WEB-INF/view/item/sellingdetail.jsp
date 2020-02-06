@@ -355,7 +355,7 @@
 									<form:options items="${ratingOptions}" />
 								</form:select>
 								<form:hidden path="itemid" value="${param.itemid}"/>
-								<form:hidden path="userid" value="${param.userid}"/>
+								<form:hidden path="userid" value="${sessionScope.loginUser.userid}"/>
 								<button class="btn btn-block btn-primary" type="submit">리뷰
 									등록</button>
 							</form:form>
