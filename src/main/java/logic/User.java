@@ -2,6 +2,7 @@ package logic;
 
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 public class User {
@@ -9,16 +10,24 @@ public class User {
    private String userid;
    @Size(min = 3, max = 20, message = "비밀번호는 3자 이상 20자 이하로 입력하세요.")
    private String pass;
+   @NotEmpty
    private String name;
+   @NotEmpty
    private String tel;
+   @NotEmpty
    private String age;
+   
    private MultipartFile profile;
    private String profileUrl;
+   
+   @NotEmpty
    private String email;
+   @NotEmpty
    private String nickname;
    private String card1;
    private String card2;
    private String year;
+   @NotEmpty
    private String zonecode;
    private String address1;
    private String address_etc;

@@ -400,5 +400,9 @@ public class ShopService {
 	      
 	      return itemDao.dipslist(pageNum,limit,searchtype,searchcontent,userid);
 	   }
+
+	public Itemmanagement getreturninformation(String saleid) {
+		return itemDao.getreturninformation(saleid);
+	}
 	
 }

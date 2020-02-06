@@ -38,7 +38,7 @@
 									class="nav-link">판매 등록</a></li>
 								<li class="nav-item"><a
 									href="selling.shop?userid=${sessionScope.loginUser.userid}"
-									class="nav-link">판매 등록 물품 관리</a></li>
+									class="nav-link active">판매 등록 물품 관리</a></li>
 								<li class="nav-item"><a
 									href="takeback.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">반품 신청 목록 관리</a></li>
@@ -124,6 +124,7 @@
 												class="btn btn-template-outlined btn-sm">Edit</a> 
 												<a href="sellingdelete.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
 												class="btn btn-template-outlined btn-sm">Delete</a>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>

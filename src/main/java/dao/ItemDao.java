@@ -343,6 +343,10 @@ public class ItemDao {
 		      return sqlSession.getMapper(ItemMapper.class).dipslist(param);
 		   }
 
+		public Itemmanagement getreturninformation(String saleid) {
+			return sqlSession.getMapper(ItemMapper.class).getreturninformation(saleid);
+		}
+
 		
 	
 	

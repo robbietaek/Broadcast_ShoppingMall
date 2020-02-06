@@ -33,9 +33,9 @@
 						</div>
 						<div class="panel-body">
 							<ul class="nav nav-pills flex-column text-sm">
-								<li class="nav-item"><a
+								<li class="nav-item "><a
 									href="sell.shop?userid=${sessionScope.loginUser.userid}"
-									class="nav-link">판매 등록</a></li>
+									class="nav-link active">판매 등록</a></li>
 								<li class="nav-item"><a
 									href="selling.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">판매 등록 물품 관리</a></li>

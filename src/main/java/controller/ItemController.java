@@ -263,7 +263,7 @@ public class ItemController {
 	}
 
 	@PostMapping("buying")
-	public ModelAndView buying(Itemmanagement im, String paytype) {
+	public ModelAndView buying(Itemmanagement im, String paytype, String quantity) {
 		ModelAndView mav = new ModelAndView();
 		int itemid = im.getItemid();
 		System.out.println(paytype);
@@ -280,7 +280,8 @@ public class ItemController {
 		im.setItemname(item.getItemname());
 		im.setTema(item.getTema());
 		service.buying(im);
-		mav.setViewName("redirect:/item/buyingcomplete.shop?itemid=" + item.getItemid());
+		mav.setViewName("redirect:/item/buyingcomplete.shop?itemid=" + item.getItemid()+"&userid="+item.getUserid()+
+				"&quantity="+quantity);
 		return mav;
 	}
 
@@ -309,10 +310,11 @@ public class ItemController {
 	}
 
 	@RequestMapping("buyingcomplete")
-	public ModelAndView buyingcomplete(String itemid) {
+	public ModelAndView buyingcomplete(String itemid,String quantity) {
 		ModelAndView mav = new ModelAndView();
 		Item item = service.getItem(itemid);
 		mav.addObject("item", item);
+		mav.addObject("quantity",quantity);
 		return mav;
 	}
 
@@ -636,7 +638,13 @@ public class ItemController {
 	  }
 	  
 	  
-	  
+	  @GetMapping(value="return0,return2,return4")
+	  public ModelAndView return0Form(String saleid) {
+	     ModelAndView mav = new ModelAndView();
+	     Itemmanagement im = service.getreturninformation(saleid);
+	     mav.addObject("im",im);
+	     return mav;
+	  }
 	  
 	  ////////////////////////// 결제 내역 /////////////////////////
 	  @RequestMapping(value="payment")

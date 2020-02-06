@@ -70,7 +70,6 @@ public interface ItemmanagementMapper {
 	    " order by date desc limit #{startrow},#{limit}",
 	    "</script>"})
 	List<Itemmanagement> getsellingcomplete(Map<String, Object> param);
-	
-	
+
 
 }
