@@ -106,99 +106,84 @@ public interface ItemMapper {
 	@Select({ "<script>", "select count(*) from review ", "<if test = 'itemid!=null'> where itemid = #{itemid} </if>",
 			"</script>" })
 	int reviewcount(Map<String, Object> param);
-	
+
 	@Select("select ifnull(max(rev_id),0) from review")
 	int maxnum();
 
 	// 주문내역 갯수
-	@Select({"<script>",
-	      "select count(*) from itemmanagement ",
-	      " <if test= 'buyerid!=null'> where buyerid = #{buyerid} and code=1 </if> ",
-	      " <if test= 'searchtype!=null'> and ${searchtype} like '%${searchcontent}%' </if> ",  
-	      "</script>"})
-	   int orderitem(Map<String, Object> param);
-	   
-	   // 주문내역 리스트
-	   @Select({"<script>",
-	      "select * from itemmanagement ",
-	       " <if test='buyerid != null'> where buyerid = #{buyerid} and code = 1 </if>",
-	       " <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%'</if>",
-	       " order by date desc limit #{startrow},#{limit} ",
-	       "</script>"})
-	   List<Itemmanagement> orderlist(Map<String, Object> param);
-	   
-	   @Select("select * from user where userid=#{saleid}")
-	   List<User> saleUser(Map<String, Object> param);
+	@Select({ "<script>", "select count(*) from itemmanagement ",
+			" <if test= 'buyerid!=null'> where buyerid = #{buyerid} and code=1 </if> ",
+			" <if test= 'searchtype!=null'> and ${searchtype} like '%${searchcontent}%' </if> ", "</script>" })
+	int orderitem(Map<String, Object> param);
 
-	   @Select("select * from itemmanagement where itemid=#{itemid} and saleid=#{saleid}")
-	   Itemmanagement itemmanagement(Map<String, Object> param);
+	// 주문내역 리스트
+	@Select({ "<script>", "select * from itemmanagement ",
+			" <if test='buyerid != null'> where buyerid = #{buyerid} and code = 1 </if>",
+			" <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%'</if>",
+			" order by date desc limit #{startrow},#{limit} ", "</script>" })
+	List<Itemmanagement> orderlist(Map<String, Object> param);
 
-	   @Delete("delete from itemmanagement where saleid=#{saleid}")
-	   int returndel(Map<String, Object> param);
+	@Select("select * from user where userid=#{saleid}")
+	List<User> saleUser(Map<String, Object> param);
 
-	   @Update("Update itemmanagement set code=3,reason=#{text} where saleid=#{saleid}")
-	   int retrunUpdate(Map<String, Object> param);
-	   //////////////////////////////////////////////////////////////////////////////////
-	   
-	   //////////////// 반품갯수 ////////////////////////////////////////////////////////////
-	   @Select({"<script>",
-	      "select count(*) from itemmanagement ",
-	      " <if test= 'userid != null'> where userid = #{userid} and code=3 </if> ",
-	      " <if test= 'searchtype!=null'> and ${searchtype} like '%${searchcontent}%' </if> ",  
-	      "</script>"})
-	   int takecount(Map<String, Object> param);
+	@Select("select * from itemmanagement where itemid=#{itemid} and saleid=#{saleid}")
+	Itemmanagement itemmanagement(Map<String, Object> param);
 
-	   @Select({"<script>",
-	      "select * from itemmanagement ",
-	       " <if test='userid != null'> where userid = #{userid} and code = 3 </if>",
-	       " <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%'</if>",
-	       " order by date desc limit #{startrow},#{limit} ",
-	       "</script>"})
-	   List<Itemmanagement> takelist(Map<String, Object> param);
-	   
-	   // 주문내역 취소
-	   /////////////////////////////////////////////////////////////////////////////////////////
-	   @Delete("delete from itemmanagement where buyerid=#{buyerid} and saleid=#{saleid}")
-	   int ordercancle(Map<String, Object> param);
+	@Delete("delete from itemmanagement where saleid=#{saleid}")
+	int returndel(Map<String, Object> param);
 
-	   // 결제 내역 갯수
-	   @Select({"<script>",
-	      "select count(*) from itemmanagement ",
-	      " <if test= 'userid != null'> where buyerid = #{userid} and code=2 </if> ",
-	      " <if test= 'searchtype!=null'> and ${searchtype} like '%${searchcontent}%' </if> ",  
-	      "</script>"})
-	   int paymentcnt(Map<String, Object> param);
+	@Update("Update itemmanagement set code=3,reason=#{text} where saleid=#{saleid}")
+	int retrunUpdate(Map<String, Object> param);
+	//////////////////////////////////////////////////////////////////////////////////
 
-	   
-	   @Select({"<script>",
-	      "select * from itemmanagement ",
-	       " <if test='userid != null'> where buyerid = #{userid} and code = 2 </if>",
-	       " <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%'</if>",
-	       " order by date desc limit #{startrow},#{limit} ",
-	       "</script>"})
-	   List<Itemmanagement> paymentlist(Map<String, Object> param);
+	//////////////// 반품갯수
+	//////////////// ////////////////////////////////////////////////////////////
+	@Select({ "<script>", "select count(*) from itemmanagement ",
+			" <if test= 'userid != null'> where userid = #{userid} and code=3 </if> ",
+			" <if test= 'searchtype!=null'> and ${searchtype} like '%${searchcontent}%' </if> ", "</script>" })
+	int takecount(Map<String, Object> param);
 
-	   
-	   // 찜 개수
-	   @Select({"<script>",
-	      "select count(*) from shopbasket ",
-	      " <if test= 'userid != null'> where userid = #{userid} </if> ",
-	      " <if test= 'searchtype!=null'> and ${searchtype} like '%${searchcontent}%' </if>",  
-	      "</script>"})
-	   int itemcnt(Map<String, Object> param);
+	@Select({ "<script>", "select * from itemmanagement ",
+			" <if test='userid != null'> where userid = #{userid} and code = 3 </if>",
+			" <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%'</if>",
+			" order by date desc limit #{startrow},#{limit} ", "</script>" })
+	List<Itemmanagement> takelist(Map<String, Object> param);
 
-	   @Select({"<script>",
-	      "select * from shopbasket ",
-	       " <if test='userid != null'> where userid = #{userid}</if>",
-	       " <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%'</if>",
-	       " order by date desc limit #{startrow},#{limit} ",
-	       "</script>"})
-	   List<Shopbasket> dipslist(Map<String, Object> param);
+	// 주문내역 취소
+	/////////////////////////////////////////////////////////////////////////////////////////
+	@Delete("delete from itemmanagement where buyerid=#{buyerid} and saleid=#{saleid}")
+	int ordercancle(Map<String, Object> param);
 
-	   @Select("select * from itemmanagement where saleid = #{saleid}")
-	   Itemmanagement getreturninformation(String saleid);
+	// 결제 내역 갯수
+	@Select({ "<script>", "select count(*) from itemmanagement ",
+			" <if test= 'userid != null'> where buyerid = #{userid} and code=2 </if> ",
+			" <if test= 'searchtype!=null'> and ${searchtype} like '%${searchcontent}%' </if> ", "</script>" })
+	int paymentcnt(Map<String, Object> param);
 
-	
+	@Select({ "<script>", "select * from itemmanagement ",
+			" <if test='userid != null'> where buyerid = #{userid} and code = 2 </if>",
+			" <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%'</if>",
+			" order by date desc limit #{startrow},#{limit} ", "</script>" })
+	List<Itemmanagement> paymentlist(Map<String, Object> param);
 
-	
+	// 찜 개수
+	@Select({ "<script>", "select count(*) from shopbasket ",
+			" <if test= 'userid != null'> where userid = #{userid} </if> ",
+			" <if test= 'searchtype!=null'> and ${searchtype} like '%${searchcontent}%' </if>", "</script>" })
+	int itemcnt(Map<String, Object> param);
+
+	@Select({ "<script>", "select * from shopbasket ", " <if test='userid != null'> where userid = #{userid}</if>",
+			" <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%'</if>",
+			" order by date desc limit #{startrow},#{limit} ", "</script>" })
+	List<Shopbasket> dipslist(Map<String, Object> param);
+
+	@Select("select * from itemmanagement where saleid = #{saleid}")
+	Itemmanagement getreturninformation(String saleid);
+
+	@Update("Update itemmanagement set code=2 where saleid=#{saleid}")
+	void approvetakeback(String saleid);
+
+	@Update("Update itemmanagement set code=4 where saleid=#{saleid}")
+	void denytakeback(String saleid);
+
 }

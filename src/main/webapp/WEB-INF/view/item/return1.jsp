@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/jspHeader.jsp"%>	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" 
+   src="http://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <link rel="stylesheet"
 	href="../shop/vendor/bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome CSS-->
@@ -39,7 +42,7 @@
 		<input type="hidden" name="saleid" value="${param.saleid }" />
 		<table class="table" style="width: 100%">
 			<tr>
-				<td style="width: 40%; text-align: center;">반품이름:</td>
+				<td style="width: 40%; text-align: center;">상품이름</td>
 				<td style="width: 60%; text-align: center;">${param.itemname }</td>
 			</tr>
 			<tr>

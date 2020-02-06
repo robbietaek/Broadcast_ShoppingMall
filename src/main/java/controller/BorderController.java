@@ -206,4 +206,18 @@ public class BorderController {
                }
             return mav;
        }
+      
+      @PostMapping("replyreply")
+      public ModelAndView replyreply(Replyboard replyboard, Border border, HttpServletRequest request) {
+         ModelAndView mav = new ModelAndView();
+         String tema = request.getParameter("tema");
+          String visitid = (request.getParameter("userid"));
+          try {
+             service.replyreply(replyboard,request);
+             mav.setViewName("redirect:detail.shop?userid="+visitid+"&tema="+tema+"&no="+border.getNo());
+          } catch(Exception e) {
+             e.printStackTrace();
+          }
+         return mav;         
+      }
 }

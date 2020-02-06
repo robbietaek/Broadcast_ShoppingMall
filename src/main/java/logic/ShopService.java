@@ -274,6 +274,25 @@ public class ShopService {
     public void ReplyboardUpdate(Replyboard replyboard, HttpServletRequest request) {
     	replyboardDao.update(replyboard);
 	}
+    
+    public void replyreply(Replyboard replyboard, HttpServletRequest request) {
+        int no = Integer.parseInt(request.getParameter("no"));
+        int num = Integer.parseInt(request.getParameter("num"));
+        int grp = Integer.parseInt(request.getParameter("grp"));
+        int grplevel = Integer.parseInt(request.getParameter("grplevel"));
+        int grpstep = Integer.parseInt(request.getParameter("grpstep"));
+        replyboard.setNo(no);
+        replyboard.setNum(num);
+        replyboard.setGrp(grp);
+        replyboard.setGrplevel(grplevel);
+        replyboard.setGrpstep(grpstep);
+        replyboardDao.grpstepadd(replyboard.getGrp(), replyboard.getGrpstep());
+        int max = replyboardDao.maxnum();
+        replyboard.setNum(++max);
+        replyboard.setGrplevel(replyboard.getGrplevel()+1);
+        replyboard.setGrpstep(replyboard.getGrpstep()+1);      
+        replyboardDao.replyreply(replyboard);
+     }
 	
 	//////////////////////////////////////////////////		방송		/////////////////////////////////////////////////////////
 	
@@ -403,6 +422,15 @@ public class ShopService {
 
 	public Itemmanagement getreturninformation(String saleid) {
 		return itemDao.getreturninformation(saleid);
+	}
+
+	public void approvetakeback(String saleid) {
+		itemDao.approvetakeback(saleid);
+	}
+
+	public void denytakeback(String saleid) {
+		itemDao.denytakeback(saleid);
+		
 	}
 	
 }

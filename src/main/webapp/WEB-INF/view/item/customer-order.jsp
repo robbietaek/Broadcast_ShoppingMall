@@ -10,7 +10,7 @@
    function openerReturn(saleid,itemname){
       var opleft = (window.screen.width / 2) - (400 / 2);
       var optop = (window.screen.height / 2) - (450 / 2);
-      newWindow = window.open("return1.shop?saleid="+saleid+"&itemname="+itemname,"return1","height=450, width=400, left="+ opleft +",top="+ optop +", resizable=yes"); 
+      newWindow = window.open("return1.shop?saleid="+saleid+"&itemname="+itemname,"return1","height=500, width=1000, left="+ opleft +",top="+ optop +", resizable=yes"); 
       
    }
 </script>
@@ -116,11 +116,14 @@
 														pattern="yyyy년MM월dd일 HH시mm분ss초" /></td>
 												<td><a
 													href="orderdetail.shop?buyerid=${sessionScope.loginUser.userid}&userid=${i.userid}&itemid=${i.itemid}&saleid=${i.saleid}"
-													class="btn btn-template-outlined btn-sm">배송조회</a> <a
+													class="btn btn-template-outlined btn-sm">배송조회</a> 
+													<a
 													href="ordercancle.shop?buyerid=${i.buyerid}&saleid=${i.saleid}"
-													class="btn btn-template-outlined btn-sm">취소하기</a> <a
-													href="ordercancle.shop?buyerid=${i.buyerid}&saleid=${i.saleid}"
-													class="btn btn-template-outlined btn-sm">반품하기</a></td>
+													class="btn btn-template-outlined btn-sm">취소하기</a> 
+													<a
+													href="#"
+													onclick="openerReturn(${i.saleid},'${i.itemname}')"
+													class="btn btn-template-outlined btn-sm">반품신청</a>
 											</tr>
 										</c:forEach>
 									</tbody>

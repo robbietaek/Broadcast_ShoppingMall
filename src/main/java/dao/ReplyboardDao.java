@@ -58,4 +58,8 @@ public class ReplyboardDao {
 	public void update(Replyboard replyboard) {
 		sqlSession.getMapper(ReplyboardMapper.class).update(replyboard);	
 	}
+
+	public void replyreply(Replyboard replyboard) {
+	      sqlSession.getMapper(ReplyboardMapper.class).insert(replyboard);
+	  }
 }

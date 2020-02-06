@@ -258,13 +258,12 @@
 												<div class="area_count holder">
 													<div class="option_btn_wrap" style="top: 0;">
 														<div class="option_btn_tools" style="float: none;">
-
 															<a href="javascript:countdown()"> <i
 																class="fa fa-minus" aria-hidden="true"></i> <span
 																class="sr-only">minus</span>
-															</a> <input type="text" title="number" value="1"
-																id="quantity" name="quantity"
-																class="form-control _order_count_mobile"> <a
+															</a> <form:input path="quantity" value="1"
+																class="form-control _order_count_mobile"/>
+																<font color="red"><form:errors path="quantity" /></font> <a
 																href="javascript:countup();"> <i class="fa fa-plus"
 																aria-hidden="true"></i> <span class="sr-only">plus</span>
 															</a>
@@ -279,14 +278,13 @@
 											</div>
 										</div>
 										<br>
-
 										<div class="opt_block total bottom">
 											<p class="no-margin text-right" style="height: 50px;">
 												<span class="body_font_color_70"> 총 상품금액(개)</span> <span
 													class="total_price text-right"> <a
 													style="color: grey;"> <fmt:formatNumber type="number"
 															maxFractionDigits="3"
-															value="${item.price*param.quantity+item.deliverycost}" />원
+															value="${item.price+item.deliverycost}" />원
 												</a>
 												</span>
 											</p>
