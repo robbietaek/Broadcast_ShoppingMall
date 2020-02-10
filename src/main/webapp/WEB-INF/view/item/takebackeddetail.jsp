@@ -162,17 +162,23 @@
                               </thead>
                            </table>
                         </div>
-
-					<c:if test="${sessionScope.loginUser.userid eq imt.buyerid }">
-                        <div
-                           class="box-footer d-flex justify-content-between align-items-center">
-                           <div class="left-col">
-                              <a href="payment.shop?userid=${imt.userid }"
-                                 class="btn btn-secondary mt-0"><i
-                                 class="fa fa-chevron-left"></i>결제 내역</a>
-                           </div>
+                        
+                         <div class="table-responsive">
+                           <h2>사유</h2>
+                           <table class="table">
+                              <thead>
+                                 <tr>
+                                    <td style="background: #4fbfa8; width: 20%">반품 사유</td>
+                                    <td style="width: 80%">${imt.reason }</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="background: #4fbfa8; width: 20%">반려 사유</td>
+                                    <td style="width: 80%">${imt.refuse }</td>
+                                 </tr>                                 
+                              </thead>
+                           </table>
                         </div>
-                     </c:if>
+
                      </form>
                   </div>
                </div>
@@ -183,7 +189,6 @@
                   <div class="box-header mt-0">
                      <h3>결제 내역</h3>
                   </div>
-                  <p class="text-muted">배송은 주말과 공휴일을 제외한 3-4일 정도 소요될 수 있습니다.</p>
                   <div class="table-responsive">
                      <table class="table">
                         <tbody>

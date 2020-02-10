@@ -4,19 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>판매완료 리스트</title>
+<title>반품완료 리스트</title>
 </head>
 <body>
 	<div id="heading-breadcrumbs">
 		<div class="container">
 			<div class="row d-flex align-items-center flex-wrap">
 				<div class="col-md-7">
-					<h1 class="h2">판매완료 리스트</h1>
+					<h1 class="h2">반품완료 리스트</h1>
 				</div>
 				<div class="col-md-5">
 					<ul class="breadcrumb d-flex justify-content-end">
 						<li class="breadcrumb-item"><a href="../shop/index.shop?userid=${sessionScope.loginUser.userid }">Home</a></li>
-						<li class="breadcrumb-item active">판매완료 리스트</li>
+						<li class="breadcrumb-item active">반품완료 리스트</li>
 					</ul>
 				</div>
 			</div>
@@ -50,10 +50,10 @@
 									class="nav-link">Q&A 관리</a></li>
 								<li class="nav-item"><a
 									href="sellingcomplete.shop?userid=${sessionScope.loginUser.userid}"
-									class="nav-link active">판매된 목록</a></li>
+									class="nav-link">판매된 목록</a></li>
 								<li class="nav-item"><a
 									href="takebacked.shop?userid=${sessionScope.loginUser.userid}"
-									class="nav-link">반품/취소된 목록</a></li>
+									class="nav-link active">반품/취소된 목록</a></li>
 							</ul>
 						</div>
 					</div>
@@ -118,8 +118,8 @@
 											<td>${fn:substring(i.itemname,0,10)}</td>
 											<td><fmt:formatDate value="${i.date}"
 													pattern="yyyy년MM월dd일 HH시mm분ss초" /></td>
-											<td><a href="orderdetail.shop?buyerid=${i.buyerid}&userid=${i.userid}&itemid=${i.itemid}&saleid=${i.saleid}"
-												class="btn btn-template-outlined btn-sm">조회</a> 
+											<td><a href="takebackeddetail.shop?buyerid=${i.buyerid}&userid=${i.userid}&itemid=${i.itemid}&saleid=${i.saleid}"
+												class="btn btn-template-outlined btn-sm">사유 조회</a> 
 										</tr>
 									</c:forEach>
 								</tbody>

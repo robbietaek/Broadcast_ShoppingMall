@@ -47,15 +47,26 @@ public class ItemController {
 	}
 
 	@GetMapping("sell") // 화면뿌려주기
-	public ModelAndView sellForm() {
+	public ModelAndView mypagesellForm(String userid, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
+		
 		mav.addObject(new Item());
 		return mav;
 	}
 
 	@PostMapping("sell") // 유효성검증 및 데이터 전달
-	public ModelAndView sell(@Valid Item item, BindingResult bresult, HttpSession session, HttpServletRequest request) {
+	public ModelAndView mypagesell(@Valid Item item, BindingResult bresult, HttpServletRequest request,String userid, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
+		
 		User user = (User) session.getAttribute("loginUser");
 		if (bresult.hasErrors()) { // 에러가 있을 시
 			mav.getModel().putAll(bresult.getModel());
@@ -67,7 +78,14 @@ public class ItemController {
 	}
 
 	@RequestMapping("selling")
-	public ModelAndView list(Integer pageNum, String searchtype, String searchcontent, HttpSession session) {
+	public ModelAndView mypagelist(Integer pageNum, String searchtype, String searchcontent,String userid, HttpSession session) {
+
+
+		User sessionidid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionidid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionidid.getUserid());
+		}
+		
 		// itemList : item테이블의 모든 레코드와 모든 컬럼을 정보를 저장
 		User user = (User) session.getAttribute("loginUser");
 		String sessionid = user.getUserid();
@@ -109,7 +127,11 @@ public class ItemController {
 	}
 
 	@GetMapping("sellingedit")
-	public ModelAndView sellingeditForm(String itemid) {
+	public ModelAndView mypagesellingeditForm(String itemid, String userid, HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
 		ModelAndView mav = new ModelAndView();
 		Item item = service.getItem(itemid);
 		mav.addObject("item", item);
@@ -117,7 +139,13 @@ public class ItemController {
 	}
 
 	@PostMapping("sellingedit")
-	public ModelAndView sellingedit(@Valid Item item, BindingResult bresult, HttpServletRequest request) {
+	public ModelAndView mypagesellingedit(@Valid Item item, BindingResult bresult, HttpServletRequest request, String userid, HttpSession session) {
+		
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
+		
 		ModelAndView mav = new ModelAndView();
 		if (bresult.hasErrors()) {
 			mav.getModel().putAll(bresult.getModel());
@@ -129,7 +157,11 @@ public class ItemController {
 	}
 
 	@GetMapping("sellingdelete")
-	public ModelAndView delete(String itemid) {
+	public ModelAndView mypagedelete(String itemid,String userid, HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
 		ModelAndView mav = new ModelAndView();
 		service.itemDelete(itemid);
 		mav.setViewName("redirect:/item/selling.shop");
@@ -186,8 +218,8 @@ public class ItemController {
 	}
 
 	@RequestMapping("sellingdetail")
-	public ModelAndView sellingdetailForm(Integer pageNum, Integer num, String itemid, HttpSession session,
-			HttpServletRequest request) {
+	public ModelAndView sellingdetailForm(Integer pageNum, Integer num, String itemid,
+			HttpServletRequest request, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		Item item = service.getItem(itemid);
 
@@ -342,7 +374,13 @@ public class ItemController {
 	}
 
 	@RequestMapping(value = "state")
-	public ModelAndView state(String userid, String year) {
+	public ModelAndView mypagestate(String userid, String year, HttpSession session) {
+		
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
+		
 		ModelAndView mav = new ModelAndView();
 		if (year.equals("")) {
 			mav.setViewName("redirect:ENull.shop");
@@ -375,8 +413,11 @@ public class ItemController {
 
 	@RequestMapping(value = "state1")
 	@ResponseBody
-	public ModelAndView state1(String userid, String year) {
-		System.out.println("state1입니다.");
+	public ModelAndView mypagestate1(String userid, String year, HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
 		String[] month = { "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" };
 		ModelAndView mav = new ModelAndView();
 		String maxyear = service.getmaxYear(userid);
@@ -393,51 +434,13 @@ public class ItemController {
 		return mav;
 	}
 
-	@RequestMapping("delivery")
-	public ModelAndView deliverylist(Integer pageNum, String searchtype, String searchcontent, HttpSession session) {
-		User user = (User) session.getAttribute("loginUser");
-		String sessionid = user.getUserid();
-		ModelAndView mav = new ModelAndView();
-
-		if (pageNum == null || pageNum.toString().equals("")) {
-			pageNum = 1;
-		}
-		if (searchtype != null && searchtype.trim().equals("")) { // 입력내용 띄어쓰기?
-			searchtype = null;
-		}
-		if (searchcontent != null && searchcontent.trim().equals("")) {
-			searchcontent = null;
-		}
-		if (searchtype == null || searchcontent == null) { // 두개다 있어야지 검색되게
-			searchtype = null;
-			searchcontent = null;
-		}
-
-		int limit = 10; // 페이지당 보여지는 게시물 건수
-		int listcount = service.getItemmanagementcount(searchtype, searchcontent, sessionid); // 전체 등록된 게시물 건수
-		List<Itemmanagement> itemList = service.getItemmangement(pageNum, limit, searchtype, searchcontent, sessionid); // 건수만큼
-																														// 보드
-																														// 객체를
-																														// 가져와
-		int maxpage = (int) ((double) listcount / limit + 0.95); // 마지막페이지, 최대페이지
-		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 보여지는 첫번째 페이지
-		int endpage = startpage + 9; // 보여지는 마지막 페이지
-		if (endpage > maxpage) { // end 페이지가 max 페이지를 넘지 못하도록
-			endpage = maxpage;
-		}
-		int itemno = listcount - (pageNum - 1) * limit; // 화면에 출력되는 게시물 번호 (가짜번호)
-		mav.addObject("pageNum", pageNum);
-		mav.addObject("maxpage", maxpage);
-		mav.addObject("startpage", startpage);
-		mav.addObject("endpage", endpage);
-		mav.addObject("listcount", listcount);
-		mav.addObject("itemList", itemList);
-		mav.addObject("itemno", itemno);
-		return mav;
-	}
 
 	@RequestMapping("takeback")
-	public ModelAndView takebacklist(Integer pageNum, String searchtype, String searchcontent, HttpSession session) {
+	public ModelAndView mypagetakebacklist(Integer pageNum, String searchtype, String searchcontent, String userid, HttpSession session) {
+		User sessionidid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionidid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionidid.getUserid());
+		}
 		User user = (User) session.getAttribute("loginUser");
 		String sessionid = user.getUserid();
 		ModelAndView mav = new ModelAndView();
@@ -480,8 +483,15 @@ public class ItemController {
 	}
 
 	@RequestMapping("sellingcomplete")
-	public ModelAndView sellingcompletelist(Integer pageNum, String searchtype, String searchcontent,
+	public ModelAndView mypagesellingcompletelist(Integer pageNum, String searchtype, String searchcontent,String userid,
 			HttpSession session) {
+		
+
+		User sessionidid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionidid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionidid.getUserid());
+		}
+		
 		User user = (User) session.getAttribute("loginUser");
 		String sessionid = user.getUserid();
 		ModelAndView mav = new ModelAndView();
@@ -520,6 +530,101 @@ public class ItemController {
 		mav.addObject("itemno", itemno);
 		return mav;
 	}
+	
+	
+	@RequestMapping("takebacked")
+	public ModelAndView mypagetakebackedlist(Integer pageNum, String searchtype, String searchcontent,String userid,
+			HttpSession session) {
+		
+
+		User sessionidid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionidid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionidid.getUserid());
+		}
+		
+		User user = (User) session.getAttribute("loginUser");
+		String sessionid = user.getUserid();
+		ModelAndView mav = new ModelAndView();
+
+		if (pageNum == null || pageNum.toString().equals("")) {
+			pageNum = 1;
+		}
+		if (searchtype != null && searchtype.trim().equals("")) { // 입력내용 띄어쓰기?
+			searchtype = null;
+		}
+		if (searchcontent != null && searchcontent.trim().equals("")) {
+			searchcontent = null;
+		}
+		if (searchtype == null || searchcontent == null) { // 두개다 있어야지 검색되게
+			searchtype = null;
+			searchcontent = null;
+		}
+
+		int limit = 10; // 페이지당 보여지는 게시물 건수
+		int listcount = service.gettakebackedcount(searchtype, searchcontent, sessionid); // 전체 등록된 게시물 건수
+		List<Itemmanagement> itemList = service.gettakebacked(pageNum, limit, searchtype, searchcontent,
+				sessionid); // 건수만큼 보드 객체를 가져와
+		int maxpage = (int) ((double) listcount / limit + 0.95); // 마지막페이지, 최대페이지
+		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 보여지는 첫번째 페이지
+		int endpage = startpage + 9; // 보여지는 마지막 페이지
+		if (endpage > maxpage) { // end 페이지가 max 페이지를 넘지 못하도록
+			endpage = maxpage;
+		}
+		int itemno = listcount - (pageNum - 1) * limit; // 화면에 출력되는 게시물 번호 (가짜번호)
+		mav.addObject("pageNum", pageNum);
+		mav.addObject("maxpage", maxpage);
+		mav.addObject("startpage", startpage);
+		mav.addObject("endpage", endpage);
+		mav.addObject("listcount", listcount);
+		mav.addObject("itemList", itemList);
+		mav.addObject("itemno", itemno);
+		return mav;
+	}
+	
+	@RequestMapping(value = "takebackeddetail")
+	public ModelAndView mypagetakebackeddetail(String userid, String buyerid, String itemid, String saleid, HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
+		ModelAndView mav = new ModelAndView();
+
+		// 판매자 정보
+		User saleUser = service.getsaleUser(userid);
+
+		// 내 정보
+		User myUser = service.getUser(buyerid);
+
+		// 주소 설정
+		String address[] = myUser.getAddress().split(",");
+		String address1 = address[0] + address[1] + address[2];
+
+		// 주문된 아이템
+		Item item = service.getItem(itemid);
+
+		// 주문된 아이템 정보
+		Itemmanagement imt = service.getItemmangement(itemid, saleid);
+		System.out.println(imt);
+		String payment[] = imt.getPayment().split(",");
+
+		if (payment[0].equals("1")) {
+			mav.addObject("code", payment[0]);
+			mav.addObject("payment1", payment[1]);
+			mav.addObject("payment2", payment[2]);
+			mav.addObject("payment3", payment[3]);
+
+		} else {
+			mav.addObject("code", payment[0]);
+			mav.addObject("payment1", payment[1]);
+			mav.addObject("payment2", payment[2]);
+		}
+		mav.addObject("address1", address1);
+		mav.addObject("imt", imt);
+		mav.addObject("item", item);
+		mav.addObject("myUser", myUser);
+		mav.addObject("saleUser", saleUser);
+		return mav;
+	}
 
 ///////////////////////////////////	//리뷰///////////////////////////////////
 	@PostMapping("review")
@@ -541,9 +646,16 @@ public class ItemController {
 
 ///////////////////////////////////////////////////////////
 	@RequestMapping(value = "customer-order")
-	public ModelAndView customer_order(Integer pageNum, String searchtype, String searchcontent, HttpSession session) {
+	public ModelAndView mypagecustomer_order(Integer pageNum, String searchtype, String searchcontent,String userid,  HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
 		ModelAndView mav = new ModelAndView();
 		User user = (User) session.getAttribute("loginUser");
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		Date day = new Date();
+		String now = format.format(day);
 		String buyerid = user.getUserid();
 		if (pageNum == null || pageNum.toString().equals("")) {
 			pageNum = 1;
@@ -569,7 +681,7 @@ public class ItemController {
 		if (endpage > maxpage) { // end 페이지가 max 페이지를 넘지 못하도록
 			endpage = maxpage;
 		}
-
+		mav.addObject("now",now);
 		mav.addObject("pageNum", pageNum);
 		mav.addObject("maxpage", maxpage);
 		mav.addObject("startpage", startpage);
@@ -584,7 +696,11 @@ public class ItemController {
 	//////////////////////////// 주문 내역 자세히
 	//////////////////////////// //////////////////////////////////////////////
 	@RequestMapping(value = "orderdetail")
-	public ModelAndView orderdetail(String userid, String buyerid, String itemid, String saleid) {
+	public ModelAndView mypageorderdetail(String userid, String buyerid, String itemid, String saleid, HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
 		ModelAndView mav = new ModelAndView();
 
 		// 판매자 정보
@@ -625,7 +741,11 @@ public class ItemController {
 	}
 
 	@RequestMapping(value = "ordercancle")
-	public ModelAndView orderCancle(String buyerid, String saleid) {
+	public ModelAndView mypageorderCancle(String buyerid, String saleid, String userid, HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
 		ModelAndView mav = new ModelAndView();
 		System.out.println(buyerid + "," + saleid);
 		service.getordercancle(buyerid, saleid);
@@ -635,7 +755,11 @@ public class ItemController {
 	}
 
 	@RequestMapping(value = "return2")
-	public ModelAndView return1(String saleid, String text) {
+	public ModelAndView mypagereturn1(String saleid, String text, String userid, HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
 		ModelAndView mav = new ModelAndView();
 		service.getreturnUpdate(saleid, text);
 		mav.setViewName("redirect:/item/return3.shop");
@@ -643,7 +767,11 @@ public class ItemController {
 	}
 
 	@GetMapping(value = "return0")
-	public ModelAndView return0Form(String saleid) {
+	public ModelAndView mypagereturn0Form(String saleid, String userid, HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
 		ModelAndView mav = new ModelAndView();
 		System.out.println(saleid);
 		Itemmanagement im = service.getreturninformation(saleid);
@@ -653,13 +781,21 @@ public class ItemController {
 
 	@PostMapping(value = "approvetakeback", produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String approvetakeback(String saleid) {
+	public String approvetakeback(String saleid,String userid, HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
 		service.approvetakeback(saleid);
 		return "<script> alert('승인되었습니다.');\n self.close();</script>";
 	}
 
 	@GetMapping("denytakeback")
-	public ModelAndView denytakebackForm(String saleid) {
+	public ModelAndView mypagedenytakebackForm(String saleid, String userid, HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
 		ModelAndView mav = new ModelAndView();
 		System.out.println(saleid);
 		Itemmanagement im = service.getreturninformation(saleid);
@@ -669,17 +805,25 @@ public class ItemController {
 	
 	@PostMapping(value = "denytakeback", produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String denytakeback(String saleid, String refuse) {
+	public String denytakeback(String saleid, String refuse,String userid, HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
 		service.denytakeback(saleid, refuse);
 		return "<script> alert('반려되었습니다.');\n self.close();</script>";
 	}
 
 	////////////////////////// 결제 내역 /////////////////////////
 	@RequestMapping(value = "payment")
-	public ModelAndView payment(Integer pageNum, String searchtype, String searchcontent, HttpSession session) {
+	public ModelAndView mypagepayment(Integer pageNum, String searchtype, String searchcontent,String userid,HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
 		ModelAndView mav = new ModelAndView();
 		User user = (User) session.getAttribute("loginUser");
-		String userid = user.getUserid();
+		String userids = user.getUserid();
 
 		if (pageNum == null || pageNum.toString().equals("")) {
 			pageNum = 1;
@@ -696,8 +840,8 @@ public class ItemController {
 		}
 
 		int limit = 10;
-		int paymentcount = service.getpaymentcnt(searchtype, searchcontent, userid);
-		List<Itemmanagement> paymentlist = service.paymentlist(pageNum, limit, searchtype, searchcontent, userid);
+		int paymentcount = service.getpaymentcnt(searchtype, searchcontent, userids);
+		List<Itemmanagement> paymentlist = service.paymentlist(pageNum, limit, searchtype, searchcontent, userids);
 		int itemno = paymentcount - (pageNum - 1) * limit; // 화면에 출력되는 게시물 번호 (가짜번호)
 		int maxpage = (int) ((double) paymentcount / limit + 0.95); // 마지막페이지, 최대페이지
 		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 보여지는 첫번째 페이지
@@ -716,10 +860,14 @@ public class ItemController {
 	}
 
 	@RequestMapping(value = "customer-wishlist")
-	public ModelAndView item(Integer pageNum, String searchtype, String searchcontent, HttpSession session) {
+	public ModelAndView mypageitem(Integer pageNum, String searchtype, String searchcontent, String userid,HttpSession session) {
+		User sessionid = (User)session.getAttribute("loginUser");
+		if(!userid.equals(sessionid.getUserid())) {
+			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionid.getUserid());
+		}
 		ModelAndView mav = new ModelAndView();
 		User user = (User) session.getAttribute("loginUser");
-		String userid = user.getUserid();
+		String userids = user.getUserid();
 
 		if (pageNum == null || pageNum.toString().equals("")) {
 			pageNum = 1;
@@ -736,8 +884,8 @@ public class ItemController {
 		}
 
 		int limit = 8;
-		int dipscnt = service.getitemcnt(searchtype, searchcontent, userid);
-		List<Shopbasket> dipslist = service.dipslist(pageNum, limit, searchtype, searchcontent, userid);
+		int dipscnt = service.getitemcnt(searchtype, searchcontent, userids);
+		List<Shopbasket> dipslist = service.dipslist(pageNum, limit, searchtype, searchcontent, userids);
 
 		for (Shopbasket s : dipslist) {
 			s.setItem(service.getItem(Integer.toString(s.getItemid())));

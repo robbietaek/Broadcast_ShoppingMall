@@ -8,10 +8,10 @@
 <script type="text/javascript">
    var newWindow
    
-   function openerReturn0(saleid,itemname){
+   function openerReturn0(saleid,itemname,userid){
 	      var opleft = (window.screen.width / 2) - (400 / 2);
 	      var optop = (window.screen.height / 2) - (450 / 2);
-	      newWindow = window.open("return0.shop?saleid="+saleid+"&itemname="+itemname,"return0","height=500, width=800, left="+ opleft +",top="+ optop +", resizable=yes"); 
+	      newWindow = window.open("return0.shop?&userid="+userid+"&saleid="+saleid+"&itemname="+itemname,"return0","height=500, width=800, left="+ opleft +",top="+ optop +", resizable=yes"); 
 	      
 	   }
 
@@ -54,9 +54,6 @@
 									href="takeback.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link active">반품 신청 목록 관리</a></li>
 								<li class="nav-item"><a
-									href="delivery.shop?userid=${sessionScope.loginUser.userid}"
-									class="nav-link">배송 관리</a></li>
-								<li class="nav-item"><a
 									href="state.shop?userid=${sessionScope.loginUser.userid}&year=${sessionScope.loginUser.year}"
 									class="nav-link">판매 통계</a></li>
 								<li class="nav-item"><a
@@ -66,7 +63,7 @@
 									href="sellingcomplete.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">판매된 목록</a></li>
 								<li class="nav-item"><a
-									href=".shop?userid=${sessionScope.loginUser.userid}"
+									href="takebacked.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">반품/취소된 목록</a></li>
 							</ul>
 						</div>
@@ -135,7 +132,7 @@
 											<td>
 											<a
 													href="#"
-													onclick="openerReturn0(${i.saleid},'${i.itemname}')"
+													onclick="openerReturn0(${i.saleid},'${i.itemname}','${i.userid}')"
 													class="btn btn-template-outlined btn-sm">사유조회</a>
 										</tr>
 									</c:forEach>

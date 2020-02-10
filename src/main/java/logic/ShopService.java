@@ -436,5 +436,14 @@ public class ShopService {
 	public List<Item> itemlist(String userid) {
 		return itemDao.itemlist(userid);
 	}
+
+	public int gettakebackedcount(String searchtype, String searchcontent, String sessionid) {
+		return itemDao.gettakebackedcount(searchtype, searchcontent, sessionid);
+	}
+
+	public List<Itemmanagement> gettakebacked(Integer pageNum, int limit, String searchtype, String searchcontent,
+			String sessionid) {
+		return itemDao.gettakebacked(pageNum, limit, searchtype, searchcontent,sessionid);
+	}
 	
 }
