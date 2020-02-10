@@ -64,21 +64,19 @@ public class UserDao {
 
 
 
-	public int broadcastcount(String searchtype, String searchcontent, String tema) {
+	public int broadcastcount(String searchtype, String searchcontent) {
 		param.clear();
 		param.put("searchtype", searchtype);
 		param.put("searchcontent", searchcontent);
-		param.put("tema", tema);
 		return sqlSession.getMapper(UserMapper.class).broadcastcount(param);
 	}
 
-	public List<User> broadcastlist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
+	public List<User> broadcastlist(Integer pageNum, int limit, String searchtype, String searchcontent) {
 		param.clear();
 		param.put("startrow", (pageNum - 1) * limit);
 		param.put("limit", limit);
 		param.put("searchtype", searchtype);
 		param.put("searchcontent", searchcontent);
-		param.put("tema",tema);
 		return sqlSession.getMapper(UserMapper.class).broadcastselect(param);
 	}
 

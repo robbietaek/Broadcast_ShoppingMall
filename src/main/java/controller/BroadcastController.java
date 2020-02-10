@@ -53,8 +53,8 @@ public class BroadcastController {
 		}
 
 		int limit = 12; // 페이지당 보여지는 게시물 건수
-		int listcount = service.broadcastcount(searchtype, searchcontent, tema); // 전체 등록된 게시물 건수
-		List<User> userList = service.broadcastlist(pageNum, limit, searchtype, searchcontent, tema); // 건수만큼 보드 객체를 가져와
+		int listcount = service.broadcastcount(searchtype, searchcontent); // 전체 등록된 게시물 건수
+		List<User> userList = service.broadcastlist(pageNum, limit, searchtype, searchcontent); // 건수만큼 보드 객체를 가져와
 		int maxpage = (int) ((double) listcount / limit + 0.95); // 마지막페이지, 최대페이지
 		int startpage = (int) ((pageNum / 10.0 + 0.9) - 1) * 10 + 1; // 보여지는 첫번째 페이지
 		int endpage = startpage + 9; // 보여지는 마지막 페이지

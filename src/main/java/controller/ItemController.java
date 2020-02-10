@@ -669,8 +669,8 @@ public class ItemController {
 	
 	@PostMapping(value = "denytakeback", produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String denytakeback(String saleid) {
-		service.denytakeback(saleid);
+	public String denytakeback(String saleid, String refuse) {
+		service.denytakeback(saleid, refuse);
 		return "<script> alert('반려되었습니다.');\n self.close();</script>";
 	}
 

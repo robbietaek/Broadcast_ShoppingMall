@@ -297,13 +297,13 @@ public class ShopService {
 	//////////////////////////////////////////////////		방송		/////////////////////////////////////////////////////////
 	
 	//리스트 잠시 띄울 예정
-	public int broadcastcount(String searchtype, String searchcontent, String tema) {
-		return userDao.broadcastcount(searchtype, searchcontent, tema);
+	public int broadcastcount(String searchtype, String searchcontent) {
+		return userDao.broadcastcount(searchtype, searchcontent);
 	}
 	
 	//리스트 잠시 띄울 예정
-	public List<User> broadcastlist(Integer pageNum, int limit, String searchtype, String searchcontent, String tema) {
-		return userDao.broadcastlist(pageNum, limit, searchtype, searchcontent, tema);
+	public List<User> broadcastlist(Integer pageNum, int limit, String searchtype, String searchcontent) {
+		return userDao.broadcastlist(pageNum, limit, searchtype, searchcontent);
 	}
 
 	public String getmaxYear(String userid) {
@@ -428,8 +428,8 @@ public class ShopService {
 		itemDao.approvetakeback(saleid);
 	}
 
-	public void denytakeback(String saleid) {
-		itemDao.denytakeback(saleid);
+	public void denytakeback(String saleid, String refuse) {
+		itemDao.denytakeback(saleid,refuse);
 		
 	}
 
