@@ -54,7 +54,7 @@
 			</tr>
 			<tr>
 				<td style="width: 40%; text-align: center;">반려사유:</td>
-				<td style="width: 60%;"><textarea name="text"
+				<td style="width: 60%;"><textarea name="refuse"
 						style="outline-color: #4fbfa8;" cols="30" rows="14" id="comment"></textarea>
 					<script>
 						CKEDITOR.replace("comment", {

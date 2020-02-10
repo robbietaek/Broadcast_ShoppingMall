@@ -163,56 +163,7 @@ function logoutWithNaver(){
 		</div>
 		<!-- Top bar end-->
 		<div class="row bar">
-			<div class="col-md-2">
-				<!-- MENUS AND FILTERS-->
-				<div class="panel panel-default sidebar-menu">
-					<div class="panel-heading">
-						<h3 class="h4 panel-title">메뉴</h3>
-					</div>
-					<div class="panel-body">
-						<ul class="nav nav-pills flex-column text-sm category-menu">
-							<li class="nav-item"><a
-								href="../item/shop-category-left.shop"
-								class="nav-link d-flex align-items-center justify-content-between"><span>Live
-								</span><span class="badge badge-secondary">여기 방송 전체수</span></a>
-								<ul class="nav nav-pills flex-column">
-									<li class="nav-item"><a
-										href="../broadcast/index.shop" class="nav-link">전체</a></li>
-									<li class="nav-item"><a
-										href="../broadcast/index.shop?tema=game" class="nav-link">게임</a></li>
-									<li class="nav-item"><a
-										href="../broadcast/index.shop?tema=sports" class="nav-link">스포츠</a></li>
-									<li class="nav-item"><a
-										href="../broadcast/index.shop?tema=bora" class="nav-link">보이는라디오</a></li>
-									<li class="nav-item"><a
-										href="../broadcast/index.shop?tema=politics" class="nav-link">정치
-											/ 시사</a></li>
-								</ul></li>
-							<li class="nav-item"><a href="../broadcast/vodreplay.shop"
-								class="nav-link active d-flex align-items-center justify-content-between"><span>VOD
-								</span></a>
-								<ul class="nav nav-pills flex-column">
-									<li class="nav-item"><a
-										href="../broadcast/vodreplay.shop" class="nav-link">인기
-											순위</a></li>
-									<li class="nav-item"><a
-										href="../broadcast/vodreplay.shop" class="nav-link">최신
-											VOD</a></li>
-								</ul></li>
-							<li class="nav-item"><a href="shop-category-left.shop"
-								class="nav-link d-flex align-items-center justify-content-between"><span>즐겨찾기
-								</span><span class="badge badge-secondary">11</span></a>
-								<ul class="nav nav-pills flex-column">
-									<li class="nav-item"><a
-										href="../broadcast/game.shop" class="nav-link">Live</a></li>
-									<li class="nav-item"><a
-										href="../broadcast/game.shop" class="nav-link">Wait</a></li>
-								</ul></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-10">
+			<div class="col-md-12">
 				<decorator:body />
 			</div>
 		</div>

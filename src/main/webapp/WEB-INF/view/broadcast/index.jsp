@@ -25,98 +25,7 @@
 <body>
 	<div id="content">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<section
-						style="background: url('../shop/img/photogrid.jpg') center center repeat; background-size: cover;"
-						class="relative-positioned">
-						<!-- Carousel Start-->
-						<div class="home-carousel">
-							<div class="dark-mask mask-primary"></div>
-							<div class="container">
-								<div class="homepage owl-carousel">
-									<div class="item">
-										<div class="row">
-											<div class="col-md-5 text-right">
-												<p>
-													<img src="../shop/img/logo.png" alt="" class="ml-auto">
-												</p>
-												<h1>NIKE</h1>
-												<p>
-													Newer 신상품<br>가벼운 착용감. 세련된 디자인.<br> 다양한 색상. 합리적인
-													가격.
-												</p>
-											</div>
-											<div class="col-md-7">
-												<img
-													src="https://cdn.pixabay.com/photo/2015/07/27/18/53/jump-863058_1280.jpg"
-													alt="" class="img-fluid">
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="row">
-											<div class="col-md-7 text-center">
-												<img
-													src="https://cdn.pixabay.com/photo/2018/03/26/19/49/food-3263812_1280.jpg"
-													alt="" class="img-fluid">
-											</div>
-											<div class="col-md-5">
-												<h2>ADIDAS</h2>
-												<ul class="list-unstyled">
-													<li>We love soccer!</li>
-													<li>Together for a long time!</li>
-													<li>Google maps, Forms, Megamenu, CSS3 Animations and
-														much more</li>
-													<li>+ 11 extra pages showing template features</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="row">
-											<div class="col-md-5 text-right">
-												<h1>CONVERSE</h1>
-												<ul class="list-unstyled">
-													<li>Clean and elegant design</li>
-													<li>Easily matched with all clothing!</li>
-													<li>Easily readable Roboto font and awesome icons</li>
-													<li>7 preprepared colour variations</li>
-												</ul>
-											</div>
-											<div class="col-md-7">
-												<img
-													src="https://cdn.pixabay.com/photo/2015/09/05/22/28/converse-925773_1280.jpg"
-													alt="" class="img-fluid">
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="row">
-											<div class="col-md-7">
-												<img
-													src="https://cdn.pixabay.com/photo/2016/11/03/18/19/social-media-1795578_1280.jpg"
-													alt="" class="img-fluid">
-											</div>
-											<div class="col-md-5">
-												<h1>Let's share!</h1>
-												<ul class="list-unstyled">
-													<li>7 preprepared colour variations.</li>
-													<li>Easily to change fonts</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Carousel End-->
-					</section>
-				</div>
-			</div>
-			<br>
-			
-			
+
 			<div class="row">
 				<div class="col-md-12">
 					<div class="d-flex justify-content-end">
@@ -127,8 +36,9 @@
 									<input type="hidden" name="pageNum" value="1"> <select
 										name="searchtype" style="width: 100px">
 										<option value="">검색</option>
-										<option value="itemname">물품명</option>
-										<option value="date">등록일</option>
+										<option value="userid">아이디</option>
+										<option value="name">이름</option>
+										<option value="nickname">닉네임</option>
 									</select>
 									<script>
 										searchform.searchtype.value = "${param.searchtype}";
@@ -151,7 +61,7 @@
 					<div class="row products products-big">
 
 						<c:forEach items="${userList}" var="u">
-							<div class="col-lg-2 col-md-6">
+							<div class="col-lg-4 col-md-6">
 								<div class="product">
 									<div class="image">
 										<a href="../shop/index.shop?userid=${u.userid}"><img
@@ -214,8 +124,5 @@
 		</div>
 	</div>
 
-
-
-	</div>
 </body>
 </html>
