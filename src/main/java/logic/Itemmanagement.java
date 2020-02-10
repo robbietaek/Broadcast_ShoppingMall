@@ -28,6 +28,7 @@ public class Itemmanagement {
 	private String deliverymessage;
 	private String payment;
 	private String reason;
+	private String refuse;
 	private Date date;
 	public int getSaleid() {
 		return saleid;
@@ -119,6 +120,12 @@ public class Itemmanagement {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+	public String getRefuse() {
+		return refuse;
+	}
+	public void setRefuse(String refuse) {
+		this.refuse = refuse;
+	}
 	public Date getDate() {
 		return date;
 	}
@@ -131,6 +138,9 @@ public class Itemmanagement {
 				+ ", code=" + code + ", subject=" + subject + ", itemname=" + itemname + ", tema=" + tema
 				+ ", quantity=" + quantity + ", price=" + price + ", delivery=" + delivery + ", deliverycost="
 				+ deliverycost + ", deliverymessage=" + deliverymessage + ", payment=" + payment + ", reason=" + reason
-				+ ", date=" + date + "]";
+				+ ", refuse=" + refuse + ", date=" + date + "]";
 	}
+	
+	
+
 }
