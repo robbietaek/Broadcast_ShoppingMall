@@ -38,6 +38,7 @@
 <body>
 	<form action="approvetakeback.shop" method="post">
 		<input type="hidden" name="saleid" value="${im.saleid }" />
+		<input type = "hidden" name = "userid" value = "${im.userid }"> 
 		<table class="table" style="width: 100%">
 			<tr>
 				<td style="width: 40%; text-align: center;">유저 아이디</td>
@@ -72,7 +73,7 @@
 					style="width: 100%; margin: auto;" type="submit" value="승인" /></td>
 
 				<td><input class="btn btn-template-outlined btn-sm"
-					style="width: 100%; margin: auto;" type="button" onclick = "location.href = 'denytakeback.shop?saleid=${im.saleid}'" value="반려" /></td>
+					style="width: 100%; margin: auto;" type="button" onclick = "location.href = 'denytakeback.shop?saleid=${im.saleid}&userid=${im.userid}'" value="반려" /></td>
 			</tr>
 		</table>
 	</form>

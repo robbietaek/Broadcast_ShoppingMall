@@ -71,5 +71,20 @@ public interface ItemmanagementMapper {
 	    "</script>"})
 	List<Itemmanagement> getsellingcomplete(Map<String, Object> param);
 
+	@Select({"<script>",
+		"select count(*) from itemmanagement ",
+		"<if test = 'sessionid!=null'> where userid = #{sessionid} and code = 4 </if>",
+		"<if test = 'searchtype!=null'> and ${searchtype} like '%${searchcontent}%' </if>",
+		"</script>"})
+	int gettakebackedcount(Map<String, Object> param);
+
+	@Select({"<script>",
+	    "select * from itemmanagement ",
+	    " <if test='sessionid!= null'> where userid = #{sessionid} and code = 4 </if>",
+	    " <if test='searchtype != null'> and ${searchtype} like '%${searchcontent}%'</if>",
+	    " order by date desc limit #{startrow},#{limit}",
+	    "</script>"})
+	List<Itemmanagement> gettakebacked(Map<String, Object> param);
+
 
 }

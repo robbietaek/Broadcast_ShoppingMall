@@ -93,16 +93,43 @@
 </script>
 
 <script>
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
 	function countup() {
-		var cnt = $('#quantity').val()
-		result = (Number(cnt) + 1);
-		$('#quantity').val(result)
+		var cnt = $('#quantity').val();
+	      var price = ${item.price};
+	      result = (Number(cnt) + 1);
+	      result1 = price * result;
+	      result2 = price * result + ${item.deliverycost};
+	      $('#quantity').val(result);
+	      $('#price').text(numberWithCommas(result1)+'원');
+	      $('#total').text(numberWithCommas(result2)+'원');
+	      if(result == 2){
+	         $('#minus').unbind('click');
+	      }
+	      if(result == 10){
+	         
+	         $('#plus').bind('click',false);
+	      }
 	}
 
 	function countdown() {
-		var cnt = $('#quantity').val()
-		result = (Number(cnt) - 1);
-		$('#quantity').val(result)
+		var cnt = $('#quantity').val();
+	      var price = ${item.price};
+	      result = (Number(cnt) - 1);
+	      result1 = price * result;
+	      result2 = price * result + ${item.deliverycost};
+	      $('#quantity').val(result);
+	      $('#price').text(numberWithCommas(result1)+'원');
+	      $('#total').text(numberWithCommas(result2)+'원');
+	      if(result == 9){
+	         $('#plus').unbind('click');
+	      }
+	      if(result == 1){
+	         $('#minus').on('click',false);
+	      }
 	}
 </script>
 </head>
@@ -258,19 +285,20 @@
 												<div class="area_count holder">
 													<div class="option_btn_wrap" style="top: 0;">
 														<div class="option_btn_tools" style="float: none;">
-															<a href="javascript:countdown()"> <i
+															<a id="minus" href="javascript:countdown()"> <i
 																class="fa fa-minus" aria-hidden="true"></i> <span
 																class="sr-only">minus</span>
 															</a> <form:input path="quantity" value="1"
 																class="form-control _order_count_mobile"/>
 																<font color="red"><form:errors path="quantity" /></font> <a
+																id="plus"
 																href="javascript:countup();"> <i class="fa fa-plus"
 																aria-hidden="true"></i> <span class="sr-only">plus</span>
 															</a>
 														</div>
 														<div
 															class="area_price absolute absolute_right absolute_middle">
-															<span><fmt:formatNumber type="number"
+															<span id="price"><fmt:formatNumber type="number"
 																	maxFractionDigits="3" value="${item.price}" />원</span>
 														</div>
 													</div>
@@ -281,6 +309,7 @@
 										<div class="opt_block total bottom">
 											<p class="no-margin text-right" style="height: 50px;">
 												<span class="body_font_color_70"> 총 상품금액(개)</span> <span
+													id="total"
 													class="total_price text-right"> <a
 													style="color: grey;"> <fmt:formatNumber type="number"
 															maxFractionDigits="3"

@@ -38,15 +38,14 @@
 									class="nav-link">판매 등록 물품 관리</a></li>
 								<li class="nav-item"><a href="takeback.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">반품 신청 목록 관리</a></li>
-								<li class="nav-item"><a href="delivery.shop?userid=${sessionScope.loginUser.userid}"
-									class="nav-link">배송 관리</a></li>
 								<li class="nav-item"><a href="state.shop?userid=${sessionScope.loginUser.userid}&year=${sessionScope.loginUser.year}"
 									class="nav-link">판매 통계</a></li>
 								<li class="nav-item"><a href="qna.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link active">Q&A 관리</a></li>
 								<li class="nav-item"><a href="sellingcomplete.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">판매된 목록</a></li>
-								<li class="nav-item"><a href=".shop?userid=${sessionScope.loginUser.userid}"
+								<li class="nav-item"><a
+									href="takebacked.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">반품/취소된 목록</a></li>
 							</ul>
 						</div>

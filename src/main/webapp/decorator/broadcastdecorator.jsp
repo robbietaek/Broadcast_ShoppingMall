@@ -143,7 +143,7 @@ function logoutWithNaver(){
 								</c:if>
 								<c:if test="${!empty sessionScope.loginUser}">
 									 <a href="../shop/index.shop?userid=${sessionScope.loginUser.userid}" class="signup-btn"> <i
-										class="fa fa-user"></i> <span class="d-none d-md-inline-block">내 방송국 가기</span></a>
+										class="fa fa-user"></i> <span class="d-none d-md-inline-block">내 쇼핑몰 가기</span></a>
 									 <a href="../shop/mypage.shop?userid=${sessionScope.loginUser.userid}" class="signup-btn"> <i
 										class="fa fa-user"></i> <span class="d-none d-md-inline-block">Mypage</span></a>										
 									<c:if test="${fn:substring(sessionScope.loginUser.userid,0,2) eq 'n*'}">                    

@@ -40,6 +40,7 @@
 <body>
 	<form id="f" method="post" action="return2.shop">
 		<input type="hidden" name="saleid" value="${param.saleid }" />
+		<input type="hidden" name="userid" value="${sessionScope.loginUser.userid}" />
 		<table class="table" style="width: 100%">
 			<tr>
 				<td style="width: 40%; text-align: center;">상품이름</td>

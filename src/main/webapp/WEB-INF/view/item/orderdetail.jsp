@@ -163,14 +163,16 @@
                            </table>
                         </div>
 
+					<c:if test="${sessionScope.loginUser.userid eq imt.buyerid }">
                         <div
                            class="box-footer d-flex justify-content-between align-items-center">
                            <div class="left-col">
-                              <a href="payment.shop"
+                              <a href="payment.shop?userid=${imt.userid }"
                                  class="btn btn-secondary mt-0"><i
                                  class="fa fa-chevron-left"></i>결제 내역</a>
                            </div>
                         </div>
+                     </c:if>
                      </form>
                   </div>
                </div>
@@ -207,22 +209,6 @@
                         </tbody>
                      </table>
                   </div>
-               </div>
-               <div class="box box mt-0 mb-4 p-0">
-                  <div class="box-header mt-0">
-                     <h4>쿠폰 등록</h4>
-                  </div>
-                  <p class="text-muted">쿠폰이 있다면 아래에 코드를 등록해주시기 바랍니다.</p>
-                  <form>
-                     <div class="input-group">
-                        <input type="text" class="form-control"><span
-                           class="input-group-btn">
-                           <button type="button" class="btn btn-template-main">
-                              <i class="fa fa-gift"></i>
-                           </button>
-                        </span>
-                     </div>
-                  </form>
                </div>
             </div>
          

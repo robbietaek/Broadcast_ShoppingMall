@@ -43,9 +43,6 @@
 									href="takeback.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">반품 신청 목록 관리</a></li>
 								<li class="nav-item"><a
-									href="delivery.shop?userid=${sessionScope.loginUser.userid}"
-									class="nav-link">배송 관리</a></li>
-								<li class="nav-item"><a
 									href="state.shop?userid=${sessionScope.loginUser.userid}&year=${sessionScope.loginUser.year}"
 									class="nav-link">판매 통계</a></li>
 								<li class="nav-item"><a
@@ -55,7 +52,7 @@
 									href="sellingcomplete.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link active">판매된 목록</a></li>
 								<li class="nav-item"><a
-									href=".shop?userid=${sessionScope.loginUser.userid}"
+									href="takebacked.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link">반품/취소된 목록</a></li>
 							</ul>
 						</div>
@@ -121,10 +118,8 @@
 											<td>${fn:substring(i.itemname,0,10)}</td>
 											<td><fmt:formatDate value="${i.date}"
 													pattern="yyyy년MM월dd일 HH시mm분ss초" /></td>
-											<td><a href="sellingdetail.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
-												class="btn btn-template-outlined btn-sm">승인</a> 
-												<a href="sellingedit.shop?userid=${sessionScope.loginUser.userid}&tema=${i.tema}&itemid=${i.itemid}"
-												class="btn btn-template-outlined btn-sm">반려</a> 
+											<td><a href="orderdetail.shop?buyerid=${i.buyerid}&userid=${i.userid}&itemid=${i.itemid}&saleid=${i.saleid}"
+												class="btn btn-template-outlined btn-sm">조회</a> 
 										</tr>
 									</c:forEach>
 								</tbody>

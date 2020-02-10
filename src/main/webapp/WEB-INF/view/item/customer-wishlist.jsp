@@ -34,10 +34,10 @@
                 </div>
                 <div class="panel-body">
                   <ul class="nav nav-pills flex-column text-sm">
-                    <li class="nav-item"><a href="customer-order.shop" class="nav-link"><i class="fa fa-list"></i> 주문 내역</a></li>
-                    <li class="nav-item"><a href="customer-wishlist.shop" class="nav-link active"><i class="fa fa-heart"></i> 찜한 상품</a></li>
-                    <li class="nav-item"><a href="payment.shop" class="nav-link"><i class="fa fa-user"></i> 결제 내역</a></li>
-                    <li class="nav-item"><a href="deliverysearch.shop" class="nav-link"><i class="fa fa-sign-out"></i>배송조회</a></li>
+                    <li class="nav-item"><a href="customer-order.shop?userid=${sessionScope.loginUser.userid}" class="nav-link"><i class="fa fa-list"></i> 주문 내역</a></li>
+                    <li class="nav-item"><a href="customer-wishlist.shop?userid=${sessionScope.loginUser.userid}" class="nav-link active"><i class="fa fa-heart"></i> 찜한 상품</a></li>
+                    <li class="nav-item"><a href="payment.shop?userid=${sessionScope.loginUser.userid}" class="nav-link"><i class="fa fa-user"></i> 결제 내역</a></li>
+                    <li class="nav-item"><a href="deliverysearch.shop?userid=${sessionScope.loginUser.userid}" class="nav-link"><i class="fa fa-sign-out"></i>배송조회</a></li>
                   </ul>
                 </div>
               </div>

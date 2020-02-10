@@ -363,6 +363,25 @@ public class ItemDao {
 			return sqlSession.getMapper(ItemMapper.class).itemlist(userid);
 		}
 
+		public int gettakebackedcount(String searchtype, String searchcontent, String sessionid) {
+			param.clear();
+			param.put("searchtype", searchtype);
+			param.put("searchcontent", searchcontent);
+			param.put("sessionid", sessionid);
+			return sqlSession.getMapper(ItemmanagementMapper.class).gettakebackedcount(param);
+		}
+
+		public List<logic.Itemmanagement> gettakebacked(Integer pageNum, int limit, String searchtype,
+				String searchcontent, String sessionid) {
+			param.clear();
+			param.put("startrow", (pageNum - 1) * limit);
+			param.put("limit", limit);
+			param.put("searchtype", searchtype);
+			param.put("searchcontent", searchcontent);
+			param.put("sessionid",sessionid);
+			return sqlSession.getMapper(ItemmanagementMapper.class).gettakebacked(param);
+		}
+
 		
 	
 	

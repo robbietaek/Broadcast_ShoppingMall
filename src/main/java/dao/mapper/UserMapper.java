@@ -36,7 +36,7 @@ public interface UserMapper {
 	@Select({"<script>",
 	    "select userid, name, pass, tel, age, address, email, profile profileUrl, nickname, card1, card2 from user ",
 	    " <if test='searchtype != null'> where ${searchtype} like '%${searchcontent}%' </if>",
-	    " order by userid desc limit #{startrow},#{limit}",
+	    " order by rand() desc limit #{startrow},#{limit}",
 	    "</script>"})
 	List<User> broadcastselect(Map<String, Object> param);	
 	

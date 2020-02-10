@@ -7,10 +7,10 @@
 <title>구매자 페이지</title>
 <script type="text/javascript">
    var newWindow
-   function openerReturn(saleid,itemname){
+   function openerReturn(saleid,itemname,userid){
       var opleft = (window.screen.width / 2) - (400 / 2);
       var optop = (window.screen.height / 2) - (450 / 2);
-      newWindow = window.open("return1.shop?saleid="+saleid+"&itemname="+itemname,"return1","height=500, width=1000, left="+ opleft +",top="+ optop +", resizable=yes"); 
+      newWindow = window.open("return1.shop?saleid="+saleid+"&itemname="+itemname+"&userid="+userid,"return1","height=500, width=1000, left="+ opleft +",top="+ optop +", resizable=yes"); 
       
    }
 </script>
@@ -43,13 +43,17 @@
 						</div>
 						<div class="panel-body">
 							<ul class="nav nav-pills flex-column text-sm">
-								<li class="nav-item"><a href="customer-order.shop"
+								<li class="nav-item"><a
+									href="customer-order.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link active"><i class="fa fa-list"></i> 주문 내역</a></li>
-								<li class="nav-item"><a href="customer-wishlist.shop"
+								<li class="nav-item"><a
+									href="customer-wishlist.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link"><i class="fa fa-heart"></i> 찜한 상품</a></li>
-								<li class="nav-item"><a href="payment.shop"
+								<li class="nav-item"><a
+									href="payment.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link"><i class="fa fa-user"></i> 결제 내역</a></li>
-								<li class="nav-item"><a href="deliverysearch.shop"
+								<li class="nav-item"><a
+									href="deliverysearch.shop?userid=${sessionScope.loginUser.userid}"
 									class="nav-link"><i class="fa fa-sign-out"></i>배송조회</a></li>
 							</ul>
 						</div>
@@ -100,7 +104,7 @@
 										<th>카테고리</th>
 										<th>물품명</th>
 										<th>등록 날짜</th>
-										<th>배송조회/취소하기/반품하기</th>
+										<th>배송조회/취소하기(1일 이내)/반품하기</th>
 									</tr>
 								</thead>
 
@@ -116,13 +120,18 @@
 														pattern="yyyy년MM월dd일 HH시mm분ss초" /></td>
 												<td><a
 													href="orderdetail.shop?buyerid=${sessionScope.loginUser.userid}&userid=${i.userid}&itemid=${i.itemid}&saleid=${i.saleid}"
-													class="btn btn-template-outlined btn-sm">배송조회</a> 
-													<a
-													href="ordercancle.shop?buyerid=${i.buyerid}&saleid=${i.saleid}"
-													class="btn btn-template-outlined btn-sm">취소하기</a> 
-													<a
-													href="#"
-													onclick="openerReturn(${i.saleid},'${i.itemname}')"
+													class="btn btn-template-outlined btn-sm">상세보기</a> 
+													
+													<fmt:formatDate
+														value="${i.date}" pattern="yyyyMMdd" var="da" /> <c:if
+														test="${now-da<1 }">
+														<a
+															href="ordercancle.shop?buyerid=${i.buyerid}&saleid=${i.saleid}&userid=${sessionScope.loginUser.userid}"
+															class="btn btn-template-outlined btn-sm">취소하기</a>
+													</c:if> 
+													
+													<a href="#"
+													onclick="openerReturn(${i.saleid},'${i.itemname}','${i.userid}')"
 													class="btn btn-template-outlined btn-sm">반품신청</a>
 											</tr>
 										</c:forEach>
