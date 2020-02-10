@@ -352,7 +352,10 @@ public class ItemDao {
 		}
 
 		public void denytakeback(String saleid, String refuse) {
-			sqlSession.getMapper(ItemMapper.class).denytakeback(saleid,refuse);
+			param.clear();
+			param.put("saleid", saleid);
+			param.put("refuse",refuse);
+			sqlSession.getMapper(ItemMapper.class).denytakeback(param);
 			
 		}
 

@@ -184,7 +184,7 @@ public interface ItemMapper {
 	void approvetakeback(String saleid);
 
 	@Update("Update itemmanagement set code=4, refuse = #{refuse} where saleid=#{saleid}")
-	void denytakeback(String saleid, String refuse);
+	void denytakeback(Map<String, Object> param);
 
 	@Select("select itemid, userid, itemname, price, description, "+
 			"picture1 pictureUrl1, picture2 pictureUrl2, picture3 pictureUrl3, picture4 pictureUrl4, picture5 pictureUrl5, "+
