@@ -19,7 +19,7 @@
 		}
 	}
 	function recom(no, num, grp, grplevel, grpstep) {
-		location.href = "reply.shop?no=" + no + "&num=" + num + "&grp=" + grp
+		location.href = "replyreply.shop?no=" + no + "&num=" + num + "&grp=" + grp
 				+ "&grplevel=" + grplevel + "&grpstep=" + grpstep;
 	}
 </script>
