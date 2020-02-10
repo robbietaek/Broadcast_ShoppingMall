@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/jspHeader.jsp"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,57 +13,17 @@
           <div class="dark-mask mask-primary"></div>
           <div class="container">
             <div class="homepage owl-carousel">
+            <c:forEach items="${itemlist }" var="item" begin="0" end="3">
               <div class="item">
                 <div class="row">
                   <div class="col-md-5 text-right">
-                    <h1>TOY</h1>
-                    <p>귀여운 양 친구
-                    <br>친환경 소재로 만들어서 아이들에게 부담이 없어요!
-                    <br>합리적인 가격으로 만나보세요.</p>
+                    <h1>${item.subject}</h1>
+                    <p>${item.itemname }</p>
                   </div>
-                  <div class="col-md-7"><img src="../shop/img/sheep.jpg" alt="" class="img-fluid"></div>
+                  <div class="col-md-7"><img src="../item/img/${item.pictureUrl1}" alt="" class="img-fluid" style = "height : 400px;"></div>
                 </div>
               </div>
-              <div class="item">
-                <div class="row">
-                  <div class="col-md-7 text-center"><img src="../shop/img/manicure.jpg" alt="" class="img-fluid"></div>
-                  <div class="col-md-5">
-                    <h2>BEAUTY</h2>
-                    <ul class="list-unstyled">
-                      <li>다양한 색상</li>
-                      <li>지속력이 좋아요</li>
-                      <li>발림성이 좋아서 초보자분들도 어렵지 않게 바를 수 있어요</li>
-                      <li>color : red, hotpink, babypink, beige, yellow, silver, wine</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="row">
-                  <div class="col-md-5 text-right">
-                    <h1>FOOD</h1>
-                    <ul class="list-unstyled">
-                      <li></li>
-                      <li>Easily matched with all clothing!</li>
-                      <li>Easily readable Roboto font and awesome icons</li>
-                      <li>7 preprepared colour variations</li>
-                    </ul>
-                  </div>
-                  <div class="col-md-7"><img src="../shop/img/pizza.jpg" alt="" class="img-fluid"></div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="row">
-                  <div class="col-md-7"><img src="../shop/img/cat2.jpg" alt="" class="img-fluid"></div>
-                  <div class="col-md-5">
-                    <h1>Let's share!</h1>
-                    <ul class="list-unstyled">
-                      <li>7 preprepared colour variations.</li>
-                      <li>Easily to change fonts</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+            </c:forEach>              
             </div>
           </div>
         </div>
@@ -76,159 +37,25 @@
                 <h3>PRODUCTS</h3>
               </div>
               <div class="row portfolio text-center no-space">
+              <c:forEach items="${itemlist}" begin="0" end="11" var="item">
                 <div class="col-md-4">
                   <div class="box-image">
-                    <div class="image"><img src="img/${item.pictureUrl1}" alt="" class="img-fluid">
+                    <div class="image"><img src="../item/img/${item.pictureUrl1 }" alt="" class="img-fluid" style = "height : 300px;">
                       <div class="overlay d-flex align-items-center justify-content-center">
                         <div class="content">
                           <div class="name">
-                            <h3><a href="" class="color-white">Portfolio item</a></h3>
+                            <h3><a href="" class="color-white">${item.itemid }</a></h3>
                           </div>
                           <div class="text">
-                            <p class="d-none d-sm-block">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                            <p class="buttons"><a href="../item/shop-detail.shop" class="btn btn-template-outlined-white">View</a></p>
+                            <p class="d-none d-sm-block">${fn:substring(item.description,0,10)}</p>
+                            <p class="buttons"><a href="../item/sellingdetail.shop?userid=${item.userid}&tema=${item.tema}&itemid=${item.itemid}" class="btn btn-template-outlined-white">View</a></p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="box-image">
-                    <div class="image"><img src="../shop/img/portfolio-2.jpg" alt="" class="img-fluid">
-                      <div class="overlay d-flex align-items-center justify-content-center">
-                        <div class="content">
-                          <div class="name">
-                            <h3><a href="portfolio-detail.shop" class="color-white">Portfolio item</a></h3>
-                          </div>
-                          <div class="text">
-                            <p class="d-none d-sm-block">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                            <p class="buttons"><a href="../item/shop-detail.shop" class="btn btn-template-outlined-white">View</a></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="box-image">
-                    <div class="image"><img src="../shop/img/portfolio-3.jpg" alt="" class="img-fluid">
-                      <div class="overlay d-flex align-items-center justify-content-center">
-                        <div class="content">
-                          <div class="name">
-                            <h3><a href="portfolio-detail.shop" class="color-white">Portfolio item</a></h3>
-                          </div>
-                          <div class="text">
-                            <p class="d-none d-sm-block">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                            <p class="buttons"><a href="../item/shop-detail.shop" class="btn btn-template-outlined-white">View</a></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="box-image">
-                    <div class="image"><img src="../shop/img/portfolio-4.jpg" alt="" class="img-fluid">
-                      <div class="overlay d-flex align-items-center justify-content-center">
-                        <div class="content">
-                          <div class="name">
-                            <h3><a href="portfolio-detail.shop" class="color-white">Portfolio item</a></h3>
-                          </div>
-                          <div class="text">
-                            <p class="d-none d-sm-block">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                            <p class="buttons"><a href="../item/shop-detail.shop" class="btn btn-template-outlined-white">View</a></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="box-image">
-                    <div class="image"><img src="../shop/img/portfolio-5.jpg" alt="" class="img-fluid">
-                      <div class="overlay d-flex align-items-center justify-content-center">
-                        <div class="content">
-                          <div class="name">
-                            <h3><a href="portfolio-detail.shop" class="color-white">Portfolio item</a></h3>
-                          </div>
-                          <div class="text">
-                            <p class="d-none d-sm-block">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                            <p class="buttons"><a href="../item/shop-detail.shop" class="btn btn-template-outlined-white">View</a></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="box-image">
-                    <div class="image"><img src="../shop/img/portfolio-6.jpg" alt="" class="img-fluid">
-                      <div class="overlay d-flex align-items-center justify-content-center">
-                        <div class="content">
-                          <div class="name">
-                            <h3><a href="portfolio-detail.shop" class="color-white">Portfolio item</a></h3>
-                          </div>
-                          <div class="text">
-                            <p class="d-none d-sm-block">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                            <p class="buttons"><a href="../item/shop-detail.shop" class="btn btn-template-outlined-white">View</a></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="box-image">
-                    <div class="image"><img src="../shop/img/portfolio-7.jpg" alt="" class="img-fluid">
-                      <div class="overlay d-flex align-items-center justify-content-center">
-                        <div class="content">
-                          <div class="name">
-                            <h3><a href="portfolio-detail.shop" class="color-white">Portfolio item</a></h3>
-                          </div>
-                          <div class="text">
-                            <p class="d-none d-sm-block">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                            <p class="buttons"><a href="../item/shop-detail.shop" class="btn btn-template-outlined-white">View</a></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="box-image">
-                    <div class="image"><img src="../shop/img/portfolio-9.jpg" alt="" class="img-fluid">
-                      <div class="overlay d-flex align-items-center justify-content-center">
-                        <div class="content">
-                          <div class="name">
-                            <h3><a href="portfolio-detail.shop" class="color-white">Portfolio item</a></h3>
-                          </div>
-                          <div class="text">
-                            <p class="d-none d-sm-block">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                            <p class="buttons"><a href="../item/shop-detail.shop" class="btn btn-template-outlined-white">View</a></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="box-image">
-                    <div class="image"><img src="../shop/img/portfolio-8.jpg" alt="" class="img-fluid">
-                      <div class="overlay d-flex align-items-center justify-content-center">
-                        <div class="content">
-                          <div class="name">
-                            <h3><a href="portfolio-detail.shop" class="color-white">Portfolio item</a></h3>
-                          </div>
-                          <div class="text">
-                            <p class="d-none d-sm-block">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                            <p class="buttons"><a href="../item/shop-detail.shop" class="btn btn-template-outlined-white">View</a></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                </c:forEach>
               </div>
               <div class="see-more text-center"><a href="../item/category.shop?userid=${sessionScope.loginUser.userid}" class="btn btn-template-outlined">상품 더보기</a></div>
             </div>

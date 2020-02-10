@@ -173,31 +173,31 @@
 									<c:if test="${!empty item.pictureUrl1}">
 										<button class="owl-thumb-item">
 											<img src="img/${item.pictureUrl1}" alt="" class="img-fluid"
-												style="width: 85px; height: 85px">
+												style="height: 85px">
 										</button>
 									</c:if>
 									<c:if test="${!empty item.pictureUrl2}">
 										<button class="owl-thumb-item">
 											<img src="img/${item.pictureUrl2}" alt="" class="img-fluid"
-												style="width: 85px; height: 85px">
+												style="height: 85px">
 										</button>
 									</c:if>
 									<c:if test="${!empty item.pictureUrl3}">
 										<button class="owl-thumb-item">
 											<img src="img/${item.pictureUrl3}" alt="" class="img-fluid"
-												style="width: 85px; height: 85px">
+												style="height: 85px">
 										</button>
 									</c:if>
 									<c:if test="${!empty item.pictureUrl4}">
 										<button class="owl-thumb-item">
 											<img src="img/${item.pictureUrl4}" alt="" class="img-fluid"
-												style="width: 85px; height: 85px">
+												style="height: 85px">
 										</button>
 									</c:if>
 									<c:if test="${!empty item.pictureUrl5}">
 										<button class="owl-thumb-item">
 											<img src="img/${item.pictureUrl5}" alt="" class="img-fluid"
-												style="width: 85px; height: 85px">
+												style="height: 85px">
 										</button>
 									</c:if>
 								</div>
@@ -422,56 +422,6 @@
 						<div id="QAview" class="box mb-4 mt-4">Q&A칸</div>
 					</div>
 
-
-					<div class="row">
-						<div class="col-lg-3 col-md-6">
-							<div class="box text-uppercase mt-0 mb-small">
-								<h3>함께 보면 좋은 상품</h3>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="product">
-								<div class="image">
-									<a href="#"><img src="../shop/img/product2.jpg" alt=""
-										class="img-fluid image1"></a>
-								</div>
-								<div class="text">
-									<h3 class="h5">
-										<a href="../item/shop-detail.shop">기본 티</a>
-									</h3>
-									<p class="price">￦21000</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="product">
-								<div class="image">
-									<a href="#"><img src="../shop/img/product3.jpg" alt=""
-										class="img-fluid image1"></a>
-								</div>
-								<div class="text">
-									<h3 class="h5">
-										<a href="../item/shop-detail.shop">토끼 헤어밴드</a>
-									</h3>
-									<p class="price">￦12000</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="product">
-								<div class="image">
-									<a href="#"><img src="../shop/img/product1.jpg" alt=""
-										class="img-fluid image1"></a>
-								</div>
-								<div class="text">
-									<h3 class="h5">
-										<a href="../item/shop-detail.shop">퍼 코트</a>
-									</h3>
-									<p class="price">￦85000</p>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
