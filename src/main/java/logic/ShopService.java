@@ -432,5 +432,9 @@ public class ShopService {
 		itemDao.denytakeback(saleid);
 		
 	}
+
+	public List<Item> itemlist(String userid) {
+		return itemDao.itemlist(userid);
+	}
 	
 }

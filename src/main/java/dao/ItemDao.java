@@ -356,6 +356,10 @@ public class ItemDao {
 			
 		}
 
+		public List<Item> itemlist(String userid) {
+			return sqlSession.getMapper(ItemMapper.class).itemlist(userid);
+		}
+
 		
 	
 	

@@ -186,4 +186,9 @@ public interface ItemMapper {
 	@Update("Update itemmanagement set code=4 where saleid=#{saleid}")
 	void denytakeback(String saleid);
 
+	@Select("select itemid, userid, itemname, price, description, "+
+			"picture1 pictureUrl1, picture2 pictureUrl2, picture3 pictureUrl3, picture4 pictureUrl4, picture5 pictureUrl5, "+
+			"vod, subject, tema, date, delivery, deliverycost from item where userid = #{userid} order by rand()")
+	List<Item> itemlist(String userid);
+
 }
