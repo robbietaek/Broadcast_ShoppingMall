@@ -79,12 +79,6 @@ public class ItemController {
 
 	@RequestMapping("selling")
 	public ModelAndView mypagelist(Integer pageNum, String searchtype, String searchcontent,String userid, HttpSession session) {
-
-
-		User sessionidid = (User)session.getAttribute("loginUser");
-		if(!userid.equals(sessionidid.getUserid())) {
-			throw new LoginException("본인 아이디가 아닙니다.", "../shop/mypage.shop?userid="+sessionidid.getUserid());
-		}
 		
 		// itemList : item테이블의 모든 레코드와 모든 컬럼을 정보를 저장
 		User user = (User) session.getAttribute("loginUser");

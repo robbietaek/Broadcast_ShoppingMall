@@ -12,8 +12,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title><decorator:title /></title>
-<script type="text/javascript" 
-   src="http://cdn.ckeditor.com/4.5.7/full/ckeditor.js">
+<script type="text/javascript"
+	src="http://cdn.ckeditor.com/4.5.7/full/ckeditor.js">
+	
 </script>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,48 +67,48 @@
 <script src="../shop/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
 <script src="../shop/vendor/jquery.counterup/jquery.counterup.min.js"></script>
 <script src="../shop/vendor/owl.carousel/owl.carousel.min.js"></script>
-<script src="../shop/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
+<script
+	src="../shop/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
 <script src="../shop/js/jquery.parallax-1.1.3.js"></script>
 <script src="../shop/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
 <script src="../shop/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
 <script src="../shop/js/front.js"></script>
 <decorator:head />
 <script type="text/javascript">
-function logout(){
-   $.ajax({
-      url:"../user/logout.shop",
-      type:"post",
-      success: function(data){
-         location.href=data
-         
-      },
-      error: function(e){
-            alert(JSON.stringify(e));
-         }
-   });
-}
+	function logout() {
+		$.ajax({
+			url : "../user/logout.shop",
+			type : "post",
+			success : function(data) {
+				location.href = data
 
-closetime = 1;
-function Start(URL, WIDTH, HEIGHT) {
-      windowprops = "left=50,top=50,width=" + WIDTH + ",height=" + HEIGHT;
-      preview = window.open(URL, "preview", windowprops);
-         if (closetime){
-            
-            setTimeout("preview.close();location.href='/project/user/logout1.shop';", closetime*100)
-            
-         }
-      }
+			},
+			error : function(e) {
+				alert(JSON.stringify(e));
+			}
+		});
+	}
 
-function logoutWithNaver(){
-      url='https://nid.naver.com/nidlogin.logout?returl=https://www.naver.com/';
-      width=100;
-      height = 100;
-      delay = 1;
-      timer = setTimeout("Start(url, width, height)", delay*1000);
-   }
-   
+	closetime = 1;
+	function Start(URL, WIDTH, HEIGHT) {
+		windowprops = "left=50,top=50,width=" + WIDTH + ",height=" + HEIGHT;
+		preview = window.open(URL, "preview", windowprops);
+		if (closetime) {
 
-   
+			setTimeout(
+					"preview.close();location.href='/project/user/logout1.shop';",
+					closetime * 100)
+
+		}
+	}
+
+	function logoutWithNaver() {
+		url = 'https://nid.naver.com/nidlogin.logout?returl=https://www.naver.com/';
+		width = 100;
+		height = 100;
+		delay = 1;
+		timer = setTimeout("Start(url, width, height)", delay * 1000);
+	}
 </script>
 </head>
 
@@ -138,21 +139,29 @@ function logoutWithNaver(){
 									<a href="../user/userEntry.shop" class="signup-btn"> <i
 										class="fa fa-user"></i> <span class="d-none d-md-inline-block">회원가입</span></a>
 									<a href="../broadcast/index.shop" class="signup-btn"> <i
-										class="fa fa-user"></i> <span class="d-none d-md-inline-block">쇼핑몰 리스트 가기</span></a>
+										class="fa fa-user"></i> <span class="d-none d-md-inline-block">쇼핑몰
+											리스트 가기</span></a>
 								</c:if>
 								<c:if test="${!empty sessionScope.loginUser}">
 									<a href="../broadcast/index.shop" class="signup-btn"> <i
-										class="fa fa-user"></i> <span class="d-none d-md-inline-block">쇼핑몰 리스트 가기</span></a>
-									<a href="../shop/mypage.shop?userid=${sessionScope.loginUser.userid}" class="signup-btn"> <i
-										class="fa fa-user"></i> <span class="d-none d-md-inline-block">Mypage</span></a>
-									<c:if test="${fn:substring(sessionScope.loginUser.userid,0,2) eq 'n*'}">                    
-                                        <a href="#" onclick="javascript:logoutWithNaver();" class="signup-btn"> <i
-                                          class="fa fa-sign-out"></i> <span class="d-none d-md-inline-block">logout</span></a>
-                                  	</c:if>
-                                  	<c:if test="${fn:substring(sessionScope.loginUser.userid,0,2) ne 'n*'}">
-                                  		<a href="javascript:logout();" class="signup-btn"> <i
-                                       	  class="fa fa-sign-out"></i> <span class="d-none d-md-inline-block">logout</span></a>
-                                    </c:if>
+										class="fa fa-user"></i> <span class="d-none d-md-inline-block">쇼핑몰
+											리스트 가기</span></a>
+									<a
+										href="../shop/mypage.shop?userid=${sessionScope.loginUser.userid}"
+										class="signup-btn"> <i class="fa fa-user"></i> <span
+										class="d-none d-md-inline-block">Mypage</span></a>
+									<c:if
+										test="${fn:substring(sessionScope.loginUser.userid,0,2) eq 'n*'}">
+										<a href="#" onclick="javascript:logoutWithNaver();"
+											class="signup-btn"> <i class="fa fa-sign-out"></i> <span
+											class="d-none d-md-inline-block">logout</span></a>
+									</c:if>
+									<c:if
+										test="${fn:substring(sessionScope.loginUser.userid,0,2) ne 'n*'}">
+										<a href="javascript:logout();" class="signup-btn"> <i
+											class="fa fa-sign-out"></i> <span
+											class="d-none d-md-inline-block">logout</span></a>
+									</c:if>
 								</c:if>
 							</div>
 						</div>
@@ -166,92 +175,85 @@ function logoutWithNaver(){
 		<header class="nav-holder make-sticky">
 			<div id="navbar" role="navigation" class="navbar navbar-expand-lg">
 				<div class="container">
-					<a href="../shop/index.shop?userid=${param.userid}" class="navbar-brand home">
-					
-					
-						<img src="../logo/small-mark.png" alt="Universal logo"
-							class="d-none d-md-inline-block" style = "width :170px; height : 50px;">
-						<img src="../logo/small-mark.png" alt="Universal logo"
-							class="d-inline-block d-md-none" style = "width :170px; height : 50px;">
-							
-						<span class="sr-only">Universal - go to homepage</span></a>
+					<a href="../shop/index.shop?userid=${param.userid}"
+						class="navbar-brand home"> <img src="../logo/small-mark.png"
+						alt="Universal logo" class="d-none d-md-inline-block"
+						style="width: 170px; height: 50px;"> <img
+						src="../logo/small-mark.png" alt="Universal logo"
+						class="d-inline-block d-md-none"
+						style="width: 170px; height: 50px;"> <span class="sr-only">Universal
+							- go to homepage</span></a>
 					<button type="button" data-toggle="collapse"
-							data-target="#navigation"
-							class="navbar-toggler btn-template-outlined">
-						<span class="sr-only">Toggle navigation</span>
-						<i class="fa fa-align-justify"></i>
+						data-target="#navigation"
+						class="navbar-toggler btn-template-outlined">
+						<span class="sr-only">Toggle navigation</span> <i
+							class="fa fa-align-justify"></i>
 					</button>
 					<div id="navigation" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav ml-auto">
-							<li class="nav-item dropdown active">
-								<a href="../shop/index.shop?userid=${param.userid}">Home 
-									<b class="caret"></b></a></li>
-									
-							<li class="nav-item dropdown menu-small">
-								<a href="#" data-toggle="dropdown" 
-									class="dropdown-toggle">Shopping
-									<b class="caret"></b></a>
+							<li class="nav-item dropdown active"><a
+								href="../shop/index.shop?userid=${param.userid}">Home <b
+									class="caret"></b></a></li>
+
+							<li class="nav-item dropdown menu-small"><a href="#"
+								data-toggle="dropdown" class="dropdown-toggle">Shopping <b
+									class="caret"></b></a>
 								<ul class="dropdown-menu megamenu">
 									<li>
 										<div class="row">
 											<div class="col-lg-3 col-md-6">
 												<h5>Category</h5>
 												<ul class="list-unstyled mb-3">
-													<li class="nav-item">
-														<a href="../item/category.shop?userid=${param.userid}&tema=clothes" 
-															class="nav-link">CLOTHES</a></li>
-													<li class="nav-item">
-														<a href="../item/category.shop?userid=${param.userid}&tema=food" 
-															class="nav-link">FOOD</a></li>
-													<li class="nav-item">
-														<a href="../item/category.shop?userid=${param.userid}&tema=toy" 
-															class="nav-link">TOY</a></li>
-													<li class="nav-item">
-														<a href="../item/category.shop?userid=${param.userid}&tema=music" 
-															class="nav-link">MUSIC</a></li>
-													<li class="nav-item">
-														<a href="../item/category.shop?userid=${param.userid}&tema=beauty" 
-															class="nav-link">Beauty</a></li>
-													<li class="nav-item">
-														<a href="../item/category.shop?userid=${param.userid}&tema=sport" 
-															class="nav-link">SPORTS</a></li>
+													<li class="nav-item"><a
+														href="../item/category.shop?userid=${param.userid}&tema=clothes"
+														class="nav-link">CLOTHES</a></li>
+													<li class="nav-item"><a
+														href="../item/category.shop?userid=${param.userid}&tema=food"
+														class="nav-link">FOOD</a></li>
+													<li class="nav-item"><a
+														href="../item/category.shop?userid=${param.userid}&tema=toy"
+														class="nav-link">TOY</a></li>
+													<li class="nav-item"><a
+														href="../item/category.shop?userid=${param.userid}&tema=music"
+														class="nav-link">MUSIC</a></li>
+													<li class="nav-item"><a
+														href="../item/category.shop?userid=${param.userid}&tema=beauty"
+														class="nav-link">Beauty</a></li>
+													<li class="nav-item"><a
+														href="../item/category.shop?userid=${param.userid}&tema=sport"
+														class="nav-link">SPORTS</a></li>
 												</ul>
 											</div>
 										</div>
 									</li>
-								</ul>
-							</li>
-							
-							
-							
-							<li class="nav-item dropdown menu-small">
-								<a href="#" data-toggle="dropdown" 
-									class="dropdown-toggle">VOD
-									<b class="caret"></b></a>
+								</ul></li>
+
+
+
+							<li class="nav-item dropdown menu-small"><a href="#"
+								data-toggle="dropdown" class="dropdown-toggle">VOD <b
+									class="caret"></b></a>
 								<ul class="dropdown-menu megamenu">
 									<li>
 										<div class="row">
 											<div class="col-lg-3 col-md-6">
 												<h5>VOD</h5>
 												<ul class="list-unstyled mb-3">
-													<li class="nav-item">
-														<a href="../broadcast/vodreplay.shop?userid=${param.userid}" 
-															class="nav-link">★NEW</a></li>
-													<li class="nav-item">
-														<a href="../broadcast/vodreplay.shop?userid=${param.userid}" 
-															class="nav-link">★HOT</a></li>
+													<li class="nav-item"><a
+														href="../broadcast/vodreplay.shop?userid=${param.userid}"
+														class="nav-link">★NEW</a></li>
+													<li class="nav-item"><a
+														href="../broadcast/vodreplay.shop?userid=${param.userid}"
+														class="nav-link">★HOT</a></li>
 												</ul>
 											</div>
 										</div>
 									</li>
-								</ul>
-							</li>												
+								</ul></li>
 							<!-- ========== FULL WIDTH MEGAMENU ==================-->
-							<li class="nav-item dropdown menu-large">
-								<a href="#" data-toggle="dropdown" 
-									data-hover="dropdown" data-delay="200"
-									class="dropdown-toggle">Communication
-									<b class="caret"></b></a>
+							<li class="nav-item dropdown menu-large"><a href="#"
+								data-toggle="dropdown" data-hover="dropdown" data-delay="200"
+								class="dropdown-toggle">Communication <b class="caret"></b></a>
 								<ul class="dropdown-menu megamenu">
 									<li>
 										<div class="row">
@@ -263,40 +265,40 @@ function logoutWithNaver(){
 											<div class="col-md-6 col-lg-3">
 												<h5>공지사항</h5>
 												<ul class="list-unstyled mb-3">
-													<li class="nav-item">
-														<a href="../border/list.shop?userid=${param.userid}&tema=1" 
-															class="nav-link">
-															공지사항</a></li>
+													<li class="nav-item"><a
+														href="../border/list.shop?userid=${param.userid}&tema=1"
+														class="nav-link"> 공지사항</a></li>
+												</ul>
+												<ul class="list-unstyled mb-3">
+													<li class="nav-item"><a
+														href="../border/faq.shop?userid=${param.userid}&tema=4"
+														class="nav-link"> FAQ</a></li>
 												</ul>
 											</div>
 											<div class="col-md-6 col-lg-3">
 												<h5>게시판</h5>
 												<ul class="list-unstyled mb-3">
-													<li class="nav-item">
-														<a href="../border/list.shop?userid=${param.userid}&tema=2" 
-															class="nav-link">
-														건의사항</a></li>
+													<li class="nav-item"><a
+														href="../border/list.shop?userid=${param.userid}&tema=2"
+														class="nav-link"> 건의사항</a></li>
 												</ul>
 												<ul class="list-unstyled mb-3">
-													<li class="nav-item">
-														<a href="../border/list.shop?userid=${param.userid}&tema=3" 
-															class="nav-link">
-														자유게시판</a></li>
+													<li class="nav-item"><a
+														href="../border/list.shop?userid=${param.userid}&tema=3"
+														class="nav-link"> 자유게시판</a></li>
 												</ul>
 											</div>
 											<div class="col-md-6 col-lg-3"></div>
 											<div class="col-md-6 col-lg-3"></div>
 										</div>
 									</li>
-								</ul>
-							</li>
+								</ul></li>
 						</ul>
 					</div>
 					<div id="search" class="collapse clearfix">
 						<form role="search" class="navbar-form">
 							<div class="input-group">
-								<input type="text" placeholder="Search" 
-									class="form-control">
+								<input type="text" placeholder="Search" class="form-control">
 								<span class="input-group-btn">
 									<button type="submit" class="btn btn-template-main">
 										<i class="fa fa-search"></i>
@@ -319,36 +321,35 @@ function logoutWithNaver(){
 				<div class="row">
 					<div class="col-lg-3">
 						<h1 style="font-size: 55px;">1234-1234</h1>
-						<p style="color: #FFFFFF; font-size: 18px;">Mon-Friday am 9:00 - pm 6:00 
-						(Lunch pm 12:00 - pm 1:00)
-						Sat-Sun.Holiday OFF</p>
+						<p style="color: #FFFFFF; font-size: 18px;">Mon-Friday am 9:00
+							- pm 6:00 (Lunch pm 12:00 - pm 1:00) Sat-Sun.Holiday OFF</p>
 						<a href="../shop/contact.shop" class="btn btn-template-main">
-						QNA</a>
+							QNA</a>
 					</div>
 					<div class="col-lg-7">
-					<br>
+						<br>
 						<h4>COMPANY : PAPRIKA TV</h4>
 						<p style="color: #ffffff; font-size: 15px;">
-							<br>address : GOODEE, 115 Gasan digital 2-ro,Geumcheon-gu, Seoul, Republic of Korea 
-							<br>representative name : group no.1 
-							<br>contact email : info@fakeemail.com
-							<br>tel : +33 555 444 333
-							<br><br>
-							<strong>Copyright &copy; 2020. All rights reserved</strong>
+							<br>address : GOODEE, 115 Gasan digital 2-ro,Geumcheon-gu,
+							Seoul, Republic of Korea <br>representative name : group
+							no.1 <br>contact email : info@fakeemail.com <br>tel :
+							+33 555 444 333 <br>
+							<br> <strong>Copyright &copy; 2020. All rights
+								reserved</strong>
 						</p>
 					</div>
 					<div class="col-lg-2">
 						<ul class="list-inline photo-stream">
-						<br>
-							<li class="list-inline-item">
-								<a href="../user/login.shop">JOIN
-									</a></li><br>
-							<li class="list-inline-item">
-								<a href="../item/category.shop">SHOP
-									</a></li><br>
-							<li class="list-inline-item">
-								<a href="../shop/contact.shop">FAQ
-									</a></li><br>
+							<br>
+							<li class="list-inline-item"><a href="../user/login.shop">JOIN
+							</a></li>
+							<br>
+							<li class="list-inline-item"><a href="../item/category.shop">SHOP
+							</a></li>
+							<br>
+							<li class="list-inline-item"><a href="../shop/contact.shop">FAQ
+							</a></li>
+							<br>
 						</ul>
 					</div>
 				</div>
