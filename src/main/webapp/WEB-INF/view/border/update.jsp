@@ -54,16 +54,18 @@
 						<div class="panel-heading">
 							<h3 class="h4 panel-title">Menu</h3>
 						</div>
-						<div class="panel-body">
-							<ul class="nav nav-pills flex-column text-sm">
-								<li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=1"
-									class="nav-link">공지사항</a></li>
-								<li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=2"
-									class="nav-link">건의사항</a></li>
-								<li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=3"
-									class="nav-link">자유게시판</a></li>
-							</ul>
-						</div>
+                  <div class="panel-body">
+                     <ul class="nav nav-pills flex-column text-sm">
+                        <li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=1"
+                           class="nav-link">공지사항</a></li>
+                        <li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=2"
+                           class="nav-link">건의사항</a></li>
+                        <li class="nav-item"><a href="list.shop?userid=${param.userid}&tema=3"
+                           class="nav-link">자유게시판</a></li>
+                        <li class="nav-item"><a href="faq.shop?userid=${param.userid}&tema=4"
+                           class="nav-link">FAQ</a></li>
+                     </ul>
+                  </div>
 					</div>
 				</div>
 

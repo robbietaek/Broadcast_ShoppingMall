@@ -57,7 +57,7 @@
                 </div>
                 </c:forEach>
               </div>
-              <div class="see-more text-center"><a href="../item/category.shop?userid=${sessionScope.loginUser.userid}" class="btn btn-template-outlined">상품 더보기</a></div>
+              <div class="see-more text-center"><a href="../item/category.shop?userid=${param.userid}&tema=clothes" class="btn btn-template-outlined">상품 더보기</a></div>
             </div>
           </div>
         </div>
